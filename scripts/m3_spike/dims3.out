@@ -1,0 +1,49 @@
+genus 2: 9 coordinates, weight factor ~10
+    d   #monomials S_d  dim (S/I)_d        dim I_d  (S/I)_d / w
+    1                9            9              0            0
+    2               45           36              9            3
+    3              165           81             84            8
+    4              495          144            351           14
+    5             1287          225           1062           22
+    6             3003          324           2679           32
+    7             6435          441           5994           44
+    8            12870          576          12294           57
+    9            24310          729          23581           72
+   10            43758          900          42858           90
+   11            75582         1089          74493          108
+   12           125970         1296         124674          129
+  quadrics in I_2: 9;  Sym^2 = 45 vs h0(6Theta) = 36
+  one (2,2) law: 9 x 36^2 = 11664 nominal coefficients (~1166 weighted)
+  Dup (degree 4): 9 x 144 = 1296 nominal (~129 weighted)
+  Fourier: Pf(3E_Theta) = 9, Pf(6E_Theta) = dim T(L^2) = 36
+
+genus 3: 27 coordinates, weight factor ~14
+    d   #monomials S_d  dim (S/I)_d        dim I_d  (S/I)_d / w
+    1               27           27              0            1
+    2              378          216            162           15
+    3             3654          729           2925           52
+    4            27405         1728          25677          123
+    5           169911         3375         166536          241
+    6           906192         5832         900360          416
+    7          4272048         9261        4262787          661
+    8         18156204        13824       18142380          987
+    9         70607460        19683       70587777         1405
+   10        254186856        27000      254159856         1928
+   11        854992152        35937      854956215         2566
+   12       2707475148        46656     2707428492         3332
+  quadrics in I_2: 162;  Sym^2 = 378 vs h0(6Theta) = 216
+  one (2,2) law: 27 x 216^2 = 1259712 nominal coefficients (~89979 weighted)
+  Dup (degree 4): 27 x 1728 = 46656 nominal (~3332 weighted)
+  Fourier: Pf(3E_Theta) = 27, Pf(6E_Theta) = dim T(L^2) = 216
+
+genus-3 single-copy certificate scale (expanded products, rough):
+  terms per Dup coordinate ~ 123
+  dup_onQ  Q_i(Dup(X)) mod I_8: 162 identities x 10*123^2 = 2.45e+07 products
+  E2 (dup transports one chart field), degree 9: 3 x 27 identities x ~123*810*30 = 2.42e+08
+  P2 at degree N = 7: cofactor space 27x(S/I)_3/w = 1404, products per identity ~1.73e+05, (S/I)_N = 9261
+  P2 at degree N = 8: cofactor space 27x(S/I)_4/w = 3321, products per identity ~4.08e+05, (S/I)_N = 13824
+  P2 at degree N = 9: cofactor space 27x(S/I)_5/w = 6507, products per identity ~8.00e+05, (S/I)_N = 19683
+  P2 at degree N = 10: cofactor space 27x(S/I)_6/w = 11232, products per identity ~1.38e+06, (S/I)_N = 27000
+
+genus-2 reference (A0/A4, measured): P2 at degree 7, (S/I)_7 = 441; V2' 64 identities x ~1.2e4 term-pairs;
+kernel throughput ~0.8 ms per innermost term-product (A0.3 item 5).

@@ -1,0 +1,19 @@
+generators of J_V: 9 quadrics + 3 cubics (I_A) + P04, P08, P48
+  P04 = 2*X1^2 - X0*X3 - X4*T0 + X0*T4
+  P08 = X2*X5 - X1*X6 - X8*T0 + X0*T8
+  P48 = -2*X1*X2 + 1/4*X5*X7 - 1/2*X3*X8 - X8*T4 + X4*T8
+
+== HF of S/J_V (mod P; an upper bound for the Q-value) vs (d+1)*9d^2 and HF of the image ==
+d=1: HF_J = 12   (d+1)9d^2 = 18   HF_img = 12   (J excess = 0)   [0s]
+d=2: HF_J = 66   (d+1)9d^2 = 108   HF_img = 66   (J excess = 0)   [0s]
+d=3: HF_J = 218   (d+1)9d^2 = 324   HF_img = 217   (J excess = 1)   [0s]
+d=4: HF_J = 522   (d+1)9d^2 = 720   HF_img = 519   (J excess = 3)   [0s]
+d=5: HF_J = 1032   (d+1)9d^2 = 1350   HF_img = 1026   (J excess = 6)   [1s]
+d=6: HF_J = 1802   (d+1)9d^2 = 2268   HF_img = 1792   (J excess = 10)   [9s]
+d=7: HF_J = 2886   (d+1)9d^2 = 3528   [73s]
+
+== HF of S/I_A in 9 variables (check 9d^2) ==
+d=1: 9 (9d^2 = 9)
+d=2: 36 (9d^2 = 36)
+d=3: 81 (9d^2 = 81)
+d=4: 144 (9d^2 = 144)

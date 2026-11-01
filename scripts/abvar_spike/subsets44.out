@@ -1,0 +1,3 @@
+(e1,e2)=(4,4) laws=0,3,4: rank 14904 / target 20736  not onto  [67.2s]
+(e1,e2)=(4,4) laws=0,4,7: rank 15444 / target 20736  not onto  [45.5s]
+(e1,e2)=(4,4) laws=0,1,4: rank 13788 / target 20736  not onto  [43.1s]

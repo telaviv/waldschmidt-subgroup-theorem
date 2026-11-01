@@ -1,0 +1,16 @@
+✔ [12/13] Built LSG.Jac.Cert.E1_E40_0 (932s)
+✔ [13/13] Built LSG.Jac.Cert.E1_E40_1 (932s)
+[E1_E40_0 E1_E40_1] wall 934 s
+✔ [12/13] Built LSG.Jac.Cert.E1_F4Y_0 (1195s)
+✔ [13/13] Built LSG.Jac.Cert.E1_F4Y_1 (1196s)
+[E1_F4Y_0 E1_F4Y_1] wall 1198 s
+✔ [12/13] Built LSG.Jac.Cert.E1_E04_0 (1644s)
+✔ [13/13] Built LSG.Jac.Cert.E1_F4X_0 (1644s)
+[E1_E04_0 E1_F4X_0] wall 1646 s
+✔ [12/13] Built LSG.Jac.Cert.E1_E04_1 (2294s)
+✔ [13/13] Built LSG.Jac.Cert.E1_F4X_1 (2294s)
+[E1_E04_1 E1_F4X_1] wall 2296 s
+✔ [12/13] Built LSG.Jac.Cert.E1_E44_0 (2679s)
+✔ [13/13] Built LSG.Jac.Cert.E1_E44_1 (2680s)
+[E1_E44_0 E1_E44_1] wall 2682 s
+DONE

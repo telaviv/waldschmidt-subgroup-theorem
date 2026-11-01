@@ -1,0 +1,738 @@
+{
+"stats": [
+{
+"m": 0,
+"j": 0,
+"terms_lhs": 9679,
+"cofactor_terms": 17070,
+"expanded_products": 69123,
+"cof_den": 184320,
+"cof_maxbits": 26
+},
+{
+"m": 0,
+"j": 1,
+"terms_lhs": 10856,
+"cofactor_terms": 17198,
+"expanded_products": 69711,
+"cof_den": 184320,
+"cof_maxbits": 28
+},
+{
+"m": 0,
+"j": 2,
+"terms_lhs": 11610,
+"cofactor_terms": 17352,
+"expanded_products": 70333,
+"cof_den": 368640,
+"cof_maxbits": 28
+},
+{
+"m": 0,
+"j": 3,
+"terms_lhs": 12348,
+"cofactor_terms": 17466,
+"expanded_products": 70853,
+"cof_den": 368640,
+"cof_maxbits": 29
+},
+{
+"m": 0,
+"j": 4,
+"terms_lhs": 11264,
+"cofactor_terms": 17324,
+"expanded_products": 70249,
+"cof_den": 184320,
+"cof_maxbits": 27
+},
+{
+"m": 0,
+"j": 5,
+"terms_lhs": 12718,
+"cofactor_terms": 17604,
+"expanded_products": 71507,
+"cof_den": 368640,
+"cof_maxbits": 30
+},
+{
+"m": 0,
+"j": 6,
+"terms_lhs": 13222,
+"cofactor_terms": 17704,
+"expanded_products": 71949,
+"cof_den": 368640,
+"cof_maxbits": 30
+},
+{
+"m": 0,
+"j": 7,
+"terms_lhs": 12876,
+"cofactor_terms": 17686,
+"expanded_products": 71834,
+"cof_den": 184320,
+"cof_maxbits": 29
+},
+{
+"m": 0,
+"j": 8,
+"terms_lhs": 12793,
+"cofactor_terms": 17714,
+"expanded_products": 71962,
+"cof_den": 92160,
+"cof_maxbits": 29
+},
+{
+"m": 1,
+"j": 0,
+"terms_lhs": 10077,
+"cofactor_terms": 17114,
+"expanded_products": 69231,
+"cof_den": 737280,
+"cof_maxbits": 27
+},
+{
+"m": 1,
+"j": 1,
+"terms_lhs": 11404,
+"cofactor_terms": 17186,
+"expanded_products": 69600,
+"cof_den": 2211840,
+"cof_maxbits": 30
+},
+{
+"m": 1,
+"j": 2,
+"terms_lhs": 11406,
+"cofactor_terms": 17226,
+"expanded_products": 69760,
+"cof_den": 737280,
+"cof_maxbits": 29
+},
+{
+"m": 1,
+"j": 3,
+"terms_lhs": 12714,
+"cofactor_terms": 17437,
+"expanded_products": 70693,
+"cof_den": 737280,
+"cof_maxbits": 28
+},
+{
+"m": 1,
+"j": 4,
+"terms_lhs": 11890,
+"cofactor_terms": 17307,
+"expanded_products": 70211,
+"cof_den": 737280,
+"cof_maxbits": 28
+},
+{
+"m": 1,
+"j": 5,
+"terms_lhs": 13048,
+"cofactor_terms": 17611,
+"expanded_products": 71489,
+"cof_den": 737280,
+"cof_maxbits": 29
+},
+{
+"m": 1,
+"j": 6,
+"terms_lhs": 13503,
+"cofactor_terms": 17723,
+"expanded_products": 72032,
+"cof_den": 2211840,
+"cof_maxbits": 31
+},
+{
+"m": 1,
+"j": 7,
+"terms_lhs": 12818,
+"cofactor_terms": 17653,
+"expanded_products": 71707,
+"cof_den": 737280,
+"cof_maxbits": 30
+},
+{
+"m": 1,
+"j": 8,
+"terms_lhs": 12768,
+"cofactor_terms": 17510,
+"expanded_products": 71042,
+"cof_den": 184320,
+"cof_maxbits": 28
+},
+{
+"m": 2,
+"j": 0,
+"terms_lhs": 10504,
+"cofactor_terms": 17221,
+"expanded_products": 69772,
+"cof_den": 737280,
+"cof_maxbits": 28
+},
+{
+"m": 2,
+"j": 1,
+"terms_lhs": 11620,
+"cofactor_terms": 17373,
+"expanded_products": 70411,
+"cof_den": 368640,
+"cof_maxbits": 28
+},
+{
+"m": 2,
+"j": 2,
+"terms_lhs": 11842,
+"cofactor_terms": 17412,
+"expanded_products": 70535,
+"cof_den": 368640,
+"cof_maxbits": 27
+},
+{
+"m": 2,
+"j": 3,
+"terms_lhs": 12934,
+"cofactor_terms": 17576,
+"expanded_products": 71270,
+"cof_den": 2211840,
+"cof_maxbits": 30
+},
+{
+"m": 2,
+"j": 4,
+"terms_lhs": 11444,
+"cofactor_terms": 17411,
+"expanded_products": 70605,
+"cof_den": 368640,
+"cof_maxbits": 27
+},
+{
+"m": 2,
+"j": 5,
+"terms_lhs": 13484,
+"cofactor_terms": 17810,
+"expanded_products": 72352,
+"cof_den": 737280,
+"cof_maxbits": 28
+},
+{
+"m": 2,
+"j": 6,
+"terms_lhs": 13844,
+"cofactor_terms": 17955,
+"expanded_products": 72981,
+"cof_den": 368640,
+"cof_maxbits": 28
+},
+{
+"m": 2,
+"j": 7,
+"terms_lhs": 13004,
+"cofactor_terms": 17731,
+"expanded_products": 72102,
+"cof_den": 368640,
+"cof_maxbits": 28
+},
+{
+"m": 2,
+"j": 8,
+"terms_lhs": 13150,
+"cofactor_terms": 17681,
+"expanded_products": 71789,
+"cof_den": 552960,
+"cof_maxbits": 30
+},
+{
+"m": 3,
+"j": 0,
+"terms_lhs": 10828,
+"cofactor_terms": 17408,
+"expanded_products": 70534,
+"cof_den": 737280,
+"cof_maxbits": 28
+},
+{
+"m": 3,
+"j": 1,
+"terms_lhs": 12846,
+"cofactor_terms": 17664,
+"expanded_products": 71660,
+"cof_den": 1105920,
+"cof_maxbits": 30
+},
+{
+"m": 3,
+"j": 2,
+"terms_lhs": 12426,
+"cofactor_terms": 17571,
+"expanded_products": 71242,
+"cof_den": 1105920,
+"cof_maxbits": 30
+},
+{
+"m": 3,
+"j": 3,
+"terms_lhs": 13464,
+"cofactor_terms": 17654,
+"expanded_products": 71608,
+"cof_den": 368640,
+"cof_maxbits": 28
+},
+{
+"m": 3,
+"j": 4,
+"terms_lhs": 12082,
+"cofactor_terms": 17459,
+"expanded_products": 70826,
+"cof_den": 368640,
+"cof_maxbits": 28
+},
+{
+"m": 3,
+"j": 5,
+"terms_lhs": 14206,
+"cofactor_terms": 17942,
+"expanded_products": 72920,
+"cof_den": 368640,
+"cof_maxbits": 29
+},
+{
+"m": 3,
+"j": 6,
+"terms_lhs": 14413,
+"cofactor_terms": 17978,
+"expanded_products": 73124,
+"cof_den": 368640,
+"cof_maxbits": 30
+},
+{
+"m": 3,
+"j": 7,
+"terms_lhs": 13616,
+"cofactor_terms": 17883,
+"expanded_products": 72682,
+"cof_den": 368640,
+"cof_maxbits": 29
+},
+{
+"m": 3,
+"j": 8,
+"terms_lhs": 13859,
+"cofactor_terms": 17900,
+"expanded_products": 72741,
+"cof_den": 184320,
+"cof_maxbits": 28
+},
+{
+"m": 4,
+"j": 0,
+"terms_lhs": 12273,
+"cofactor_terms": 17741,
+"expanded_products": 71930,
+"cof_den": 368640,
+"cof_maxbits": 29
+},
+{
+"m": 4,
+"j": 1,
+"terms_lhs": 12922,
+"cofactor_terms": 17670,
+"expanded_products": 71653,
+"cof_den": 184320,
+"cof_maxbits": 30
+},
+{
+"m": 4,
+"j": 2,
+"terms_lhs": 13218,
+"cofactor_terms": 17742,
+"expanded_products": 71955,
+"cof_den": 368640,
+"cof_maxbits": 30
+},
+{
+"m": 4,
+"j": 3,
+"terms_lhs": 14462,
+"cofactor_terms": 17980,
+"expanded_products": 73038,
+"cof_den": 368640,
+"cof_maxbits": 31
+},
+{
+"m": 4,
+"j": 4,
+"terms_lhs": 13734,
+"cofactor_terms": 17912,
+"expanded_products": 72748,
+"cof_den": 1105920,
+"cof_maxbits": 33
+},
+{
+"m": 4,
+"j": 5,
+"terms_lhs": 14368,
+"cofactor_terms": 18068,
+"expanded_products": 73479,
+"cof_den": 737280,
+"cof_maxbits": 32
+},
+{
+"m": 4,
+"j": 6,
+"terms_lhs": 14714,
+"cofactor_terms": 18111,
+"expanded_products": 73680,
+"cof_den": 737280,
+"cof_maxbits": 32
+},
+{
+"m": 4,
+"j": 7,
+"terms_lhs": 14767,
+"cofactor_terms": 18158,
+"expanded_products": 73898,
+"cof_den": 368640,
+"cof_maxbits": 32
+},
+{
+"m": 4,
+"j": 8,
+"terms_lhs": 14372,
+"cofactor_terms": 18014,
+"expanded_products": 73208,
+"cof_den": 552960,
+"cof_maxbits": 33
+},
+{
+"m": 5,
+"j": 0,
+"terms_lhs": 12237,
+"cofactor_terms": 17728,
+"expanded_products": 71907,
+"cof_den": 368640,
+"cof_maxbits": 28
+},
+{
+"m": 5,
+"j": 1,
+"terms_lhs": 13264,
+"cofactor_terms": 17829,
+"expanded_products": 72361,
+"cof_den": 184320,
+"cof_maxbits": 29
+},
+{
+"m": 5,
+"j": 2,
+"terms_lhs": 13538,
+"cofactor_terms": 17866,
+"expanded_products": 72543,
+"cof_den": 1105920,
+"cof_maxbits": 32
+},
+{
+"m": 5,
+"j": 3,
+"terms_lhs": 14776,
+"cofactor_terms": 17977,
+"expanded_products": 73089,
+"cof_den": 737280,
+"cof_maxbits": 31
+},
+{
+"m": 5,
+"j": 4,
+"terms_lhs": 13424,
+"cofactor_terms": 17802,
+"expanded_products": 72275,
+"cof_den": 368640,
+"cof_maxbits": 29
+},
+{
+"m": 5,
+"j": 5,
+"terms_lhs": 14841,
+"cofactor_terms": 18037,
+"expanded_products": 73418,
+"cof_den": 737280,
+"cof_maxbits": 31
+},
+{
+"m": 5,
+"j": 6,
+"terms_lhs": 15183,
+"cofactor_terms": 18137,
+"expanded_products": 73829,
+"cof_den": 368640,
+"cof_maxbits": 31
+},
+{
+"m": 5,
+"j": 7,
+"terms_lhs": 14648,
+"cofactor_terms": 18064,
+"expanded_products": 73498,
+"cof_den": 368640,
+"cof_maxbits": 29
+},
+{
+"m": 5,
+"j": 8,
+"terms_lhs": 14655,
+"cofactor_terms": 18032,
+"expanded_products": 73355,
+"cof_den": 184320,
+"cof_maxbits": 31
+},
+{
+"m": 6,
+"j": 0,
+"terms_lhs": 12507,
+"cofactor_terms": 17928,
+"expanded_products": 72791,
+"cof_den": 368640,
+"cof_maxbits": 28
+},
+{
+"m": 6,
+"j": 1,
+"terms_lhs": 13978,
+"cofactor_terms": 17983,
+"expanded_products": 73118,
+"cof_den": 184320,
+"cof_maxbits": 29
+},
+{
+"m": 6,
+"j": 2,
+"terms_lhs": 13574,
+"cofactor_terms": 17898,
+"expanded_products": 72693,
+"cof_den": 368640,
+"cof_maxbits": 29
+},
+{
+"m": 6,
+"j": 3,
+"terms_lhs": 14790,
+"cofactor_terms": 18047,
+"expanded_products": 73350,
+"cof_den": 368640,
+"cof_maxbits": 30
+},
+{
+"m": 6,
+"j": 4,
+"terms_lhs": 13654,
+"cofactor_terms": 17754,
+"expanded_products": 72063,
+"cof_den": 1105920,
+"cof_maxbits": 32
+},
+{
+"m": 6,
+"j": 5,
+"terms_lhs": 14894,
+"cofactor_terms": 18178,
+"expanded_products": 73997,
+"cof_den": 1105920,
+"cof_maxbits": 32
+},
+{
+"m": 6,
+"j": 6,
+"terms_lhs": 15174,
+"cofactor_terms": 18139,
+"expanded_products": 73842,
+"cof_den": 368640,
+"cof_maxbits": 30
+},
+{
+"m": 6,
+"j": 7,
+"terms_lhs": 14888,
+"cofactor_terms": 18168,
+"expanded_products": 73929,
+"cof_den": 184320,
+"cof_maxbits": 30
+},
+{
+"m": 6,
+"j": 8,
+"terms_lhs": 14849,
+"cofactor_terms": 18080,
+"expanded_products": 73586,
+"cof_den": 92160,
+"cof_maxbits": 29
+},
+{
+"m": 7,
+"j": 0,
+"terms_lhs": 11536,
+"cofactor_terms": 17693,
+"expanded_products": 71810,
+"cof_den": 368640,
+"cof_maxbits": 30
+},
+{
+"m": 7,
+"j": 1,
+"terms_lhs": 12656,
+"cofactor_terms": 17829,
+"expanded_products": 72381,
+"cof_den": 184320,
+"cof_maxbits": 31
+},
+{
+"m": 7,
+"j": 2,
+"terms_lhs": 13038,
+"cofactor_terms": 17851,
+"expanded_products": 72452,
+"cof_den": 368640,
+"cof_maxbits": 30
+},
+{
+"m": 7,
+"j": 3,
+"terms_lhs": 13786,
+"cofactor_terms": 17828,
+"expanded_products": 72411,
+"cof_den": 552960,
+"cof_maxbits": 31
+},
+{
+"m": 7,
+"j": 4,
+"terms_lhs": 12440,
+"cofactor_terms": 17593,
+"expanded_products": 71368,
+"cof_den": 552960,
+"cof_maxbits": 32
+},
+{
+"m": 7,
+"j": 5,
+"terms_lhs": 14171,
+"cofactor_terms": 17977,
+"expanded_products": 73128,
+"cof_den": 184320,
+"cof_maxbits": 30
+},
+{
+"m": 7,
+"j": 6,
+"terms_lhs": 14206,
+"cofactor_terms": 18009,
+"expanded_products": 73276,
+"cof_den": 184320,
+"cof_maxbits": 31
+},
+{
+"m": 7,
+"j": 7,
+"terms_lhs": 13714,
+"cofactor_terms": 18007,
+"expanded_products": 73224,
+"cof_den": 92160,
+"cof_maxbits": 30
+},
+{
+"m": 7,
+"j": 8,
+"terms_lhs": 13927,
+"cofactor_terms": 17990,
+"expanded_products": 73160,
+"cof_den": 92160,
+"cof_maxbits": 31
+},
+{
+"m": 8,
+"j": 0,
+"terms_lhs": 11645,
+"cofactor_terms": 17778,
+"expanded_products": 72146,
+"cof_den": 4423680,
+"cof_maxbits": 33
+},
+{
+"m": 8,
+"j": 1,
+"terms_lhs": 13008,
+"cofactor_terms": 17923,
+"expanded_products": 72846,
+"cof_den": 737280,
+"cof_maxbits": 30
+},
+{
+"m": 8,
+"j": 2,
+"terms_lhs": 13098,
+"cofactor_terms": 17940,
+"expanded_products": 72873,
+"cof_den": 1474560,
+"cof_maxbits": 31
+},
+{
+"m": 8,
+"j": 3,
+"terms_lhs": 14066,
+"cofactor_terms": 17972,
+"expanded_products": 73062,
+"cof_den": 737280,
+"cof_maxbits": 30
+},
+{
+"m": 8,
+"j": 4,
+"terms_lhs": 13098,
+"cofactor_terms": 17837,
+"expanded_products": 72447,
+"cof_den": 737280,
+"cof_maxbits": 30
+},
+{
+"m": 8,
+"j": 5,
+"terms_lhs": 14034,
+"cofactor_terms": 18029,
+"expanded_products": 73346,
+"cof_den": 737280,
+"cof_maxbits": 31
+},
+{
+"m": 8,
+"j": 6,
+"terms_lhs": 14382,
+"cofactor_terms": 18026,
+"expanded_products": 73386,
+"cof_den": 245760,
+"cof_maxbits": 30
+},
+{
+"m": 8,
+"j": 7,
+"terms_lhs": 14107,
+"cofactor_terms": 18072,
+"expanded_products": 73531,
+"cof_den": 368640,
+"cof_maxbits": 30
+},
+{
+"m": 8,
+"j": 8,
+"terms_lhs": 14110,
+"cofactor_terms": 18080,
+"expanded_products": 73590,
+"cof_den": 368640,
+"cof_maxbits": 31
+}
+],
+"total": {
+"terms_lhs": 1067286,
+"cofactor_terms": 1438991,
+"expanded_products": 5844110
+}
+}

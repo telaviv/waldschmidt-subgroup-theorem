@@ -1,0 +1,39 @@
+=== Part 2: flow identities ===
+  W_11 = 1*X0X4
+  W_12 = 1*X0X5
+  W_13 = 1*X0X6
+  W_14 = -3*X0X3 + 6*X1X1
+  W_15 = -1*X0X0 + 6*X1X2
+  W_16 = 4*X0X8 + 6*X1X3
+  W_17 = -2*X0X1 + 6*X2X3
+  W_18 = -3*X1X6 + 3*X2X5
+  W_21 = 1*X0X5
+  W_22 = 1*X0X6
+  W_23 = 1*X0X7
+  W_24 = -1*X0X0 + 6*X1X2
+  W_25 = 4*X0X8 + 6*X1X3
+  W_26 = -2*X0X1 + 6*X2X3
+  W_27 = 4*X0X2 + 6*X3X3
+  W_28 = -1/2*X0X4 + -3/2*X1X7 + 3/2*X2X6
+  H_10: G_10 200 terms (bideg (3,3)), G_B 6, A_0 58; numeric zero at 5/5 random pairs; |G|_1 = 654
+  H_11: G_11 314 terms (bideg (3,3)), G_B 6, A_1 88; numeric zero at 5/5 random pairs; |G|_1 = 499
+  H_12: G_12 308 terms (bideg (3,3)), G_B 6, A_2 90; numeric zero at 5/5 random pairs; |G|_1 = 516
+  H_13: G_13 308 terms (bideg (3,3)), G_B 6, A_3 100; numeric zero at 5/5 random pairs; |G|_1 = 660
+  H_14: G_14 340 terms (bideg (3,3)), G_B 6, A_4 98; numeric zero at 5/5 random pairs; |G|_1 = 1.47e+03
+  H_15: G_15 358 terms (bideg (3,3)), G_B 6, A_5 102; numeric zero at 5/5 random pairs; |G|_1 = 1.05e+03
+  H_16: G_16 375 terms (bideg (3,3)), G_B 6, A_6 114; numeric zero at 5/5 random pairs; |G|_1 = 1.32e+03
+  H_17: G_17 370 terms (bideg (3,3)), G_B 6, A_7 110; numeric zero at 5/5 random pairs; |G|_1 = 1.85e+03
+  H_18: G_18 342 terms (bideg (3,3)), G_B 6, A_8 94; numeric zero at 5/5 random pairs; |G|_1 = 1.13e+03
+  H_20: G_20 198 terms (bideg (3,3)), G_B 6, A_0 58; numeric zero at 5/5 random pairs; |G|_1 = 524
+  H_21: G_21 326 terms (bideg (3,3)), G_B 6, A_1 88; numeric zero at 5/5 random pairs; |G|_1 = 449
+  H_22: G_22 324 terms (bideg (3,3)), G_B 6, A_2 90; numeric zero at 5/5 random pairs; |G|_1 = 455
+  H_23: G_23 314 terms (bideg (3,3)), G_B 6, A_3 100; numeric zero at 5/5 random pairs; |G|_1 = 528
+  H_24: G_24 360 terms (bideg (3,3)), G_B 6, A_4 98; numeric zero at 5/5 random pairs; |G|_1 = 1.43e+03
+  H_25: G_25 363 terms (bideg (3,3)), G_B 6, A_5 102; numeric zero at 5/5 random pairs; |G|_1 = 956
+  H_26: G_26 377 terms (bideg (3,3)), G_B 6, A_6 114; numeric zero at 5/5 random pairs; |G|_1 = 1.15e+03
+  H_27: G_27 368 terms (bideg (3,3)), G_B 6, A_7 110; numeric zero at 5/5 random pairs; |G|_1 = 1.71e+03
+  H_28: G_28 348 terms (bideg (3,3)), G_B 6, A_8 94; numeric zero at 5/5 random pairs; |G|_1 = 986
+
+real	0m23.801s
+user	0m0.000s
+sys	0m0.015s

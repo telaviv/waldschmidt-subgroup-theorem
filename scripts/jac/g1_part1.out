@@ -1,0 +1,21 @@
+=== Part 1: G1 (law 0 vs Cantor) ===
+  CRT cubic: numerator coefficients [8, 12, 16, 12] terms, denominator 7 terms  [0.2s]
+  q coefficients: [34, 88, 115] terms  [1.7s]
+  Cantor s1(R): numerator 88 terms, denominator 34 terms (unreduced)
+  Cantor s2(R): numerator 115 terms, denominator 34 terms (unreduced)
+  Cantor b1(R): numerator 3902 terms, denominator 1043 terms (unreduced)
+  Cantor b0(R): numerator 4920 terms, denominator 1043 terms (unreduced)
+  law 0 pulled back: A_0^(0) has 160 terms
+  law 0 pulled back: A_2^(0) has 374 terms
+  law 0 pulled back: A_3^(0) has 298 terms
+  law 0 pulled back: A_6^(0) has 480 terms
+  law 0 pulled back: A_7^(0) has 412 terms
+  G1[s1]: E has 5696 terms (total degree 15), 24212 term-pairs to form it  [0.0s]
+  G1[s2]: E has 7232 terms (total degree 16), 31116 term-pairs to form it  [0.0s]
+  G1[b1]: E has 84184 terms (total degree 23), 1054036 term-pairs to form it  [0.2s]
+  G1[b0]: E has 103308 terms (total degree 24), 1287840 term-pairs to form it  [0.2s]
+  G1 identities vanish at 5/5 random chart pairs mod p
+
+real	0m15.262s
+user	0m0.000s
+sys	0m0.015s

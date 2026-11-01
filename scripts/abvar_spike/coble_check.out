@@ -1,0 +1,3 @@
+dimension of the space of such cubics: 1
+cubic: -X0**2*X1/2 - X0*X2*X3/2 - X0*X4*X5/2 + X0*X7**2/8 - X0*X8**2/2 + 2*X1**2*X2 - X1*X3*X8 - X1*X5*X7/2 + X1*X6**2/2 + X2**2*X8 + X2*X4*X7/2 - X2*X5*X6/2 - X3**3/2 - X3*X4*X6/2 + X3*X5**2/2
+rank of span of its 9 partials: 9

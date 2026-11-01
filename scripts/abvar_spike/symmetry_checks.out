@@ -1,0 +1,2 @@
+(S1) A_k^(m)(X,[-1]Y) = eps A_m^(k)(X,Y): all exact: True  eps values: ['1']
+(S2) A_k^(m)(Y,X) = eps A_k^(m)(X,Y): exact for 81 of 81; eps values: ['-1', '1']

@@ -1,0 +1,9 @@
+r = 1, beta = 1: max |mu2 - sigma mu1| over lifts = 3.73e-49
+  complex rank: X_A 4 (expected 4), X_B 4 (expected 4), all 8 (expected 8); Q-rank 12
+  (5.4) premise with kappa_C: 18r > 24r + 4 - kappa_C  <=>  18 > 20: False;  with d2 = 12r (no G_a^2 in d2): 18 > 16: True
+r = 1, beta = Z + 2: max |mu2 - sigma mu1| over lifts = 8.81e-49
+  complex rank: X_A 4 (expected 4), X_B 4 (expected 4), all 8 (expected 8); Q-rank 12
+  (5.4) premise with kappa_C: 18r > 24r + 4 - kappa_C  <=>  18 > 20: False;  with d2 = 12r (no G_a^2 in d2): 18 > 16: True
+r = 3, beta = C + 1: max |mu2 - sigma mu1| over lifts = 1.32e-48
+  complex rank: X_A 12 (expected 12), X_B 12 (expected 12), all 24 (expected 24); Q-rank 36
+  (5.4) premise with kappa_C: 18r > 24r + 4 - kappa_C  <=>  54 > 52: True;  with d2 = 12r (no G_a^2 in d2): 54 > 48: True

@@ -1,0 +1,32 @@
+== (a) all 81 laws at random pairs: rank one, output on V ==
+trial 0: nonzero laws 81/81, pairwise proportional: True, output on V: True
+trial 1: nonzero laws 81/81, pairwise proportional: True, output on V: True
+trial 2: nonzero laws 81/81, pairwise proportional: True, output on V: True
+
+== (b) neutral element and fibre translation ==
+ law(P, (e4;0,0,0)) ∝ P: True
+ law(P, (e4;0,t,0)) ∝ (X; T + t X_c): True   ∝ P: False
+ (e4; t, 0, 0) is not on V for t != 0 (P04 = -t): True
+ law(P, (e4;0,0,0)) ∝ P: True
+ law(P, (e4;0,t,0)) ∝ (X; T + t X_c): True   ∝ P: False
+ (e4; t, 0, 0) is not on V for t != 0 (P04 = -t): True
+
+== (c) commutativity, associativity, inverse ==
+ commutative: True
+ associative: True
+ inverse  P + [-1]P ∝ (e4;0,0,0): True  [-1]P on V: True
+ commutative: True
+ associative: True
+ inverse  P + [-1]P ∝ (e4;0,0,0): True  [-1]P on V: True
+[0s]
+
+== S5: sizes of the expanded (3,3) laws (terms per coordinate) ==
+X-parts: 74115 terms over 81x9 coordinates (= 9 x the 8235 law terms); T-parts: 175760 terms over 81x3 coordinates, max 940 per coordinate; total 249875
+  law 0,0,0 sizes (X0..X8, T0, T4, T8): [58, 88, 90, 100, 98, 102, 114, 110, 94, 316, 530, 528]
+  law 4,4,4 sizes (X0..X8, T0, T4, T8): [98, 106, 108, 114, 66, 118, 115, 116, 110, 798, 520, 880]
+  law 0,4,8 sizes (X0..X8, T0, T4, T8): [58, 88, 90, 100, 98, 102, 114, 110, 94, 479, 796, 774]
+  law 8,8,8 sizes (X0..X8, T0, T4, T8): [94, 96, 110, 106, 110, 116, 114, 106, 68, 770, 890, 560]
+  D^X_c Law_(m,k) (k in 0,4,8): 24331 terms over 81 (m,k,c), max 405
+  (M-b) comparison: the 9x9 (2,2) T-laws 1/2(sum dLaw/dX_a T_a + sum dLaw/dY_a U_a) have 30970 terms in total
+  spot check expanded == structured: True
+[2s]

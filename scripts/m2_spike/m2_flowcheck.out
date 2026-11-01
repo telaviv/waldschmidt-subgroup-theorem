@@ -1,0 +1,6 @@
+chart 0, j=1: tangency violations 0/60;  R_l = X_c * quadric on V: {4: False, 8: False}
+chart 0, j=2: tangency violations 0/60;  R_l = X_c * quadric on V: {4: False, 8: False}
+chart 4, j=1: tangency violations 0/60;  R_l = X_c * quadric on V: {0: False, 8: False}
+chart 4, j=2: tangency violations 0/60;  R_l = X_c * quadric on V: {0: False, 8: False}
+chart 8, j=1: tangency violations 0/60;  R_l = X_c * quadric on V: {0: False, 4: False}
+chart 8, j=2: tangency violations 0/60;  R_l = X_c * quadric on V: {0: False, 4: False}

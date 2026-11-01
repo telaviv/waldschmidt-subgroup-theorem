@@ -1,0 +1,12 @@
+y = X0,X4,X8: n = 3: rank (y)(S/I)_(n-1) = 80 / 81
+y = X0,X4,X8: n = 4: rank (y)(S/I)_(n-1) = 144 / 144
+y = X0,X1,X4: n = 3: rank (y)(S/I)_(n-1) = 69 / 81
+y = X0,X1,X4: n = 4: rank (y)(S/I)_(n-1) = 132 / 144
+y = X0,X1,X4: n = 5: rank (y)(S/I)_(n-1) = 213 / 225
+y = X0,X1,X4: n = 6: rank (y)(S/I)_(n-1) = 312 / 324
+y = X0,X2,X3: n = 3: rank (y)(S/I)_(n-1) = 61 / 81
+y = X0,X2,X3: n = 4: rank (y)(S/I)_(n-1) = 118 / 144
+y = X0,X2,X3: n = 5: rank (y)(S/I)_(n-1) = 193 / 225
+y = X0,X2,X3: n = 6: rank (y)(S/I)_(n-1) = 286 / 324
+y = random: n = 3: rank (y)(S/I)_(n-1) = 80 / 81
+y = random: n = 4: rank (y)(S/I)_(n-1) = 144 / 144

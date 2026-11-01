@@ -1,0 +1,32 @@
+dim I_3 = 84 (expected 84)
+dim (Q)_3 = 81 , extra cubics: 3
+choice 0: dim colon_3 = 55, colon elements outside I_A: rank 1 mod I_3
+   with 1 choice(s): N = 3: rank (S)_N on A = 1 / 81
+   with 1 choice(s): N = 4: rank (S)_N on A = 9 / 144
+   with 1 choice(s): N = 5: rank (S)_N on A = 36 / 225
+   with 1 choice(s): N = 6: rank (S)_N on A = 81 / 324
+   with 1 choice(s): N = 7: rank (S)_N on A = 144 / 441
+   with 1 choice(s): N = 8: rank (S)_N on A = 225 / 576
+   with 1 choice(s): N = 9: rank (S)_N on A = 324 / 729
+choice 1: dim colon_3 = 55, colon elements outside I_A: rank 1 mod I_3
+   with 2 choice(s): N = 3: rank (S)_N on A = 2 / 81
+   with 2 choice(s): N = 4: rank (S)_N on A = 18 / 144
+   with 2 choice(s): N = 5: rank (S)_N on A = 72 / 225
+   with 2 choice(s): N = 6: rank (S)_N on A = 161 / 324
+   with 2 choice(s): N = 7: rank (S)_N on A = 279 / 441
+   with 2 choice(s): N = 8: rank (S)_N on A = 414 / 576
+   with 2 choice(s): N = 9: rank (S)_N on A = 567 / 729
+choice 2: dim colon_3 = 55, colon elements outside I_A: rank 1 mod I_3
+   with 3 choice(s): N = 3: rank (S)_N on A = 3 / 81
+   with 3 choice(s): N = 4: rank (S)_N on A = 27 / 144
+   with 3 choice(s): N = 5: rank (S)_N on A = 108 / 225
+   with 3 choice(s): N = 6: rank (S)_N on A = 240 / 324
+   with 3 choice(s): N = 7: rank (S)_N on A = 405 / 441
+   with 3 choice(s): N = 8: rank (S)_N on A = 567 / 576
+   with 3 choice(s): N = 9: rank (S)_N on A = 728 / 729
+choice 3: dim colon_3 = 55, colon elements outside I_A: rank 1 mod I_3
+   with 4 choice(s): N = 3: rank (S)_N on A = 4 / 81
+   with 4 choice(s): N = 4: rank (S)_N on A = 36 / 144
+   with 4 choice(s): N = 5: rank (S)_N on A = 144 / 225
+   with 4 choice(s): N = 6: rank (S)_N on A = 318 / 324
+   with 4 choice(s): N = 7: rank (S)_N on A = 441 / 441

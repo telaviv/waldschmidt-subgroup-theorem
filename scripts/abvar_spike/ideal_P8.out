@@ -1,0 +1,17 @@
+d=1: #monomials=9 dim S_d/I_d=9 (expect 9) dim I_d=0  [0.0s]
+d=2: #monomials=45 dim S_d/I_d=36 (expect 36) dim I_d=9  [0.1s]
+   Q: -1*X0*X8 + -1*X1*X3 + 1*X2*X2
+   Q: 1*X0*X7 + -2*X1*X5 + 2*X2*X4
+   Q: -2*X1*X6 + 1*X2*X5 + 1*X3*X4
+   Q: -1*X0*X4 + -1*X1*X7 + -1*X2*X6 + 2*X3*X5
+   Q: 1*X0*X5 + -1*X2*X7 + 1*X3*X6
+   Q: -1*X0*X2 + -2*X1*X8 + -3*X3*X3 + -1*X4*X6 + 1*X5*X5
+   Q: 1*X0*X3 + -4*X1*X1 + -4*X2*X8 + -1*X4*X7 + 1*X5*X6
+   Q: -1*X0*X0 + 8*X1*X2 + -2*X3*X8 + -1*X5*X7 + 1*X6*X6
+   Q: 8*X0*X1 + 4*X2*X3 + 4*X4*X5 + -1*X7*X7 + 4*X8*X8
+d=3: #monomials=165 dim S_d/I_d=81 (expect 81) dim I_d=84  [0.4s]
+   dim (Q)_3 = 81  (need 84)
+d=4: #monomials=495 dim S_d/I_d=144 (expect 144) dim I_d=351  [2.0s]
+   dim (Q)_4 = 351  (need 351)
+d=5: #monomials=1287 dim S_d/I_d=225 (expect 225) dim I_d=1062  [9.8s]
+   dim (Q)_5 = 1062  (need 1062)

@@ -1,0 +1,1403 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{url}
+\usepackage{hyperref}
+
+% ---------------------------------------------------------------------------
+% Theorem environments
+% ---------------------------------------------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+\setlength{\emergencystretch}{3em}
+
+% ---------------------------------------------------------------------------
+% Macros
+% ---------------------------------------------------------------------------
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Qbar}{\overline{\mathbb{Q}}}
+\newcommand{\Ga}{\mathbb{G}_{\mathrm{a}}}
+\newcommand{\Gm}{\mathbb{G}_{\mathrm{m}}}
+\newcommand{\hdim}{\operatorname{hdim}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\Lie}{\operatorname{Lie}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\vp}{\varpi}
+\newcommand{\lieAlg}{\operatorname{Lie}(H)}
+\newcommand{\NR}{\textup{(NR)}}
+\DeclareUrlCommand\lean{\urlstyle{tt}}
+
+% ---------------------------------------------------------------------------
+% Lean code blocks: fancyvrb, with the Unicode used in them mapped for pdflatex
+% ---------------------------------------------------------------------------
+\fvset{frame=single,fontsize=\footnotesize,xleftmargin=1em,framesep=2mm}
+\DeclareUnicodeCharacter{2102}{\ensuremath{\mathbb{C}}}
+\DeclareUnicodeCharacter{211A}{\ensuremath{\mathbb{Q}}}
+\DeclareUnicodeCharacter{2115}{\ensuremath{\mathbb{N}}}
+\DeclareUnicodeCharacter{2124}{\ensuremath{\mathbb{Z}}}
+\DeclareUnicodeCharacter{211D}{\ensuremath{\mathbb{R}}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{2200}{\ensuremath{\forall}}
+\DeclareUnicodeCharacter{2203}{\ensuremath{\exists}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\to}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2209}{\ensuremath{\notin}}
+\DeclareUnicodeCharacter{2227}{\ensuremath{\wedge}}
+\DeclareUnicodeCharacter{2228}{\ensuremath{\vee}}
+\DeclareUnicodeCharacter{2211}{\ensuremath{\sum}}
+\DeclareUnicodeCharacter{2293}{\ensuremath{\sqcap}}
+\DeclareUnicodeCharacter{2294}{\ensuremath{\sqcup}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2260}{\ensuremath{\ne}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
+\DeclareUnicodeCharacter{21A5}{\ensuremath{\uparrow}}
+\DeclareUnicodeCharacter{2080}{\ensuremath{_0}}
+\DeclareUnicodeCharacter{2081}{\ensuremath{_1}}
+\DeclareUnicodeCharacter{2082}{\ensuremath{_2}}
+\DeclareUnicodeCharacter{2083}{\ensuremath{_3}}
+\DeclareUnicodeCharacter{03B4}{\ensuremath{\delta}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03BC}{\ensuremath{\mu}}
+\DeclareUnicodeCharacter{03C9}{\ensuremath{\omega}}
+\DeclareUnicodeCharacter{03BA}{\ensuremath{\kappa}}
+\DeclareUnicodeCharacter{03C1}{\ensuremath{\rho}}
+\DeclareUnicodeCharacter{03C0}{\ensuremath{\pi}}
+\DeclareUnicodeCharacter{03C6}{\ensuremath{\varphi}}
+\DeclareUnicodeCharacter{2032}{\ensuremath{'}}
+\DeclareUnicodeCharacter{22A4}{\ensuremath{\top}}
+\DeclareUnicodeCharacter{22A5}{\ensuremath{\bot}}
+
+\begin{document}
+
+\title[Waldschmidt's subgroup theorem with period term in Lean]{A Lean formalization of Waldschmidt's
+subgroup theorem with period term for groups with elliptic factors}
+
+\author{Shawn Krisman}
+
+\subjclass[2020]{Primary 11J89; Secondary 11J81, 11J95, 11G05, 14L10, 68V20}
+\keywords{transcendence, algebraic subgroup theorem, multiplicity estimates, elliptic functions,
+Schneider's theorem, Schneider--Lang criterion, formal verification, Lean}
+
+\date{\today}
+
+\begin{abstract}
+We formalize in Lean~4 with Mathlib Waldschmidt's algebraic subgroup theorem with period term
+(Theorem~4.1 of his 1988 Durham paper) for the groups
+$G=\Ga^{d_0}\times\Gm^{d_1}\times E_1\times\dots\times E_m$, where the $E_j$ are elliptic curves
+with algebraic invariants, under the additional hypothesis $2N\ge d_1+2d_0+\kappa$ ($N=\dim V$,
+$\kappa$ the rank of the periods in the data). The proof follows Waldschmidt: an auxiliary
+function built with periods, which saves the factor $r^{-\kappa}$, combined with Philippon's
+multiplicity estimate. Both are proved in Lean for elliptic factors; the multiplicity estimate
+required several changes to the textbook route, which we describe. Along the way the development
+gives what we believe are the first formal proofs of Schneider's theorems on elliptic functions
+(periods, periods divided by $\pi$, and values of $\wp$ at algebraic points are transcendental) and of
+the Schneider--Lang criterion for meromorphic functions, and the first Lean library for the
+Weierstrass $\sigma$ and $\zeta$ functions, including Legendre's relation and the addition theorem.
+The proof closure uses only Lean's three standard axioms. The theorem discharges, in a companion
+certificate, the hypothesis behind the four exponentials statement at $t=c\vp/\pi$ for every
+algebraic $c\ne0$. We also prove the theorem in restricted cases for groups
+$\Ga^{d_0}\times\Gm^{d_1}\times G_2$ with $G_2$ the push-out of a product of universal vector
+extensions $E_j^\natural$ along an algebraic $r\times m$ matrix: for $r\le1$ when $V$ meets the vector
+fibre trivially, and for $d_0=0$, $r\le2$ when $V$ meets it in dimension at most one, for curves
+satisfying two lifting properties that hold over $\Qbar$ and are proved in Lean for the CM curves
+used. With these, all elliptic and vector-extension hypotheses of the companion certificate are
+discharged, among them the one behind the four exponentials statement at $t=c\vp$. Finally, we
+prove the theorem and its hyperplane consequence for $\Ga^{d_0}\times\Gm^{d_1}\times A^r$, where $A$ is the
+Jacobian of $y^5=x(1-x)$, for toric-injective hyperplanes and data whose $A$-components are periods; this
+needs a multiplicity estimate for abelian blocks given by an explicit projective model, whose polynomial
+identities are checked by kernel-evaluated certificates. It discharges the hypothesis behind the
+companion certificate's statements at the Beta value $B(1/5,1/5)$, for example that
+$2^{B(1/5,1/5)/\pi}$ and $3^{B(1/5,1/5)/\pi}$ are not both algebraic. With the same two restrictions we also
+prove the hyperplane consequence for a push-out of powers of a $\Ga$-extension of this Jacobian; in the companion
+certificate this gives that $2^{B(1/5,1/5)}$ and $3^{B(1/5,1/5)}$ are not both algebraic.
+\end{abstract}
+
+\maketitle
+
+% ===========================================================================
+\section{Introduction}\label{sec:intro}
+% ===========================================================================
+
+This paper is a sequel to \cite{StrongSixPaper}, which formalized Roy's strong six exponentials
+theorem in Lean. That development proved, as its main intermediate result, Waldschmidt's
+transcendence theorem on linear groups $\Ga^{d_0}\times\Gm^{d_1}$ in the form of Roy's Theorem~1
+\cite{Roy1992}, together with Philippon's multiplicity estimate on those groups. Here we leave the
+linear world and treat groups with elliptic factors.
+
+\subsection{The theorem}
+Let $G$ be a connected commutative algebraic group over $\Qbar$ of dimension $d$, $T_G$ its tangent
+space at the origin with its $\Qbar$-structure, $\exp_G\colon T_G\to G(\CC)$ the exponential map,
+$\Omega(G)=\ker\exp_G$ and $\Lambda(G)=\exp_G^{-1}G(\Qbar)$. Write $G=\Ga^{d_0}\times\Gm^{d_1}\times G_2$.
+Waldschmidt's Theorem~4.1 of \cite{W88} is the following.
+
+\begin{theorem}[{Waldschmidt \cite[Thm.~4.1, pp.~385--386]{W88}}]\label{thm:W88}
+Let $V\subset T_G$ be a subspace of dimension $N<d$, $W\subset V$ a subspace defined over $\Qbar$, and
+$Y\subset V\cap\Lambda(G)$ a finitely generated subgroup; put $\kappa=\rk_\ZZ(Y\cap\Omega(G))$. Then
+there is a connected algebraic subgroup $G'\ne G$ defined over $\Qbar$ with $\delta>\tau$ and
+\begin{equation}\label{eq:W88}
+(\lambda+\delta_1+2\delta_2)(d-N)\le(\delta-\tau)(d_1+2d_2-\kappa),
+\end{equation}
+where $\delta=\codim G'$, $\delta_0$ and $\delta_1$ are the codimensions of the projections of $G'$ to
+$\Ga^{d_0}$ and $\Gm^{d_1}$, $\delta_2=\delta-\delta_0-\delta_1$, $\lambda=\rk_\ZZ Y/(Y\cap\exp_G^{-1}G')$ and
+$\tau=\dim W/(W\cap T_{G'})$.
+\end{theorem}
+
+The \emph{period term} is $-\kappa$ on the right of \eqref{eq:W88}. For $\kappa=0$ the theorem is
+the algebraic subgroup theorem in its usual form, a common source of the six exponentials theorem,
+Baker's theorem and their elliptic analogues \cite{WaldschmidtLIL,DALAG}. The refinement by $\kappa$
+matters when the data contain periods that do not span the Lie algebra of an algebraic subgroup,
+for instance a period of $\Gm\times E$ lying on a line through a logarithm.
+
+\subsection{What is formalized}
+In Lean, the main theorem is
+\[
+\texttt{theorem LSG.W88.theorem41Abelian : LSG.W88.Theorem41Abelian},
+\]
+where the proposition \lean{Theorem41Abelian} is defined in \lean{LSG/W88/Statement.lean}. It is
+Theorem~\ref{thm:W88} for
+\[
+G=\Ga^{d_0}\times\Gm^{d_1}\times E_1\times\dots\times E_m,\qquad E_j\colon y^2=4x^3-g_2(\Lambda_j)x-g_3(\Lambda_j),
+\]
+for arbitrary lattices $\Lambda_j$ with $g_2,g_3\in\Qbar$, under the extra hypothesis
+\begin{equation}\label{eq:NR}
+\NR\qquad 2N\ge d_1+2d_0+\kappa .
+\end{equation}
+Section~\ref{sec:statement} reproduces the statement. Hypothesis \NR{} is the range in which we prove
+Waldschmidt's Proposition~6.1 (the auxiliary function) with multiplicities along $W$; it is the
+condition of Lemma~U of \cite{MstarPaper}, which supplies the step of \cite[Prop.~6.1]{W88} that is
+only indicated in print. \NR{} is a genuine restriction (Remark~\ref{rem:NR}). Correspondingly,
+results of this paper must be cited as ``W88 Thm.~4.1 under \NR{} for
+$\Ga^{d_0}\times\Gm^{d_1}\times E_1\times\dots\times E_m$''.
+
+From the main theorem we derive, in Lean, its consequence of \cite[\S5d]{W88} (Theorem~1.1 with the
+$\kappa$-refined hypothesis (5.4)) for $\Gm^{d_1}\times E$ and for $\Ga^{d_0}\times\Gm^{d_1}\times E^r$,
+and Theorem~\ref{thm:W88} for $\Ga^{k_0}\times\Gm^{k_1}\times B$ with $B$ an arbitrary abelian
+subvariety of a product of elliptic curves (Section~\ref{sec:5d}).
+
+For groups whose factor $G_2$ is a push-out of $(E_1\times\dots\times E_m)^\natural$ along an algebraic
+matrix we prove Theorem~\ref{thm:W88} under \NR{} and its \S5d consequence only in restricted cases,
+listed in Theorem~\ref{thm:vec} (Section~\ref{sec:vecext}). Those results must be cited with their
+scope, never as ``W88 Thm.~4.1 for vector extensions''.
+
+For $G=\Ga^{d_0}\times\Gm^{d_1}\times A^r$ with $A$ the Jacobian of $y^5=x(1-x)$ we prove
+Theorem~\ref{thm:W88} under \NR{} and its \S5d consequence for toric-injective hyperplanes and for subgroups
+$Y$ whose $A$-components are (rational) periods (Theorem~\ref{thm:abvar}, Section~\ref{sec:abvar}). With the same
+restrictions we prove the \S5d consequence for $\Ga^{d_0}\times\Gm^{d_1}\times Q$, $Q$ a push-out of powers of the
+$\Ga$-extension $A_{\bar\sigma}^\natural$ of $A$ (Theorem~\ref{thm:abvarv}, Section~\ref{sec:abvarv}).
+
+\subsection{Why it matters here: the M* applications}
+The paper \cite{MstarPaper} proves four exponentials statements at CM periods by applying
+Theorem~\ref{thm:W88} to explicit groups whose subgroups it lists: for a CM curve with period
+$\Omega$ and $c\in\Qbar^\times$, if $\log\alpha,\log\beta$ are $\QQ$-linearly independent then
+$\alpha^{c\Omega},\beta^{c\Omega}$ are not both algebraic, and neither are $\alpha^{c\Omega/\pi},
+\beta^{c\Omega/\pi}$; for example $2^{\vp/\pi}$ and $3^{\vp/\pi}$ are not both algebraic, with
+$\vp=\Gamma(1/4)^2/(2\sqrt{2\pi})$. A separate Lean certificate, \lean{lean_mstar}
+\cite{LeanMstar}, checks these deductions with Waldschmidt's theorem for the relevant groups as
+explicit hypotheses. The present work discharges those hypotheses whose groups are built from
+tori, additive groups and powers of one elliptic curve: \lean{lean_mstar}'s \lean{Thm11Kappa} is our
+\lean{LSG.W88.thm11Kappa} verbatim, and its \lean{HypStdCMAt} is \lean{LSG.W88.hypStdCMAt}. In
+\lean{lean_mstar} this makes the four exponentials statement at $t=c\vp/\pi$, for every algebraic
+$c\ne0$, and the paper's ``Theorem~M'' for $\Omega=c\vp$ unconditional (standard axioms only). The
+statements at $t=c\vp$ and the two-curve results use groups with universal vector extensions
+$E^\natural$. Their hypotheses fall within the restricted cases of Section~\ref{sec:vecext}, and are
+discharged there as well; in \lean{lean_mstar} these results, too, no longer assume Waldschmidt's
+theorem (some of them still use other named classical inputs). The statements at the Beta value
+$B(1/5,1/5)$ (Theorem~A of \cite{MstarPaper} for the Jacobian of $y^5=x(1-x)$) use the groups of
+Section~\ref{sec:abvar} and are discharged there. The headline statement at $t=B(1/5,1/5)$ itself uses the groups of
+Section~\ref{sec:abvarv} and is discharged there, again on toric-injective hyperplanes.
+
+\subsection{First formal proofs}
+To reach the main theorem we had to build the classical theory of elliptic functions in Lean
+beyond what Mathlib v4.35.0 provides (Mathlib has $\wp$, $\wp'$, the invariants $g_2,g_3$ and the
+differential equation for a \lean{PeriodPair}). Section~\ref{sec:stage1} describes the library: the
+Weierstrass $\sigma$ function as an infinite product, $\zeta$, the quasi-periods $\eta$,
+quasi-periodicity of $\sigma$, growth of order two, Legendre's relation, the addition theorem and the
+dictionary with Mathlib's algebraic group law on Weierstrass curves. On top of it we prove the
+Schneider--Lang criterion for meromorphic functions of finite order in one variable and Schneider's
+theorems \cite{Schneider1937}: if $g_2,g_3$ are algebraic, then every nonzero period $\omega$ and
+$\omega/\pi$ are transcendental, and $\wp(\alpha)$ is transcendental for algebraic $\alpha\notin\Lambda$.
+
+\emph{Prior formalizations.} We searched (on 30 October 2026: the web, the Mathlib v4.35.0 sources,
+and the prior-art collections we keep; the web again, more briefly, on 6 November 2026) for formal proofs of transcendence results about elliptic
+functions and found none in any proof assistant. The closest work we know: Karatarakis and
+Wiedijk's Lean proof of the Gelfond--Schneider theorem \cite{KaratarakisWiedijk2026}; the library
+\cite{DiazModulus}, which proves the Schneider--Lang criterion for $\CC^{d_0}\times(\CC^\times)^{d_1}$
+(exponential functions only), Gelfond--Schneider and the qualitative form of Baker's theorem;
+an Isabelle/HOL development of elliptic functions and modular forms ($\wp$, the addition theorem,
+theta functions, the Jacobi triple product, Dedekind's $\eta$) \cite{EberlLiPaulson2026}, whose
+abstract and keywords mention no transcendence results; and the Lean files of
+\cite{ChCh26}, which prove irrationality-exponent bounds for CM periods with uniformization, theta
+and CM inputs taken as hypotheses (Diophantine results, not transcendence; no $\sigma$, $\zeta$ or
+quasi-periods). With this evidence we believe that the formalization contains the first formal
+proofs of a transcendence theorem for elliptic functions and of the meromorphic Schneider--Lang
+criterion, the first Lean development of $\sigma$ and $\zeta$, and the first formal multiplicity
+estimate on a non-linear group. The search was not exhaustive, and we would be glad to learn of
+earlier work.
+
+\subsection{Organization}
+Section~\ref{sec:statement} gives the formal statement and its review. Section~\ref{sec:arch}
+describes the architecture. Sections~\ref{sec:stage1}--\ref{sec:5d} describe the three stages and
+the bridges, with emphasis on the places where the formal proof had to depart from the literature.
+Section~\ref{sec:vecext} treats the vector-extension cases, Section~\ref{sec:abvar} the Jacobian
+of $y^5=x(1-x)$, Section~\ref{sec:abvarv} a vector extension of it, Section~\ref{sec:conseq} the explicit consequences,
+Section~\ref{sec:stats} the artifact, and Section~\ref{sec:trust} what has and has not been checked.
+
+% ===========================================================================
+\section{The formal statement}\label{sec:statement}
+% ===========================================================================
+
+The statement uses no algebraic-group theory. Everything is expressed on the tangent space
+$T_G=\CC^{d_0}\times\CC^{d_1}\times\CC^m$, with $\exp_G(a,b,z)=(a,e^b,(\wp_j(z_j),\wp_j'(z_j))_j)$. The
+elliptic curves are Mathlib's: a \lean{PeriodPair} \lean{L} is a pair of $\RR$-independent complex
+numbers, with lattice \lean{L.lattice}, Weierstrass function \lean{L.weierstrassP} and invariants
+\texttt{L.g}$_2$, \texttt{L.g}$_3$.
+
+\begin{Verbatim}[fontsize=\scriptsize]
+abbrev Tan (d0 d1 m : ℕ) := (Fin d0 → ℂ) × (Fin d1 → ℂ) × (Fin m → ℂ)
+
+def Lam (Ls : Fin m → PeriodPair) : Set (Tan d0 d1 m) :=
+  {p | AlgVec p.1 ∧ (∀ i, IsAlgebraic ℚ (Complex.exp (p.2.1 i))) ∧
+    ∀ j, p.2.2 j ∈ (Ls j).lattice ∨
+      IsAlgebraic ℚ ((Ls j).weierstrassP (p.2.2 j))}
+
+-- carrier of the AddSubgroup `Per Ls`:
+  {p | p.1 = 0 ∧ (∀ i, ∃ k : ℤ, p.2.1 i = 2 * Real.pi * I * k) ∧
+    ∀ j, p.2.2 j ∈ (Ls j).lattice}
+
+def IsAbelianTangent (Ls : Fin m → PeriodPair)
+    (t : Submodule ℂ (Fin m → ℂ)) : Prop :=
+  (t.restrictScalars ℝ : Submodule ℝ (Fin m → ℂ)) =
+    Submodule.span ℝ {z | z ∈ t ∧ ∀ j, z j ∈ (Ls j).lattice}
+
+structure SubgroupData (Ls : Fin m → PeriodPair) where
+  h0 : Submodule ℂ (Fin d0 → ℂ)
+  U : Submodule ℚ (Fin d1 → ℚ)
+  t : Submodule ℂ (Fin m → ℂ)
+  h0_rat : RationalOverQbar h0
+  t_ab : IsAbelianTangent Ls t
+\end{Verbatim}
+
+Here \lean{Lam} is $\Lambda(G)$ (the lattice disjunct is redundant, because Mathlib's $\wp$ takes the
+junk value $0$ at lattice points, but it is clearer), \lean{Per} is $\Omega(G)$, and a
+\lean{SubgroupData} describes the connected algebraic subgroup $G'=H_0\times T_U\times B$ with
+tangent space $T_{G'}=h_0\times U^\perp\times t$: $h_0$ is spanned by algebraic vectors, $T_U$ is the
+subtorus with Lie algebra $U^\perp$ (\texttt{torusLie\ U}), and $t$ is the tangent space of an abelian
+subvariety $B=t/(t\cap\Lambda)$ of $E_1\times\dots\times E_m$. The codimensions are
+$\delta_0=d_0-\dim h_0$, $\delta_1=\dim_\QQ U$, $\delta_2=m-\dim t$, $\delta=\delta_0+\delta_1+\delta_2$, and
+\lean{Proper} means $\delta\ne0$. Ranks of subgroups are $\rk Y=\dim_\QQ\operatorname{span}_\QQ Y$. The
+theorem is:
+
+\begin{Verbatim}[fontsize=\scriptsize]
+def Theorem41Abelian : Prop :=
+  ∀ (d0 d1 m : ℕ) (Ls : Fin m → PeriodPair),
+    (∀ j, IsAlgebraic ℚ (Ls j).g₂ ∧ IsAlgebraic ℚ (Ls j).g₃) →
+    ∀ (V W : Submodule ℂ (Tan d0 d1 m)) (Y : AddSubgroup (Tan d0 d1 m)),
+      finrank ℂ V < d0 + d1 + m → W ≤ V → RationalOverQbarTan W →
+      Y.FG → (∀ y ∈ Y, y ∈ V ∧ y ∈ Lam Ls) →
+      -- (NR)
+      d1 + 2 * d0 + rk (Y ⊓ Per Ls) ≤ 2 * finrank ℂ V →
+      ∃ H : SubgroupData (d0 := d0) (d1 := d1) Ls, H.Proper ∧
+        finrank ℂ W - finrank ℂ ↥(W ⊓ H.tan) < H.δ ∧
+        (((rk Y - rk (Y ⊓ (H.tan.toAddSubgroup ⊔ Per Ls))
+              + H.δ1 + 2 * H.δ2 : ℕ) : ℤ) *
+            ((d0 + d1 + m : ℕ) - finrank ℂ V : ℤ) ≤
+          ((H.δ : ℤ) - (finrank ℂ W - finrank ℂ ↥(W ⊓ H.tan) : ℕ)) *
+            ((d1 + 2 * m : ℕ) - rk (Y ⊓ Per Ls) : ℤ))
+
+theorem LSG.W88.theorem41Abelian : Theorem41Abelian
+\end{Verbatim}
+
+Since $G'$ is connected, $\exp_G^{-1}(G')=T_{G'}+\Omega(G)$, so the first factor is $\lambda+\delta_1+2\delta_2$;
+the second factor of the right side is $\delta-\tau$.
+
+\begin{remark}[The subgroup family]
+The theorem quantifies over products $H_0\times T_U\times B$. For
+$\Ga^{d_0}\times\Gm^{d_1}\times A$ with $A$ an abelian variety, every connected algebraic subgroup is
+such a product (Goursat, and the vanishing in characteristic $0$ of all Hom groups between additive,
+multiplicative and abelian pieces), and a complex subtorus of $A$ is an abelian subvariety. So the
+family is exactly Waldschmidt's. Inside the proof, the obstruction subgroup produced by the
+multiplicity estimate is shown to have this form in Lean (Section~\ref{sec:subgroups}).
+\end{remark}
+
+\begin{remark}[Hypothesis \NR]\label{rem:NR}
+\NR{} is not in \cite{W88}. It excludes, for instance, the standard encoding of the
+Hermite--Lindemann theorem ($G=\Ga\times\Gm$, $V=W=\CC(1,1)$, $N=1$, where $1+2>2$); adding $\Gm$
+factors restores \NR{} but makes the conclusion trivially satisfiable by a subtorus. All applications
+in \cite{MstarPaper} satisfy \NR{} with room to spare.
+\end{remark}
+
+\subsection{Fidelity review}
+An AI session that had not written the proof reviewed the statement against the page images of
+\cite[pp.~385--386]{W88} and the formulation in \cite{MstarPaper}. Among other things it checked how
+Lean elaborates each cast and natural-number subtraction (all $\NN$-subtractions are exact, and the
+three integer subtractions $d-N$, $\delta-\tau$, $d_1+2m-\kappa$ are the intended ones) and that the
+conclusion cannot be met trivially ($G'=G$ is excluded by \lean{Proper}, and $G'=0$ satisfies
+\eqref{eq:W88} only when the expected inequality fails). Its verdict was \emph{correct}, with four
+minor remarks: a docstring reference to a file outside the repository (since fixed), the need to
+mention \NR{} in every citation, the redundancy of \lean{Proper} given $\tau<\delta$, and the
+redundancy of the lattice disjunct in \lean{Lam}.
+
+\subsection{Sanity derivations}
+As evidence that the statement has teeth, \lean{LSG/W88/Sanity.lean} derives two classical theorems
+from the \emph{proposition} \lean{Theorem41Abelian} and then instantiates them:
+\lean{LSG.W88.Sanity.gelfondSchneider} (with $G=\Gm^2$, $V=W=\CC(1,b)$, $Y=\ZZ(x,bx)$, $\kappa=0$, where \NR{}
+reads $2\le2$) and \lean{LSG.W88.Sanity.period_transcendental'}, Schneider's period theorem (with
+$G=\Ga\times E$, $V=W=\CC(1,1)$, $Y=\ZZ(\omega,\omega)$). In both, a case analysis shows that every
+admissible $H$ violates the conclusion. The second derivation reproves a result of Stage~1 by an
+entirely different route.
+
+% ===========================================================================
+\section{Architecture}\label{sec:arch}
+% ===========================================================================
+
+Waldschmidt's proof \cite[\S\S6--7]{W88} has two inputs: an auxiliary polynomial $P$ that vanishes to
+high order along $W$ at many points of $\exp_G(Y)$ with the saving $\kappa$ (Proposition~6.1, which
+rests on \cite[Prop.~2.1, 2.4]{W83}), and Philippon's multiplicity estimate \cite{Philippon1986},
+which turns such a $P$ into an obstruction subgroup. Section~7 of \cite{W88} combines them. The
+formalization has three stages and a layer of bridges:
+\begin{center}\small
+\begin{tabular}{ccc}
+\multicolumn{3}{c}{Stage 1: $\sigma,\zeta,\eta$, Legendre, addition theorem;
+Schneider--Lang, Schneider (\S\ref{sec:stage1})}\\[2pt]
+$\swarrow$ & & $\searrow$\\[2pt]
+Stage 3a: W83 Prop.~2.1, Lemma U, & & Stage 2: multiplicity\\
+W88 Prop.~6.1 (\S\ref{sec:aux}) & & estimate (\S\ref{sec:stage2}; StrongSix)\\[2pt]
+$\searrow$ & & $\swarrow$\\[2pt]
+\multicolumn{3}{c}{Stage 3b: W88 \S7 $\Rightarrow$ Theorem~\ref{thm:W88} under \NR{} (\S\ref{sec:sec7})}\\[2pt]
+\multicolumn{3}{c}{$\downarrow$}\\[2pt]
+\multicolumn{3}{c}{bridges: \S5d, abelian subvarieties, \lean{lean_mstar} (\S\ref{sec:5d})}
+\end{tabular}
+\end{center}
+Stage~1 also feeds the multiplicity estimate (the group law of $E$ and its exponential) and Stage~3a
+(quasi-periodicity of $\sigma$). StrongSix \cite{StrongSixRepo} is a Lake dependency: Stage~2 reuses
+its filtered Hilbert functions, Bézout inequality, unmixedness, generic Wüstholz lemma and the
+classification of algebraic subgroups of linear groups, and the bridges reuse its Theorem~1. Two
+new block-generic files were added to StrongSix for this purpose; no existing StrongSix file was
+changed.
+
+Each piece was first stated as a \lean{Prop} interface (\lean{SchneiderLang},
+\lean{WeierstrassOrderTwo}, \lean{MultEstAb}, \lean{Theorem41Abelian}) and the deductions between
+interfaces were proved before their inputs, as in \cite{StrongSixPaper}. For example
+\texttt{theorem41Abelian\_of\ :\ MultEstAb\ }$\to$\texttt{\ Theorem41Abelian} was complete before the multiplicity
+estimate was; the main theorem is then one line, \texttt{theorem41Abelian\_of\ LSG.ME.multEstAb}.
+
+% ===========================================================================
+\section{Stage 1: elliptic functions and Schneider's theorems}\label{sec:stage1}
+% ===========================================================================
+
+\subsection{The Weierstrass library}
+The directory \lean{LSG/Weierstrass/} (15 files, about 3{,}800 lines) defines, for a
+\lean{PeriodPair}, the series
+$\zeta(z)=1/z+\sum_{\omega\ne0}\bigl(1/(z-\omega)+1/\omega+z/\omega^2\bigr)$ and the product
+$\sigma(z)=z\prod_{\omega\ne0}(1-z/\omega)\exp(z/\omega+z^2/2\omega^2)$. In Lean the factor for $\omega=0$
+evaluates to $1$, so the product runs over the whole lattice. The construction uses Mathlib's API for
+infinite products of holomorphic functions (developed there for the Dedekind $\eta$ function). The main results are: $\sigma$ is entire, vanishes exactly on
+$\Lambda$, is odd with $\sigma'(0)=1$, and $\sigma'/\sigma=\zeta$; $\zeta'=-\wp$; the quasi-periods
+$\eta(\omega)=\zeta(z+\omega)-\zeta(z)$ are $\ZZ$-linear on $\Lambda$; $\sigma(z+\omega)=\pm
+e^{\eta(\omega)(z+\omega/2)}\sigma(z)$ (\lean{sigma_add}); $\sigma$ has order two, and $\wp,\wp'$ are
+quotients of entire functions of order two by $\sigma^3$ (\lean{weierstrassOrderTwo}).
+
+\emph{Legendre's relation} (\lean{LSG.Weierstrass.legendre}) states
+$\eta(\omega_1)\omega_2-\eta(\omega_2)\omega_1=\pm2\pi i$, with the sign of $\operatorname{Im}(\omega_2/\omega_1)$
+(Mathlib's \lean{PeriodPair} carries no orientation). Mathlib has Cauchy's theorem for rectangles but
+no residue theorem for parallelograms. We use only rectangles: for a basis $(\alpha,\beta)$ with
+$\tau=\beta/\alpha$ in the upper half-plane, $f(z)=\alpha\zeta(\alpha z)-\alpha\eta(\alpha)z$ is $1$-periodic and
+shifts by a constant under $z\mapsto z+\tau$, and $f=G+1/z$ with $G$ holomorphic near the rectangle
+$[-\frac12,\frac12]\times[-\frac{\operatorname{Im}\tau}2,\frac{\operatorname{Im}\tau}2]$. The vertical sides
+cancel, the horizontal sides differ by the constant, $\oint G=0$ by Cauchy--Goursat, and $\oint
+dz/z=2\pi i$ is computed with explicit branches of $\log$ (\lean{rectIntegral_inv}). The same trick
+gives the ``sum of residues'' fact we need (an elliptic function with at most one simple pole per
+period is constant) by subtracting $r\zeta(z-a)$ and using Legendre.
+
+\emph{The addition theorem} (\lean{weierstrassP_add}) and the \emph{degree-two property}
+($\wp(z)=\wp(w)$ iff $z\equiv\pm w$, \lean{weierstrassP_eq_iff}) give the \emph{dictionary}
+(\lean{LSG/Weierstrass/Dictionary.lean}): $\exp_E(z)=(\wp(z),\wp'(z)/2)$ is a homomorphism from $\CC$ to
+the group of points of Mathlib's Weierstrass curve $y^2=x^3-\frac{g_2}4x-\frac{g_3}4$ with its
+algebraic group law (\lean{expE_add}). Consequences used later: the discriminant is nonzero, and
+points with coordinates in a field $K\ni g_2,g_3$ form a subgroup.
+
+\subsection{The Schneider--Lang criterion and Schneider's theorems}
+The proposition \lean{LSG.SchneiderLang} (\lean{LSG/Interface.lean}) is the one-variable criterion of
+\cite[Ch.~III, Thm.~1]{Lang1966} for meromorphic functions: if $f_i=g_i/h$ with $g_i,h$ entire of order
+$\le\rho$, each $f_i'$ is a polynomial over a number field $K$ in the $f_j$ on $\{h\ne0\}$, and two of the
+$f_i$ are algebraically independent over $K$, then only finitely many $w$ with $h(w)\ne0$ have all
+$f_i(w)\in K$. The proof \lean{LSG.schneiderLang} (\lean{LSG/SchneiderLang/}, about 1{,}500 lines)
+is the classical one: Siegel's lemma over $\mathcal O_K$ (Mathlib's
+\lean{house.exists_ne_zero_int_vec_house_le}), a Schwarz lemma with multiplicities, Cauchy
+estimates, and Liouville's inequality; it shows that the number of such points is at most
+$4[K:\QQ]\lceil\rho\rceil$.
+
+Schneider's theorems follow by taking $h=\sigma^3$: with $e=\wp(\omega/2)$ for a primitive period
+$\omega$, the functions $z,\wp,\wp'$ take values in $K=\QQ(g_2,g_3,e,\omega)$ at the infinitely many points
+$(k+\frac12)\omega$ if $\omega$ were algebraic (\lean{LSG.Schneider.period_transcendental}); the functions
+$\wp,\wp',e^{2\pi iz/\omega}$ do the same if $\omega/\pi$ were algebraic
+(\lean{period_div_pi_transcendental}); and translates of an algebraic point give
+\lean{wp_transcendental}.
+
+\subsection{The lemniscatic invariant}
+For \lean{lean_mstar} we need $g_2(\vp\ZZ[i])=4$ with $\vp=\Gamma(1/4)^2/(2\sqrt{2\pi})$
+(\texttt{LSG.LemniscateIndep.g}$_2$\texttt{\_eq\_four\_of}, about 600 lines). The proof uses the symmetry $z\mapsto iz$
+($g_3=0$), the real branch of $\wp$ on $(0,\vp/2]$ with the substitution $t=\sqrt{e/\wp}$, and the
+Beta integral for $2\int_0^1dt/\sqrt{1-t^4}$. With Schneider's theorem this gives
+$\vp/\pi\notin\Qbar$ (\lean{LSG.Bridge.irrational_varpi_div_pi_of}). See Section~\ref{sec:trust} for
+the history of this part.
+
+% ===========================================================================
+\section{Stage 2: the multiplicity estimate with elliptic factors}\label{sec:stage2}
+% ===========================================================================
+
+\subsection{Statement}
+\lean{LSG.ME.MultEstAb} (\lean{LSG/ME/MultEstStmt.lean}) is Philippon's multiplicity estimate
+\cite[Thm.~2.1]{Philippon1986} on $G=\Ga^{d_0}\times\Gm^{d_1}\times E_1\times\dots\times E_m$ over $\CC$, in
+the shape of StrongSix's \lean{MultEst}. Polynomials live in $\CC[X;Y,Z;(U_k,V_k,W_k)_{k\le m}]$, with
+$E_k\subset\PP^2$ in each elliptic block and $Y_jZ_j=1$ for the torus. Let $n=d_0+d_1+m$. If
+$P\notin I_G$ has block degrees $\le(D_0,D_1)$, is homogeneous of degree $D_2$ in each elliptic block,
+and has formal order $>nT$ along $W$ at every point of $\Sigma(n)=\{\sigma_1+\dots+\sigma_n:\sigma_i\in S\}$
+($0\in S$), then there is a proper obstruction $G'$ such that every $F\subset S$ of points pairwise
+inequivalent modulo $G'$ satisfies
+\[
+T^{\,\dim W-\dim(W\cap T_{G'})}\,|F|\,D_0^{\dim h_0}D_1^{\,d_1-\dim U}D_2^{\dim t}\le C\,D_0^{d_0}D_1^{d_1}D_2^{m}.
+\]
+The obstruction is an \lean{ObstrData}: tangent data $(h_0,U,t)$ with $t$ an abelian tangent space,
+together with the subgroup $\overline{\exp_G(T_{G'})}^{\mathrm{Zar}}$ and the fact that its Lie algebra is
+$T_{G'}$. The proof \lean{LSG.ME.multEstAb} produces $C=n^nd_0^{d_0}d_1^{d_1}4^m2^nn!\,4^{d_0}8^{d_1}12^m$.
+$\Qbar$-rationality of $h_0$ is not part of the output; it is restored in \S\ref{sec:rat}.
+
+StrongSix follows Roy's affine treatment \cite[Ch.~5, 8]{DALAG}, which works for linear groups because
+their invariant derivations and translations preserve degrees. Neither holds with elliptic factors.
+We kept Roy's architecture (filtered Hilbert functions, Bézout by complete-intersection chains,
+Wüstholz's lemma by linear algebra, prime ideals instead of components) and changed four things.
+
+\subsection{The model and the addition laws}
+Each $E_k$ is the cone over $V^2W=4U^3-g_2UW^2-g_3W^3$ in $\CC^3$; the ideal $I_G=(Y_jZ_j-1,F_k)$ is a
+prime complete intersection. Translations use a complete system of two addition laws of bidegree
+$(2,2)$ on $E\subset\PP^2$ (Mathlib's projective addition formula and a Bosma--Lenstra law
+\cite{BosmaLenstra1995}), proved in Lean to preserve the curve equation, to represent the sum whenever
+nonzero, and never to vanish simultaneously (\lean{LSG/Elliptic/AdditionLaws*.lean}). Translation then
+multiplies elliptic block degrees by $2$; this is Philippon's constant $c_1$.
+
+\subsection{Degree growth of derivations: Philippon's operators}
+Roy's main argument builds a chain $L_r=I_G+(\tau_\sigma D_{\mathbf l}P)$ from derivation words $D_{\mathbf
+l}$ of length $\le rT$. On $E$ the invariant derivation, written on the cone in a chart, raises the
+degree by one, so the generators of $L_r$ have elliptic degree about $D_2+rT$, and Bézout then bounds
+everything in degree $D_2+nT$ instead of $D_2$. In Waldschmidt's parameters $T=\Delta/\log S$ and
+$D_2=\Delta/S^2$, so $T\gg D_2$: the estimate obtained this way is useless. (A first version of the chain
+was formalized and then discarded for this reason.)
+
+The fix is Philippon's own device \cite[\S4.1, Déf.~4.1--4.2, Prop.~4.3--4.4]{Philippon1986}: instead of
+iterating derivations, differentiate along a curve of fixed degree,
+\[
+\delta^\kappa_gQ=\partial_z^\kappa\,Q\bigl(\mathrm{law}(X,\mathrm{law}(\mathrm{rep}\,g,\,\exp(zw)))\bigr)\big|_{z=0}.
+\]
+The point $X+g+\exp(zw)$ is represented by polynomials in $X$ of fixed degree with coefficients that are
+formal power series in $z$, so every $\delta^\kappa_gQ$ has elliptic degree $\le2D$ for all $\kappa$
+(\lean{phOp_mem_FLE}). Algebraically, $\exp(zw)$ is the formal exponential: $x+zw$ on $\Ga$, $y\exp(zw)$
+on $\Gm$, and on $E$ the formal solution $(s(z):1:t(z))$ of the ODE in the $V$-chart,
+$s'=-\frac12-g_2st-\frac32g_3t^2$, $t'=-6s^2+\frac{g_2}2t^2$, $s(0)=t(0)=0$, with coefficients in
+$\QQ[g_2,g_3]$. Proving Philippon's Proposition~4.4 (zeros of $\delta^\kappa_gQ$) needs the formal
+associativity of the laws along such curves (a uniqueness theorem for formal ODE solutions) and an
+identification of the formal order with vanishing of derivation words in canonical charts. Derivation
+words survive only inside Wüstholz's lemma, where they shift the Hilbert function argument by a
+constant, which does not affect leading terms.
+
+\subsection{Cone vertices: affine slices}\label{sec:slices}
+StrongSix works with affine (filtered) Hilbert functions on $K[X,Y,Z]$, where there are no vertices.
+On the cone model every generator of $L_r$ and of Roy's ideal $A$ is homogeneous of positive degree in
+each elliptic block. Hence the locus $\{(U_k,V_k,W_k)=0\}$, of dimension $d_0+d_1+2m-2$, lies in the
+affine zero set of every $L_r$, the pigeonhole on Hilbert dimensions becomes vacuous, a prime of
+maximal dimension may have no projective zeros at all, and the affine Nullstellensatz fails. In
+Philippon's multiprojective setting these irrelevant primes have zero Hilbert function; in the affine
+setting they dominate.
+
+We separate the two uses of ideals. For geometry we pass to \emph{relevant radicals}
+$I(Z(L))$ (only points with $(U_k,V_k,W_k)\ne0$ in every block): the pigeonhole, the choice of a
+relevant prime and Roy's component step are done there (\lean{MainAbChain.lean}). For Hilbert functions
+we \emph{slice}: choose $\alpha\in\CC^m$ and replace an ideal $I$ by $I+(\ell_k-1)_k$ with
+$\ell_k=V_k+\alpha_kW_k$. For generic $\alpha$ (avoiding finitely many points, \lean{exists_good_alpha}) the
+slices of the relevant primes keep their dimension minus $m$, the sliced $I_G$ is a complete
+intersection with an explicit standard-monomial bound for its Hilbert function (\lean{SliceIG.lean}),
+and there is a slice Nullstellensatz $\sqrt{I+(\ell_k-1)}=I(Z_\alpha(I))$ (\lean{radical_sl}). Primality of
+partial slices is proved by homogenizing with powers of $\ell_k$, without localization. Bézout and the
+final count are then carried out for sliced ideals.
+
+\subsection{Projective Wüstholz: a multiplier and glued charts}
+Roy's form of Wüstholz's lemma \cite[Lemma~8.16, Thm.~8.18]{DALAG} needs derivations $D_i$ and
+polynomials $Q_j$ in the ideal of the coset union with $D_iQ_j\equiv\delta_{ij}$. On a projective
+model one only gets $D_iQ_j\equiv\delta_{ij}M$ with $M$ a non-zero-divisor (\lean{wustholzM'}). Moreover a
+single chart does not work for all cosets: on cosets whose points have a constant $2$-torsion
+coordinate ($V=0$) the $V$-chart derivation vanishes. We glue chart-dependent derivations with
+separating polynomials (\lean{glue}). The sliced version needs a multihomogeneous $M$ (so that
+\lean{nzd_sl}: $M$ is a non-zero-divisor modulo the sliced ideal), and Euler-corrected derivations
+$D_i'=D_i-\sum_k(D_i\ell_k)\,\mathrm{Eul}_k$ that preserve the slice (\lean{wustholz_cosets_sl}).
+
+\subsection{The obstruction subgroup}\label{sec:subgroups}
+The stabilizer $H=\{g: g+Z(p)\subseteq Z(p)\}$ of the zero set of a relevant prime is a Zariski-closed
+subgroup (a Noetherian argument for any ideal, \lean{StabG.lean}). To turn it into data
+$(h_0,U,t)$ we proved:
+\begin{itemize}
+\item $\exp_G^{-1}(H)$ is a closed subgroup of $T_G$ containing $\Omega(G)$; its real linear part is a
+complex subspace \lean{lieAlg} (identity theorem), and its image in $\CC^m$ meets $\Lambda$ in a lattice.
+\item The projection of $H$ to $\Ga^{d_0}\times\Gm^{d_1}$ is Zariski closed (projective elimination along
+$(\PP^2)^m$, \lean{isClosed_proj}), hence of the form classified in StrongSix.
+\item \emph{Zariski tangent space $=$ Lie algebra} (\lean{mem_TZ_iff}). The naive argument (``$I(H)$ is
+translation invariant, hence $D_v$-stable'') is false as written on the cone, since $D_vP$ is not
+multihomogeneous (a counterexample: the diagonal of $E\times E$ with $P=U_1W_2-U_2W_1$); the proof
+homogenizes $D_v$ with chart forms.
+\item \emph{Dimension.} The algebraic dimension of $H^0=\overline{\exp_G(\lieAlg)}$ equals
+$\dim\lieAlg+m$ (\lean{hdim_H0}), via a bridge between StrongSix's Hilbert dimension and transcendence
+degree (\lean{hdim_eq_trdeg}) and the existence of smooth points in characteristic $0$
+(\lean{exists_smooth_point}): $\le$ at the identity from the tangent space, $\ge$ at a smooth point.
+\item \emph{Product decomposition} (\lean{lieAlg_eq_prod}): $\lieAlg=h_0\times U^\perp\times t$. First,
+the abelian projection of $\lieAlg$ is $\Lambda$-rational, by a transcendence-degree count through the
+exponential parametrization. Second, a graph part would give a $\CC$-linear form on that rational space
+with purely imaginary values ($2\pi i\ZZ$ or $0$) on its lattice points, hence zero.
+\end{itemize}
+Purely analytic arguments cannot replace the algebraic inputs here: the graph of the Tate
+uniformization $\CC^\times\to E(\CC)$ is a closed complex Lie subgroup of $\Gm\times E$ that is not algebraic,
+so no argument using only the closed-subgroup structure of $\exp_G^{-1}(H)$ can yield the product
+decomposition. The second step above uses that $H^0\cap(\Ga^{d_0}\times\Gm^{d_1})$ has finitely many
+components, a consequence of Noetherianity.
+
+The Hilbert function lower bound for $H^0$ (degree $t_0+t_1+t_2+m$, the extra $m$ from the free cone
+scalings in blocks not met by $t$) and the coset count finish the subgroup layer. The assembly
+(\lean{LSG/ME/MainAb.lean}) follows Roy \S8.4.1 with the slicing of \S\ref{sec:slices}: chain and relevant
+pigeonhole, relevant prime $p$, stabilizer and $H^0$, Roy's ideal $A$, component step, a good $\alpha$ for all
+cosets, Wüstholz for the sliced ideals, Bézout for the sliced $A$, and the final arithmetic.
+
+% ===========================================================================
+\section{Stage 3a: the auxiliary function with periods}\label{sec:aux}
+% ===========================================================================
+
+\subsection{W83 Proposition 2.1 in our setting}
+The $\kappa$-saving comes from \cite[Prop.~2.1]{W83}: Siegel's lemma is applied with conditions only
+on a fundamental domain of the periods $\omega_1,\dots,\omega_\kappa$ in a ball of radius $r$, which saves
+a factor $r^{\kappa}$ in the number of conditions; quasi-periodicity of the auxiliary function then
+propagates smallness to the whole ball, and an interpolation lemma converts smallness on a point set
+into smallness on the ball. We formalized this with two simplifications.
+\begin{enumerate}
+\item In all our applications the periods of $G$ lie over periods of the theta function, so the
+multiplier $\Psi(z+\omega)/\Psi(z)$ is an explicit exponential given by \lean{sigma_add}. The
+lower bound for the theta function near the points (\cite[Lemma~2.2]{W83}) is therefore not needed
+inside Prop.~2.1.
+\item Waldschmidt's interpolation \cite[Lemma~2.3]{W83} rests on Masser's interpolation theorem for
+separated sets in $\CC^n$. We avoid it by choosing coordinates of $V$ among the coordinate forms of
+$T_G$: these send $\Omega(G)$ into $0$, $2\pi i\ZZ$ or a lattice $\Lambda_j$, so the grid can be taken to be
+a product of one- and two-dimensional progressions, and interpolation is iterated one-variable Lagrange
+interpolation combined with StrongSix's one-variable Schwarz lemma. For two-dimensional grids the node
+products are bounded through $|u\alpha+v\beta|\ge c\max(|u|,|v|)$ and $\max(|u|,|v|)^2\ge\max(|u|,1)\max(|v|,1)$,
+and the number of period classes in the grid is counted with an adjugate matrix instead of a Smith
+normal form.
+\end{enumerate}
+The result \lean{prop21_G} is W83's Prop.~2.1 on a subspace $V\subset T_G$, with one change: the
+hypothesis $U\ge r^2\log(R/r)$ becomes $c_1r^2\log(R/r)\le U$, because the coordinates $\CC^n\cong V$ rescale
+radii. In the application ($r=\nu^2S$, $R=\nu^3S$, $U=\nu^6\Delta$) the constant is absorbed by $\nu$.
+
+\subsection{Lemma U and Proposition 6.1}
+Proposition~6.1 of \cite{W88} asks for vanishing \emph{along $W$} at the points of $\exp_G(Y(S))$, $Y(S)=\{\sum
+h_jy_j:0\le h_j\le S\}$. Following Lemma~U of \cite{MstarPaper}, the small values of $Q_S$ on a ball give,
+through Cauchy's estimates, small Taylor coefficients along $W$ at each point, and Liouville's
+inequality makes them vanish. Our formal proof (\lean{lemmaU_core}) differs from that sketch in ways
+that simplify it.
+\begin{itemize}
+\item \emph{A chart per point.} Instead of a fixed theta coordinate and a decomposition $Y=\mathcal T+F$
+with translations by $F$, for every $u\in\CC$ some coordinate of $(\sigma^3,\sigma^3\wp,\sigma^3\wp')(u+z)$ is
+$\ge e^{-c(1+|u|)^2}$ for $|z|\le\rho_0$ (\lean{exists_chart}, by quasi-periodicity and compactness of a
+fundamental domain). So the argument runs at every point of $Y(S)$ and the polynomial is $Q_S$ itself.
+\item \emph{A fixed base point.} The second argument of the addition law is $(\wp,\wp',1)(z_0+u)$ with
+$z_0=\omega_1/2$, whose Taylor coefficients satisfy the recursion of $\wp''=6\wp^2-g_2/2$ with algebraic
+initial values; no derivatives are taken at the point $\exp_G(t)$ itself.
+\item \emph{One variable.} Vanishing along $W$ is reduced to finitely many lines $s\mapsto t+sw$ and
+recovered by polarization.
+\item \emph{Sizes} are house and denominator in an abstract number field. Algebraic points
+$\exp_G(\sum h_jy_j)$ are computed by balanced splitting with whichever addition law is nonzero, which
+keeps their sizes $\le e^{cS^2}$.
+\end{itemize}
+\NR{} enters exactly once, to guarantee $\Delta\ge S^2$, which gives the hypothesis $c_1r^2\log(R/r)\le U$ of
+Prop.~2.1. The result \lean{LSG.W88.prop61_b} is Prop.~6.1 with $a=1$ and any integer $b\ge1$
+(Waldschmidt's Remark~B: $D_0(\log S)^b=\Delta$, $\Delta^{d-N}=CS^{d_1+2m-\kappa}(\log S)^{bd_0}$), with the auxiliary
+function nonzero on $G$ and vanishing to order $>\Delta/\log S$ along $W$ on $Y(S)$.
+
+% ===========================================================================
+\section{Stage 3b: Waldschmidt's \S7}\label{sec:sec7}
+% ===========================================================================
+
+\texttt{theorem41Abelian\_of\ :\ MultEstAb\ }$\to$\texttt{\ Theorem41Abelian} (\lean{LSG/W88/Sec7*.lean}, about 1{,}700
+lines) follows \cite[pp.~396--397]{W88}.
+
+\emph{From analytic to formal vanishing.} Prop.~6.1 gives analytic vanishing of $\Psi=\sum p_l M_l\circ\exp_G$
+along $W$; the multiplicity estimate wants formal order of the polynomial $P$ in Philippon's sense.
+The bridge \lean{ordGt_of_vanishAlong} works only with Taylor coefficients at one point: the Taylor series
+of the analytic lift of $s\mapsto\exp_G(y+sw)$ in the canonical chart is a formal flow with the right
+initial value, hence equals the formal exponential by uniqueness of formal ODE solutions
+(\lean{tps_eq_fflow}); a unit factor relates $\Psi$ and $P$ along the line.
+
+\emph{Counting.} If $u\in\exp_G^{-1}(G')$ then $Nu\in T_{G'}+\Omega(G)$ for some $N\ge1$ (\lean{htil_le_span}),
+using only the fields of \lean{ObstrData}. Hence $(M+1)^\lambda$ points of the grid are pairwise
+inequivalent modulo $G'$ (\lean{exists_inequiv_grid}).
+
+\emph{The inequality.} With Prop.~6.1 at $b=2$ and the multiplicity estimate at
+$T'=\lfloor\Delta/(2n\log S)\rfloor$, $D_0=\lfloor\Delta/\log^2S\rfloor+1$, $D_1=\lfloor\Delta/S\rfloor+1$, $D_2=D+1$
+(the polynomial is multiplied by $\prod_kW_k$ so that $D_2\ge1$), taking logarithms gives $A\log S\le
+K+B\log\log S$ with $A=q(\lambda+\delta_1+2\delta_2)-e(\delta-\tau)$, $B=2d_0(\delta-\tau)+q(\tau-2\delta_0)$, $q=d-N$,
+$e=d_1+2m-\kappa$, and $A,B,K$ bounded independently of $S$. One large $S$ gives $A\le0$, which is
+\eqref{eq:W88}; if $\delta\le\tau$ one finds $\delta=\tau=\delta_0\ge1$ and $B=-q\delta_0<0$, a contradiction. No
+pigeonhole over $S$ is needed.
+
+\subsection{The $\Qbar$-rationality trick}\label{sec:rat}
+The obstruction of \lean{MultEstAb} lives over $\CC$, and its additive part $h_0$ need not be
+$\Qbar$-rational: a subgroup like $\CC\cdot(1,\pi)\subset\Ga^2$ is a perfectly good closed subgroup over $\CC$.
+W88 requires $G'$ defined over $\Qbar$. Rather than descend the stabilizer to $\Qbar$, we replace $h_0$ by
+its algebraic part $h_0''=\operatorname{span}_\CC\{a\in h_0: a\text{ algebraic}\}$ (\lean{exists_subgroupData_rat}).
+This does not change $\lambda$, because the $\Ga$-coordinates of points of $Y$ are algebraic, so $y\in
+T_{G'}+\Omega$ implies $y\in T_{G''}+\Omega$; it leaves $\delta_1,\delta_2$ unchanged; and $\delta-\tau$ does not decrease,
+since $\dim(W\cap T'')\ge\dim(W\cap T)-(\dim h_0-\dim h_0'')$. As $d_1+2m-\kappa>0$ under \NR, both $\delta>\tau$ and
+\eqref{eq:W88} transfer.
+
+% ===========================================================================
+\section{The \S5d bridges}\label{sec:5d}
+% ===========================================================================
+
+Applications often use Waldschmidt's hyperplane consequence \cite[\S5d]{W88}: if $V$ is a hyperplane,
+$Y$ has rank $m$ and $m>(d_1+2d_2-\kappa)(d-1-t)$ ((5.4); $t=\dim W$), then $V$ contains $T_{G'}$ for some
+connected algebraic subgroup $G'\ne0$. Waldschmidt's proof chooses a subgroup $G'$ maximizing a ratio
+$a(G')/e(G')$ (Lemma~5.1), applies Theorem~\ref{thm:W88} to $G'$ with $V'=V\cap T_{G'}$, and concludes with
+Lemma~5.2. Two difficulties appear in the formalization.
+
+\emph{Theorem~\ref{thm:W88} on the maximizer.} $G'$ is $\Ga^{k_0}\times\Gm^{k_1}\times B$ with $B$ an abelian
+subvariety, not a product of curves, and \NR{} may fail for $G'$ even if it holds for $G$. We proved
+\lean{LSG.CM.thm41Sub}: Theorem~\ref{thm:W88} under \NR{} for $\Ga^{k_0}\times\Gm^{k_1}\times B$, $B$ any
+abelian subvariety of $E_1\times\dots\times E_m$. No complex multiplication is needed: for a suitable
+choice of $\dim B$ coordinates, the coordinate projection $B\to\prod_kE_{\iota(k)}$ is an isogeny, and the
+theorem transports along its tangent map (logarithms pull back to logarithms, periods have torsion
+quotient, subgroups push forward with the same $\delta$, $\tau$). When \NR{} fails for $G'$ there are two
+cases. If $B=0$, $G'$ is linear and StrongSix's Theorem~1 (Waldschmidt's theorem for linear groups, in
+Roy's form, without \NR) applies after converting Roy's surjection into a subgroup
+(\lean{sub41Concl_bot}). If $B\ne0$, failure of \NR{} means $\kappa'\ge d_1'+2d_2'-1$, and the periods in $V$
+then force $T_B\subset V$, which contradicts the assumption.
+
+\emph{Rationality of abelian tangent spaces.} The maximizer must be defined over $\Qbar$; for products of
+copies of one curve (with or without CM) we prove that abelian tangent spaces are $\Qbar$-rational. For
+different curves this is assumed as a hypothesis \lean{hrat} (\lean{LSG.W88.hypStd_of_rat}); it is true
+for curves over $\Qbar$, but not proved here.
+
+The resulting endpoints are \lean{LSG.W88.thm11Kappa} ($\Gm^{d_1}\times E$),
+\lean{LSG.W88.hypStdCM} and \lean{hypStdCMAt} ($\Ga^{d_0}\times\Gm^{d_1}\times E^r$). Their statements are
+byte-for-byte copies of \lean{lean_mstar}'s hypotheses (\lean{LSG/W88/MStarCopy*.lean}), and we checked
+that, e.g., \texttt{exact\ LSG.W88.thm11Kappa\_of\_theorem41\ h\ L\ d}$_1$ typechecks against \lean{lean_mstar}'s
+unmodified definitions.
+
+% ===========================================================================
+\section{Vector extensions}\label{sec:vecext}
+% ===========================================================================
+
+\subsection{The class and the statements}
+The applications MG$^\natural$, MX, MX$'$ and the four exponentials statement at $t=c\vp$ of
+\cite{MstarPaper} use groups built from universal vector extensions $E^\natural$ (extensions of $E$ by
+$\Ga$, with periods $(\lambda,\eta(\lambda))$ for $\lambda\in\Lambda$). We work with the class of groups
+\[
+G=\Ga^{d_0}\times\Gm^{d_1}\times G_2,\qquad G_2=\bigl((E_1\times\dots\times E_m)^\natural\times\Ga^r\bigr)\big/\{(-u,Mu)\},
+\]
+the push-out of $(E_1\times\dots\times E_m)^\natural$ along an algebraic matrix $M\colon\CC^m\to\CC^r$, so
+$d_2=\dim G_2=m+r$. On the tangent space $T_G=\CC^{d_0}\times\CC^{d_1}\times\CC^m\times\CC^r$ the
+exponential of $E^\natural$ is $\exp(z,w)=((\wp_j(z_j),\wp_j'(z_j)),\,w-\zeta(z))$, with $s=Mw$ on the last
+factor. Hence $\Lambda(G)$ is described by ``$s-M\zeta(z)$ algebraic'' (with Lean's $\zeta$, which takes the
+value $\eta(\lambda)$ at $\lambda\in\Lambda$), and $\Omega(G)=0\times2\pi i\ZZ^{d_1}\times\{(\lambda,M\eta(\lambda))\}$. The
+\emph{fibre} is the vector part $0\times0\times0\times\CC^r$ of $G_2$. Connected algebraic subgroups are
+$T_U\times(\tilde B+\Gamma)$, with $\tilde B$ the image of $B^\natural$ for an abelian subvariety $B$ and $\Gamma$ a
+$\Qbar$-rational subspace of $\Ga^{d_0}\times\text{fibre}$; they are not products. The statements are in
+\lean{LSG/W88/StatementVec.lean}, \lean{V5d2Stmt.lean} and \lean{V5dOnto.lean}; their conclusion is that of
+\lean{Theorem41Abelian} with $d_2=m+r$. The general statement \lean{Theorem41Vec} has no further premises.
+
+Two premises concern the curves. \lean{LiftAlg}: if $z\in T_B$ and $\exp(z)\in B(\Qbar)$, there is $w$ with
+$(z,w)\in T(B^\natural)$ and $w-\zeta(z)$ algebraic. \lean{PerTanRat}: $T(B^\natural)$ is $\Qbar$-rational.
+Both are true for all curves with algebraic invariants ($B^\natural\to B$ is a surjective morphism defined
+over $\Qbar$), but we have proved them in Lean only for the CM curves used by the applications
+(\lean{LSG.CM.liftAlg_block}, \lean{perTanRat_block}, and the products $E_i^n\times E_\rho^n$ of the MX
+bridges).
+
+\begin{theorem}[Lean; standard axioms]\label{thm:vec}
+Let $G$ be in the class above, with $g_2(\Lambda_j),g_3(\Lambda_j)$ and $M$ algebraic.
+\begin{enumerate}
+\item[(a)] If $r\le1$, $V\cap\text{fibre}=0$ and the curves satisfy \lean{LiftAlg}, Theorem~\ref{thm:W88}
+holds under \NR{} (\lean{LSG.W88.theorem41VecLA}, for every algebraic $M$; the case of onto $M$,
+\lean{theorem41VecLA_onto}, was proved first, by a shorter route).
+\item[(b)] If $d_0=0$, $r\le2$, $\dim(V\cap\text{fibre})\le1$ and the curves satisfy \lean{LiftAlg} and
+\lean{PerTanRat}, Theorem~\ref{thm:W88} holds under \NR{} (\lean{LSG.W88.theorem41Vec2}).
+\item[(c)] The \S5d consequence ((5.4) with $d_2=m+r$, without \NR) holds for $r\le1$, and for $d_0=0$,
+$r\le2$, for curves satisfying \lean{LiftAlg} and \lean{PerTanRat}
+(\lean{LSG.W88.V5d.hyperplaneKappaVec_uncond}, \lean{hyperplaneKappaVec2_uncond}).
+\end{enumerate}
+\end{theorem}
+
+The restrictions on $r$, $d_0$ and $V\cap\text{fibre}$ are genuine; the general \lean{Theorem41Vec} is not
+proved. Accordingly these results are to be cited as ``W88 Thm.~4.1 under \NR{} for
+$\Ga^{d_0}\times\Gm^{d_1}\times G_2$, $G_2$ a push-out of $(\prod E_j)^\natural$ along an algebraic $M$, in the
+cases $r\le1$ with $V\cap\text{fibre}=0$, or $d_0=0$, $r\le2$ and $\dim(V\cap\text{fibre})\le1$; for curves
+satisfying \lean{LiftAlg} (and \lean{PerTanRat}), true for all curves over $\Qbar$ and Lean-proved for the
+CM curves used'', and never as ``W88 Thm.~4.1 for vector extensions''.
+
+\subsection{The proof}
+The architecture is that of Sections~\ref{sec:stage2}--\ref{sec:sec7}.
+\begin{itemize}
+\item \emph{A model of $E^\natural$.} The surface $X=V(F,\,WT_3-VT_1+2U^2)\subset\PP^4$, with $(U:V:W:T_1:T_3)=(x:y:1:t:yt-2x^2)$
+over affine points, is $E^\natural$ plus a boundary line. Exact linear algebra over $\mathbb F_p$ shows that it
+carries no addition law of bidegree $(2,2)$ (the missing section is $Ut$); we found eight laws of bidegree
+$(3,3)$ and proved in Lean that they preserve the ideal, represent the sum in all configurations (and
+analytically, \lean{NLaw_expN_all}), and form a complete system (\lean{NLaw_complete}). The ideal $(F,G)$ is
+prime (\lean{isPrime_span_FG}).
+\item \emph{The multiplicity estimate} \lean{LSG.MEV.multEstVec} (\lean{LSG/MEV/}). Every $G$ of the class is
+the quotient of $\tilde G_r=\Ga^{d_0+r}\times\Gm^{d_1}\times E_1^\natural\times\dots\times E_m^\natural$ by the vector
+subgroup $K_M=\{(0,-Mv;0;0,v)\}$, and polynomials on $G$ are $K_M$-invariant polynomials on $\tilde G_r$. All
+layers of Section~\ref{sec:stage2} were redone for $E^\natural$ blocks: primality and the complete
+intersection property of $I_{\tilde G}$, the Nullstellensatz despite the boundary plane, translations, the
+formal exponential and Philippon's operators (degree $\le3D$), the chain of ideals with its relevant-prime
+step, the $E^\natural$ curve lemma, the subgroup layer (unconditional classification of Zariski-closed
+subgroups, $\hdim H^0$, finiteness of cosets, and a Hilbert lower bound matching $\hdim H^0$), the slice
+layer, and Wüstholz's lemma (homogenized chart derivations, transversals at every coset, coset bounds). The
+cone over $X$ is singular along $U=V=W=0$, yet the change of chart for the homogenized derivations is
+polynomial, with explicit cofactors. When $M$ is onto, the grading of Section~\ref{sec:stage2} (all additive
+coordinates in one block) gives the estimate. When it is not (for instance $r=1$, $M=0$, so that
+$G_2=E^m\times\Ga$, a case that W88~\S7 needs), the trailing additive coordinates belong to $G_2$ and must
+carry the elliptic degree $D_2$; we use a grading with four blocks (leading and trailing additive
+coordinates, torus, elliptic). Hilbert \emph{dimensions} do not depend on the grading, so only the degree
+steps had to be redone (about 2{,}200 lines).
+\item \emph{The analytic side}: Prop.~6.1 for the class (\lean{LSG.AuxV.prop61V_b}), using entire
+coordinates of $\exp_{E^\natural}$ built from $\sigma$ and the premise $V\cap\text{fibre}=0$ to keep the grid
+coordinates discrete (the fibre forms have non-discrete period images when $m\ge3$). Sizes of fibre values
+are controlled through the $\zeta$ addition formula rather than the $(3,3)$ laws, whose balanced splitting would
+give sizes $6^k\approx S^{2.58}$ and break the $e^{cS^2}$ bounds. For case~(b), where $V\cap\text{fibre}=\CC u$
+may be an irrational line, we proved W83's Prop.~2.1 with one polynomial direction (\lean{prop21LatT}): the
+fibre forms are affine in $s$, so along $u$ the functions are polynomials of degree $\le D$; the Siegel
+conditions are imposed at $D+1$ nodes in that variable and recovered by exact Lagrange interpolation, at the
+cost of one power of the parameter $U$.
+\item \emph{W88 \S7 and $\Qbar$-rationality.} The obstruction lives over $\CC$, with tangent space
+$T'=\Gamma_{\mathrm{full}}\oplus U^\perp\oplus T(\tilde B)$. For $r\le1$ the fibre part of $\Gamma_{\mathrm{full}}$ is $0$ or the
+whole fibre, hence rational, and replacing $\Gamma_{\mathrm{full}}$ by the span of its algebraic vectors works as in
+Section~\ref{sec:rat}; \lean{LiftAlg} keeps $\lambda$ unchanged. For $d_0=0$, $r\le2$, $\Gamma_{\mathrm{full}}$ may be an
+irrational line in the two-dimensional fibre. Then $T'$ lies between a rational subgroup $T_S$ (its algebraic
+part) and a rational subgroup $T_E$ (the whole fibre added) with $\dim T_E/T'\le1$, and one of the two
+satisfies the inequality \eqref{eq:W88}: if $T_E$ fails, \lean{PerTanRat} puts every algebraic vector of
+$T'$ into $T_S$, and $T_S$ works.
+\item \emph{The \S5d engine} follows Waldschmidt's Lemmas~5.1--5.2 as in Section~\ref{sec:5d}, with frames
+for the class. For $r\le1$ the maximizing subgroup may have a non-onto push-out matrix; moving its $\Ga$ fibre
+into the $\Ga^{d_0}$ factor gives a presentation with $r=0$, so case~(c) for $r\le1$ needs only the onto
+case of~(a). For $d_0=0$, $r\le2$ the engine runs directly on~(b).
+\end{itemize}
+
+\subsection{The bridges to \texorpdfstring{\texttt{lean\_mstar}}{lean\_mstar}}
+From Theorem~\ref{thm:vec} we prove, unconditionally, \lean{lean_mstar}'s six vector-extension hypotheses
+(\lean{LSG/W88/V5dOntoBridges.lean}, \lean{V5dSMGn.lean}, \lean{V5dMXPMain.lean}): \lean{Thm11KappaMXG}
+(Theorem~MX), \lean{Thm11KappaMGn} and \lean{Thm11KappaMGnK} for every CM lattice, \lean{Thm11KappaNat}
+(the four exponentials statement at $t=c\vp$), \lean{Thm11KappaSMGn} (Theorem~S), and \lean{Thm11KappaMXP}
+(Theorem~MX$'$, which has $r=2$ and uses case~(b)). As in \lean{lean_mstar}, the statements for a general CM
+lattice carry the premise $\kappa_1=0$ (\lean{KappaOneZero}), proved there for both lattices used. The CM
+inputs are proved in Lean: rotation formulas, quasi-periods via Legendre, \lean{LiftAlg} and
+\lean{PerTanRat} for CM blocks, and the splitting of abelian subvarieties of $E_i^n\times E_\rho^n$ via the
+irrationality of $\sqrt3$. The statements are verbatim copies of \lean{lean_mstar}'s
+(\lean{LSG/W88/MStarCopy*.lean}); \lean{lean_mstar}, which has this project as a Lake dependency, derives its
+own unmodified hypotheses from them, so a drift of a copy breaks its build. Two of the CM abelian-variety
+hypotheses of \lean{lean_mstar} are treated in Section~\ref{sec:abvar}.
+
+\subsection{Fidelity review}
+A second AI session that had not written the proofs reviewed the vector-extension statements against
+\cite[pp.~375, 385--389, 394--395]{W88}. It found no fatal or major issue: $\Lambda(G)$, $\Omega(G)$, the
+$\Qbar$-structure of the push-out and the subgroup family match Waldschmidt's for this class (including
+completeness of the family), and all casts are safe. As a test of non-vacuity it derived in Lean, from each
+of (a), (b) and~(c), that $\eta(\omega_1)\notin\Qbar\,\omega_1$ for the lemniscatic curve (with $G=E^\natural$). Its main
+remark is the scope of the claim, stated above; the others concern docstrings, the redundancy of
+\lean{Proper}, and the fact that the lattice case of \lean{LamV} depends on the junk value of $\zeta$ at
+lattice points (proved in the same file, so a change of definition would break the build).
+
+% ===========================================================================
+\section{An abelian surface: the Jacobian of \texorpdfstring{$y^5=x(1-x)$}{y\^{}5=x(1-x)}}\label{sec:abvar}
+% ===========================================================================
+
+\subsection{The group and the statements}
+Theorem~A of \cite{MstarPaper} at the Beta value $B(1/5,1/5)$ applies Waldschmidt's theorem to
+$G=\Ga^{d_0}\times\Gm^{d_1}\times A^r$, where $A$ is the Jacobian of the genus-two curve
+$C\colon y^5=x(1-x)$, a simple abelian surface with complex multiplication by $\QQ(\zeta_5)$. Here $A$ is the
+Jacobian of $C$, presented in Lean by its period lattice in the coordinates $\int dX/Y$, $\int X\,dX/Y$ on the
+model $Y^2=4X^5+1$ ($X=-y$, $Y=2x-1$). Lean computes these periods (Beta values) and proves that they are
+periods of an analytic exponential map onto Grant's model in $\PP^8$ with discrete kernel. The
+identification of that torus with $\operatorname{Jac}(C)$, and of complex subtori with abelian subvarieties,
+is classical and not formalized. The final theorems (e.g.\ \lean{two_three_beta5_uncond} below) are statements
+about explicit numbers and do not depend on it.
+
+Concretely, $T_G=\CC^{d_0}\times\CC^{d_1}\times(\CC^2)^r$, and \lean{latt}${}\subset\CC^2$ is the lattice spanned by
+the four periods $\int_{\gamma_e}(dX/Y,\,X\,dX/Y)=(c_0\zeta^e,\,c_1\zeta^{2e})$, $e=0,\dots,3$, where $\zeta=e^{2\pi i/5}$,
+$c_j=\frac{(-1)^j}5(1-\zeta^{j+1})B\bigl(\frac{j+1}5,\frac{j+1}5\bigr)$ and $\gamma_e$ are explicit loops. Lean proves
+that the four periods are $\RR$-independent, that \lean{latt} lies in the kernel of the exponential map, and that
+this kernel lies in $\QQ\cdot$\lean{latt}; so \lean{latt} is a finite-index sublattice of the period lattice, and
+every statement below depends only on its $\QQ$-span. The data are restricted as follows:
+\[
+\Lambda_A=\{(a,b,z): a\in\Qbar^{d_0},\ e^{b_i}\in\Qbar,\ z_k\in\texttt{latt}\},\qquad
+\Omega_A=0\times2\pi i\ZZ^{d_1}\times\texttt{latt}^r ,
+\]
+and a subspace $V\subset T_G$ is \emph{toric-injective} if every $v\in V\cap\QQ\Omega_A$ with zero toric part is
+$0$, i.e.\ $V$ contains no nonzero $\QQ$-period of $A^r$ alone. Connected algebraic subgroups are products
+$H_0\times T_U\times B$, with the tangent space $t$ of $B$ characterized by ``$t\cap\texttt{latt}^r$ spans $t$
+over $\RR$''. The statements are in \lean{LSG/W88/StatementAbVar.lean}.
+
+\begin{theorem}[Lean; standard axioms]\label{thm:abvar}
+Let $G=\Ga^{d_0}\times\Gm^{d_1}\times A^r$, $A$ as above, so $d_2=2r$.
+\begin{enumerate}
+\item[(a)] Theorem~\ref{thm:W88} holds under \NR{} for toric-injective $V$ and $Y\subset V\cap\Lambda_A$
+(\lean{LSG.W88.theorem41AbVarPer}).
+\item[(b)] The \S5d consequence ((5.4) with $d_2=2r$, without \NR) holds for toric-injective hyperplanes $V$
+and $y_1,\dots,y_m\in V\cap\Lambda_A$ (\lean{LSG.W88.hyperplaneKappaAbVar}); by a common-denominator argument
+the $y_i$ may be taken in $V\cap\QQ\Lambda_A$.
+\end{enumerate}
+\end{theorem}
+
+\emph{Scope.} Theorem~\ref{thm:abvar} is W88 \S5d (and Thm.~4.1 under \NR) for $\Ga^{d_0}\times\Gm^{d_1}\times A^r$,
+$A=\operatorname{Jac}(y^5=x(1-x))$, for toric-injective hyperplanes $V$ and subgroups $Y$ whose $A$-components
+are (rational) periods; so $\exp_G(Y)\subset\Ga^{d_0}(\Qbar)\times\Gm^{d_1}(\Qbar)\times A^r_{\mathrm{tors}}$. Both
+restrictions only weaken Waldschmidt's theorem, and they are all that \lean{lean_mstar}'s models use. For
+$G=A^r$ alone ($d_0=d_1=0$) the restricted statement is empty, since toric injectivity forces
+$V\cap\Lambda_A=0$; it must not be cited as Waldschmidt's theorem for $A^r$.
+
+\subsection{The proof}
+The architecture is again that of Sections~\ref{sec:stage2}--\ref{sec:5d}, but every layer that touched the
+elliptic curve had to be redone for a surface without a Weierstrass-type uniformization in Mathlib.
+\begin{itemize}
+\item \emph{An explicit model and certificates} (\lean{LSG/Jac/}). We use Grant's model $V(Q)\subset\PP^8$ of the
+Jacobian of a genus-two curve with a rational Weierstrass point (quadrics in Mumford coordinates), with a
+complete system of addition laws of bidegree $(2,2)$, the duplication map and the invariant vector fields.
+The polynomial identities behind these facts (laws preserve the model, flow invariance, the doubling
+identities, a degree-$7$ Nullstellensatz showing that duplication does not vanish on $V(Q)\setminus0$, local
+complete-intersection systems) are far beyond \texttt{ring}. They are produced by Python scripts with exact
+arithmetic, which are untrusted, and checked in Lean by a normal-form checker modulo the ideal of the
+model, with Kronecker-packed natural-number accumulators. Each check is a Boolean computation proved by
+\texttt{decide\ +kernel}, so the kernel evaluates it, and a soundness theorem turns a successful check into the
+polynomial identity over any commutative ring. There is no \texttt{native\_decide}. The certificates take
+about five CPU-hours to check.
+\item \emph{The analytic exponential} (\lean{LSG/JacAn*/}). We build the genus-two Abel map and a local
+exponential near a generic pair of points, prove Abel's theorem locally (Euler--Jacobi), extend the
+exponential to an entire map $\CC^2\to\PP^8$ by doubling the germ, prove that it is a homomorphism, that
+its kernel is discrete and contains \lean{latt} (via path continuation of Abel integrals, including through
+Weierstrass points), and compute the Beta periods. An entire nowhere-vanishing lift $\theta$, normalized
+to have an affine factor of automorphy and order two, plays the role of $\sigma$; a Liouville argument shows
+that the addition laws are correct and complete on its image, and a boundary flow-exit argument proves that
+every nonzero point of the model is $c\,\theta(z)$. Taylor coefficients at algebraic points are algebraic,
+with explicit size bounds, in three charts that cover the model.
+\item \emph{A generic multiplicity estimate} (\lean{LSG/MEB/}). The estimate of Section~\ref{sec:stage2} is
+proved once more for $\Ga^{d_0}\times\Gm^{d_1}\times B_1\times\dots\times B_m$, generic over an interface of
+\emph{abelian blocks}: an entire lift with discrete period group, an explicit ideal whose zero set is the
+cone over the image, addition laws correct on the image, chart flows, and Hilbert and local-CI
+certificates. The interface is semantic: identities that the elliptic proof checked formally modulo the
+cone become consequences of the laws on the image, which avoids an estimated twenty- to forty-fold increase
+of the certificate work. The Jacobian is the instance \lean{LSG.JacBlock.aBlock}.
+\item \emph{The analytic side and \S7} (\lean{LSG/AuxFunA/}, \lean{LSG/W88/AbVar*}). For a simple abelian
+surface, W83's Prop.~2.1 in general needs a several-variable interpolation estimate of Masser type. Toric
+injectivity avoids it: $\ZZ$-independent periods in a toric-injective $V$ have $\QQ$-independent toric parts,
+hence are $\CC$-independent, and the linear form of Prop.~2.1 used for elliptic curves applies with
+$\theta$'s factor of automorphy as multiplier. Lemma~U needs Taylor data only at the origin, because every
+point of $\Lambda_A$ has its $A$-part in \lean{latt}. W88 \S7 and the \S5d engine are written generically
+for abelian blocks (\lean{theorem41B_of}); the \S5d maximizer must be defined over $\Qbar$, and we prove that
+abelian tangent spaces of $A^r$ are $\Qbar$-rational using the CM structure (\lean{ratTangentsA}).
+\end{itemize}
+
+\subsection{The bridge to \texorpdfstring{\texttt{lean\_mstar}}{lean\_mstar}}
+From Theorem~\ref{thm:abvar}(b) we prove \lean{lean_mstar}'s hypotheses \lean{AbVar.Thm11KappaA} and
+\lean{AbVar.Thm11KappaAK} at $y^5=x(1-x)$ (\lean{LSG.W88.thm11KappaA5}, \lean{thm11KappaAK5}), stated against
+verbatim copies. The transport rescales \lean{lean_mstar}'s coordinates, which are dual to $dx/y^{4-s}$, by
+the algebraic factors $5(-1)^s$, and checks that \lean{lean_mstar}'s toric injectivity implies ours and that
+every nonzero abelian tangent lands in \lean{lean_mstar}'s subgroup family. In \lean{lean_mstar} (which has this
+project as a Lake dependency) these yield, with no hypothesis and standard axioms only:
+\lean{two_three_beta5_uncond}, that $2^{t}$ and $3^{t}$ are not both algebraic for $t=B(1/5,1/5)/\pi$; the
+four exponentials statements at $cB(1/5,1/5)/\pi$ and $c\pi/B(1/5,1/5)$ for algebraic $c\ne0$; and the input
+$(1-\zeta_5)B(1/5,1/5)/\pi\notin\Qbar$ (Wüstholz), here derived from Waldschmidt's theorem.
+
+\subsection{Fidelity review}
+A further AI session that had not written the proofs reviewed the statements and the bridge against
+\cite[pp.~375, 385--386, 394--395]{W88} and \lean{lean_mstar}. It found no fatal or major issue. Its main remark is
+the scope above (the second restriction, on the $A$-components, had been omitted from a sentence in
+\lean{lean_mstar}'s paper); it also verified in Lean that the subgroup condition is not vacuous (a nonzero
+subspace of $\CC^2$ that is not an abelian tangent) and that the restricted statement is empty for $A^r$
+alone, and asked for the wording of ``$A$ is the Jacobian'' used above.
+
+% ===========================================================================
+\section{A vector extension of the Jacobian}\label{sec:abvarv}
+% ===========================================================================
+
+\subsection{The group and the statements}
+Theorem~MG$^\natural$-A of \cite{MstarPaper} at $B(1/5,1/5)$ gives the headline statement that $2^t$ and $3^t$ are
+not both algebraic for $t=B(1/5,1/5)=\Gamma(1/5)^2/\Gamma(2/5)$ (without the division by $\pi$ of
+Section~\ref{sec:abvar}). It applies Waldschmidt's theorem to a group with a vector part. Let
+$A=\operatorname{Jac}(y^5=x(1-x))$ as in Section~\ref{sec:abvar}, and let $A_{\bar\sigma}^\natural$ be the extension of $A$
+by $\Ga$ whose class is that of the differential of the second kind $dx/y$; on the model $Y^2=4X^5+1$ this is the
+class $[X^3\,dX/Y]=-\tfrac15[dx/y]$, the $\bar\sigma$-eigenline for the action of $\QQ(\zeta_5)$. Let $Q$ be the push-out
+of $(A_{\bar\sigma}^\natural)^m$ along $b^{\mathsf T}$, for $b$ an adapted basis of a number field containing $\QQ(\zeta_5)$
+(that is, the numbers $\zeta^e b_j$ are $\QQ$-linearly independent). Then $T_Q=(\CC^2)^m\times\CC$, and the periods of $Q$
+are the vectors $(\lambda,\sum_j b_j\bar\eta(\lambda_j))$, with $\lambda\in$ \lean{latt}${}^m$ and $\bar\eta$ the fibre
+period.
+
+The statements are in \lean{LSG/W88/AbVarVStmt.lean}. They are generic over a family of \emph{vector blocks}
+$B_1,\dots,B_m$ (an abelian block of Section~\ref{sec:abvar} together with fibre data) and a matrix $M\colon\CC^m\to\CC^r$.
+The data are restricted as in Section~\ref{sec:abvar}: $\Lambda_{A^\natural}$ consists of the $(a,b,z,s)$ with
+$a\in\Qbar^{d_0}$, $e^{b_i}\in\Qbar$, $z_k\in$ \lean{latt} and $s-M\bar\eta(z)\in\Qbar^r$, so the $A^m$-component of every
+point is $0$ while its fibre component is an arbitrary algebraic point; and $V$ is \emph{toric-injective} if it
+contains no nonzero rational period of $Q$.
+
+\begin{theorem}[Lean; standard axioms]\label{thm:abvarv}
+Let $G=\Ga^{d_0}\times\Gm^{d_1}\times Q$ with $Q$ as above, so $d_2=2m+1$.
+\begin{enumerate}
+\item[(a)] The \S5d consequence ((5.4), without \NR) holds for toric-injective hyperplanes $V$ and
+$y_1,\dots,y_\ell\in V\cap\Lambda_{A^\natural}$ (\lean{LSG.W88.hyperplaneKappaAbVarV_aBlockV}).
+\item[(b)] More generally, Theorem~\ref{thm:W88} holds under \NR{} for $\Ga^{d_0}\times\Gm^{d_1}\times(B_1^\natural\times\dots
+\times B_m^\natural\text{ pushed out along }M)$, for every family of vector blocks with analytic and Taylor
+packages, every onto algebraic $M$ with $r\le1$, toric-injective $V$, and $Y$ whose base parts lie in the period
+lattice (\lean{LSG.W88.theorem41AbVarVPer}).
+\item[(c)] Philippon's multiplicity estimate holds for these groups, generic over vector blocks
+(\lean{LSG.MEBV.multEstV_holds}).
+\end{enumerate}
+\end{theorem}
+
+\emph{Scope.} For Theorem~MG$^\natural$-A at $B(1/5,1/5)$ the formal development proves the following special case of
+W88 \S5d: Theorem~\ref{thm:abvarv}(a), that is, W88 \S5d for $G=\Ga^{d_0}\times\Gm^{d_1}\times Q$, restricted to
+\begin{itemize}
+\item hyperplanes $V$ that are \emph{toric-injective} ($V$ contains no nonzero rational period of $Q$);
+\item subgroups $Y$ whose points have trivial $A^m$-component (their $\Ga$, $\Gm$ and fibre components are arbitrary
+algebraic points).
+\end{itemize}
+This is implied by W88. The push-out is one-dimensional ($r=1$) and $b$ is adapted; this is what guarantees that
+every algebraic subgroup with nonzero abelian part contains the fibre. The generic Props behind
+Theorem~\ref{thm:abvarv} are instances of W88 only when $M$ is algebraic and, for (a), when the block family has this
+fibre property; the proved cases satisfy both. Unlike Section~\ref{sec:abvar}, the restricted statement is not empty
+for $d_0=d_1=0$, since non-torsion points of the fibre are allowed. The Lean proof, which goes through Philippon's
+multiplicity estimate, is unconditional. The hypothesis of Theorem~MG$^\natural$-A is used only at three frame
+hyperplanes, and each of them is toric-injective. This is proved in Lean from the $F$-independence of $b$ and the
+fact that the fibre character $\zeta\mapsto\zeta^4$ is a field embedding.
+
+The group $A_{\bar\sigma}^\natural$ is presented in Lean by an explicit projective model over $\QQ$ in $\PP^{11}$
+(Grant's variety, three fibre coordinates $T_0,T_4,T_8$, Plücker quadrics and $81$ addition laws of bidegree $(3,3)$)
+and an entire uniformisation $(z,w)\mapsto(\theta_N(z),T(z,w))$ built from theta functions. Its fibre periods are
+computed in Lean to be $\bar\eta([\zeta^e]\gamma)=\frac35\zeta^{4e}(1-\zeta^4)B(4/5,4/5)$, i.e.\ $-3$ times the periods of
+$X^3\,dX/Y$. The identification of this model with the extension of $\operatorname{Jac}(C)$ is classical and not
+formalised. The final four-exponentials statement concerns explicit numbers and does not depend on it.
+
+\subsection{The proof}
+The architecture is that of Section~\ref{sec:abvar}, with a fibre added to every layer.
+\begin{itemize}
+\item \emph{The analytic group} (\lean{LSG/JacAnV/}). A Liouville argument gives
+$\partial_i\partial_j\log\theta_{N,0}=-3\wp_{ij}+c_{ij}$ from six small quadric identities. The fibre coordinates are
+the derivative lifts $T_k(z,w)=\theta_k(z)(w+\ell(z))-\frac13\partial_0\theta_k(z)$. They have the same factor of
+automorphy as $\theta_N$, with the fibre period $\bar\eta$ as translation in $w$, and their flows are given by rational
+quadrics. The fibre period formula comes from the path-continuation machinery of Section~\ref{sec:abvar}.
+\item \emph{The model} (\lean{LSG/JacBlockV/}, \lean{LSG/Jac/B6V*}). The fibre addition laws are the polarization of
+the nine certified laws of $A$, defined with \lean{pderiv} and proved correct by differentiating them, so no new law
+certificates are needed. The only new certificates are those of the Hilbert bound: every homogeneous polynomial of
+degree $41$ lies in the ideal of the model plus four linear forms, from eight kernel-checked identities.
+\item \emph{A generic multiplicity estimate} (\lean{LSG/MEBV/}). The estimate is proved once more, generic over an
+interface \lean{VBlock} of vector blocks. Its design builds in five corrections found by an exact computer-algebra
+spike: slicing in the $X$-variables only (the model is not a local complete intersection on $\{X=0\}$), a Hilbert
+certificate with linear forms, fibre flows only in their own chart, generators that need not span a saturated
+ideal, and no requirement on the fibre coordinate of the identity.
+\item \emph{The analytic side, \S7 and \S5d} (\lean{LSG/AuxFunAV/}, \lean{LSG/W88/AbVarV*}). Under toric injectivity,
+W83's Prop.~2.1 again needs only its linear form, and the fibre forms are quasi-periodic with $\theta$'s multiplier.
+The \S5d engine needs three properties of the block family, all proved for $A_{\bar\sigma}^\natural$ from the CM
+structure: the fibre property above, an algebraic relation between the fibre periods on a rational abelian tangent
+and on its pivot coordinates, and $\Qbar$-rationality of abelian tangents.
+\end{itemize}
+
+\subsection{The bridge to \texorpdfstring{\texttt{lean\_mstar}}{lean\_mstar}}
+From Theorem~\ref{thm:abvarv}(a) we prove \lean{lean_mstar}'s hypotheses \lean{AbVar.Thm11KappaAn} and
+\lean{AbVar.Thm11KappaAnK} (the latter for $L_{A^\natural}=\emptyset$) at $y^5=x(1-x)$
+(\lean{LSG.W88.thm11KappaAn5}, \lean{thm11KappaAnK5}). Like \lean{Thm11KappaA}, these hypotheses are restricted to
+toric-injective hyperplanes, a restriction \lean{lean_mstar} adopted for this purpose (its frame hyperplanes are
+toric-injective, \lean{perAn_inj}). The transport rescales by algebraic factors and maps our fibre periods onto
+\lean{lean_mstar}'s generators, since $\frac53\cdot b_j\frac35\zeta^{4e}\bar P=b_j\zeta^{(5-1)e}\bar P$. In
+\lean{lean_mstar}, \lean{Bridge.two_three_beta5'_uncond} (that $2^t$ and $3^t$ are not both algebraic for $t=B(1/5,1/5)$) and
+\lean{Bridge.wuestholzB5_uncond} ($(1-\zeta^4)B(4/5,4/5)/\pi\notin\Qbar$) follow with standard axioms only.
+
+\subsection{Fidelity review}
+A further AI session that had not written the proofs reviewed the statements, the block data and the bridge against
+\cite[pp.~385--386, 394--395]{W88} and \lean{lean_mstar}. It found no fatal or major issue. Its main remarks are the
+scope above and that \lean{lean_mstar} had yet to adopt the restriction, which it has since done. It proved in Lean, in a scratch file, that
+\lean{lean_mstar}'s frame hyperplanes are toric-injective, and it re-ran the three \lean{lean_mstar} consumers under the
+narrowed hypothesis. It also checked non-vacuity: the fibre period $\bar\eta$ is nonzero, the data contain non-torsion
+fibre points, and the subgroup family of the model is exactly the family of connected algebraic subgroups.
+
+% ===========================================================================
+\section{Explicit consequences, formally verified}\label{sec:conseq}
+% ===========================================================================
+
+The certificate \lean{lean_mstar} \cite{LeanMstar}, which has this project as a Lake dependency, derives explicit
+transcendence statements from the hyperplane theorems of Sections~\ref{sec:5d}, \ref{sec:vecext}, \ref{sec:abvar} and
+\ref{sec:abvarv}. We list them with their status at its commit \lean{7ddd73d}. Lean names are in the namespace \lean{CM4E}
+unless they start with \lean{LSG}; each entry names the sub-namespace once.
+
+\emph{Notation.} $\mathcal L=\{z\in\CC:e^z\in\Qbar^\times\}$, $\widetilde{\mathcal L}=\Qbar+\Qbar\mathcal L$, and
+$\mathcal L_E$ is the set of elliptic logarithms of algebraic points of $E$. The curves are $E_i$ (lattice $\vp\ZZ[i]$) and
+$E_\rho$ (lattice $\Omega_\rho\ZZ[\rho]$, $\Omega_\rho=\Gamma(1/3)^3/(2^{4/3}\pi)$), and $\eta_\rho=\eta(\Omega_\rho)$.
+$\mathrm{4E}(t)$ (\lean{FourExpAt}) says: if $a,b\in\mathcal L$ are $\QQ$-linearly independent, then $e^{ta},e^{tb}$ are not
+both algebraic. $A$ is the Jacobian of $y^5=x(1-x)$ and $B=B(1/5,1/5)=\Gamma(1/5)^2/\Gamma(2/5)$. Throughout, $c\in\Qbar^\times$.
+
+\emph{Derivation.} Each statement comes from a group $G$, a $\Qbar$-rational map $\Psi\colon T_G\to\CC^2$ and a line $V$ of
+transcendental slope. For a number field $K$ of degree $n$, $G''$ is the quotient of $G^n$ by the largest connected algebraic
+subgroup with tangent space in the kernel of $\Psi\circ(z_j)_j\mapsto\sum_j\theta_jz_j$, for a basis $\theta$ of $K/\QQ$. With
+$\alpha(H)=2\dim H-2d_0(H)-d_1(H)$, $\alpha_{K,\Psi}=\alpha(G'')/n$ and $\kappa=\dim_K(V\cap\Psi(\Omega_K(G)))$, the bound is
+$\dim_K(V\cap\Psi(\Lambda_K(G)))\le\alpha_{K,\Psi}-\kappa$ for the $K$-spans $\Lambda_K$, $\Omega_K$, and a counterexample
+would give more $K$-independent data than that. Table~\ref{tab:conseq} has the numbers for large $n$, as computed in
+\cite{MstarPaper}. The Lean proofs do not use this bound: they apply (5.4) of \cite[\S5d]{W88} to a hyperplane of a model of
+$G''$.
+
+\begin{table}[ht]\footnotesize
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+Entry & $G''$ & $\alpha_{K,\Psi}$ & $\kappa$ & data & bound & Status \\
+\midrule
+MG & $\Gm^{2n}\times A''$, $A''=E^n/U$ & $3$ & $1$ & $3$ & $2$ & \textbf{U}, \textbf{I} at $\Omega_\rho$ \\
+MG$^\natural$ & $\Gm^{2n}\times Q''$, $Q''=(E^\natural)^n/U$ & $3+2/n$ & $1$ & $3$ & $2+2/n$ & \textbf{U}, \textbf{I} at $\Omega_\rho$ \\
+SMG(a) & $\Ga^2\times\Gm^{2n}\times A''$ & $3$ & $1$ & $3$ & $2$ & \textbf{U}$^*$ \\
+SE(1) & $\Ga^2\times A_1''\times A_2''\times A'''$ & $3$ & $1$ & $3$ & $2$ & \textbf{I} \\
+MX, MX$'$, deg2 & $(E_i^\natural\times E_\rho^\natural\times\Ga^2)^n/U$ & $4+2/n$ & $2$ & $3$ & $2+2/n$ & \textbf{I} \\
+Theorem M & $A''\times\Gm^n\times\Ga$ & $2$ & $1$ & $2$ & $1$ & \textbf{U}, \textbf{I} \\
+MG-A at $B/\pi$ & $\Gm^{2n}\times A''$, $A''\sim A^r$ & $3$ & $1$ & $3$ & $2$ & \textbf{U} \\
+MG$^\natural$-A at $B$ & $\Gm^{2n}\times Q''$, $Q''=(A^\natural)^r/U$ & $3+2/n$ & $1$ & $3$ & $2+2/n$ & \textbf{U} \\
+X7 & $\prod_jA_j''\times\Ga^2$ & $4$ & $2$ & $3$ & $2$ & \textbf{W} \\
+X9 & $\prod_jA_j''\times\Ga^2$ & $4$ & $2$ & $3$ & $2$ & \textbf{N} \\
+X$^\kappa$ & $\prod_jA_j''\times\Ga^2$ & $2\kappa$ & $\kappa$ & $\kappa+1$ & $\kappa$ & \textbf{N} \\
+\bottomrule
+\end{tabular}
+\caption{The consequences. ``Data'' counts the period data and the vectors a counterexample would give.}\label{tab:conseq}
+\end{table}
+
+\emph{Status labels.} \textbf{U}: verified with no hypothesis, that is, a declaration whose only premises belong to the
+mathematical statement. \textbf{U}$^*$: every premise of a generic declaration is discharged at this commit, but no single
+declaration states the composite. \textbf{I}: verified with no form of W88 assumed, modulo the named classical inputs listed,
+which are explicit hypotheses. \textbf{W}: verified conditionally on a named form of W88 that this project does not prove.
+\textbf{N}: not formalised as
+stated. Two inputs recur: $(g_3)$ is $g_3(\Omega_\rho\ZZ[\rho])\in\Qbar$ (the argument \texttt{hg$_3'$}; $g_2=0$ is proved, and
+$g_3=4$ is classical but not formalised), and $(\Gamma)$ is $\vp\Omega_\rho/\pi\notin\Qbar$ (\texttt{h$\Gamma$};
+W\"ustholz \cite{Wustholz1989}).
+
+\begin{itemize}
+\item \textbf{MG.} $\mathrm{4E}(c\vp/\pi)$; for example $2^{\vp/\pi},3^{\vp/\pi}$ are not both algebraic. For $s=c\vp/\pi$ and
+$K\ni i,c$, no $x_1,x_2\in K\mathcal L$ have $sx_j\in K\mathcal L+K\mathcal L_{E_i}$ with $2\pi i,x_1,x_2$ $K$-independent.
+\lean{Unconditional}: \lean{fourExpAt_varpi_div_pi_all}, \lean{two_three}, \lean{mg_K_varpi}, from \lean{LSG.W88.thm11Kappa},
+\lean{LSG.W88.hypStdCMAt}: \textbf{U}. At $\Omega_\rho$, \lean{fourExpAt_omegaRho_div_pi_all}: \textbf{I} ($(g_3)$). Arbitrary
+$K\supseteq\QQ(i)$: \textbf{N}.
+\item \textbf{MG$^\natural$.} $\mathrm{4E}(c\vp)$; for example $2^{\vp},3^{\vp}$ are not both algebraic. \lean{Unconditional}:
+\lean{fourExpAt_varpi_all}, \lean{two_three_varpi}, the $K$-form \lean{mgn_K_varpi}, from \lean{LSG.W88.V5d.thm11KappaMGn_uncond},
+\lean{thm11KappaNat_uncond}, \lean{thm11KappaMGnK_uncond}: \textbf{U}. At $\Omega_\rho$, \lean{fourExpAt_omegaRho_all},
+\lean{two_three_omegaRho}: \textbf{I} ($(g_3)$).
+\item \textbf{SMG(a).} For $s=c\vp/\pi$ and $y_1,y_2\in\widetilde{\mathcal L}$ with $2\pi i,y_1,y_2$ $\Qbar$-independent, $sy_1,sy_2$
+are not both in $\widetilde{\mathcal L}$. \lean{Gen.smg_false} at \lean{Gen.latI}, with \lean{Bridge.thm11KappaSMG_of_std} and
+\lean{LSG.W88.hypStdCMAt} ($d_0=2$): \textbf{U}$^*$; the composite occurs inside \lean{Gen.thmS}, hence in
+\lean{Unconditional.thmS_varpi}. With second row in $\widetilde{\mathcal L}+\Qbar\mathcal L_{E_i}$: \textbf{N}.
+\item \textbf{SE(1).} For $t=c\Omega_\rho/\vp$ and $u_1,u_2\in\Qbar+\Qbar\mathcal L_{E_i}$ with $\vp,u_1,u_2$ $\Qbar$-independent,
+$tu_1,tu_2$ are not both in $\Qbar+\Qbar\mathcal L_{E_i}+\Qbar\mathcal L_{E_\rho}$. \lean{Unconditional.thmSE_varpi_omegaRho}, from
+\lean{LSG.W88.hypStd_of_pair}: \textbf{I} ($(g_3)$). For two non-isogenous CM lattices, \lean{Bridge.thmSE_of_nonIsog} assumes no
+form of W88 but has the premise \lean{Bridge.CMMulLogE}, proved only for $E_i$, $E_\rho$.
+\item \textbf{MX, MX$'$, deg2.} Let $X\in\Lambda(E_i^\natural)$, $Y\in\Lambda(E_\rho^\natural)$ with base and fibre coordinates $(z,w)$,
+$a,a'\in\Qbar$, $\beta\in\Qbar^\times$. (MX) $(z(X)+z(Y)+a)\beta\eta_\rho=(w(X)+w(Y)+a')\vp$ implies
+$z(X)+z(Y)+a\in\Qbar\vp+\Qbar\Omega_\rho$, and then $a=0$, $z(X)\in\QQ(i)\vp$, $z(Y)\in\QQ(\rho)\Omega_\rho$. (MX$'$)
+$(z(X)+w(Y)+a)\beta\Omega_\rho=(w(X)+z(Y)+a')\vp$ implies $z(X)+w(Y)+a\in\Qbar\vp+\Qbar\eta_\rho$ (Proposition~D$'$ of
+\cite{MstarPaper}; the step to its Theorem~MX$'$ is \textbf{N}). (deg2) $\pi,\vp,\Omega_\rho,\vp\Omega_\rho$ are
+$\Qbar$-linearly independent, and so are $1,\vp,\Omega_\rho,\vp\Omega_\rho/\pi$. \lean{Unconditional}, all \textbf{I}, all with
+$(g_3)$, $(\Gamma)$: \lean{mx_K}; \lean{mx} (also \lean{Gen.WuestholzMX}, \lean{Gen.MasserCM} \cite{Masser1975}); \lean{mx1}, its
+corollary on $\zeta$ (also \lean{Gen.LaurentZeta} \cite{Laurent1980}); \lean{mxP_K}; \lean{deg2_i}, \lean{deg2_ii} (also
+\lean{Gen.WuestholzSix}, which implies $(\Gamma)$). From \lean{LSG.W88.V5d.thm11KappaMXG_uncond} ($r=1$) and
+\lean{thm11KappaMXP_uncond} ($r=2$). These statements use hand-written quasi-periods and the coordinates \lean{MX.LogNat},
+checked numerically in \lean{lean_mstar}'s reviews.
+\item \textbf{Theorem M.} If $u\in\Qbar\mathcal L_{E_i}$, $\ell\in\widetilde{\mathcal L}$ and $i\pi u=c\vp\ell$, then $u=sc\vp$,
+$\ell=si\pi$ with $s\in\Qbar$; hence $\wp(c\vp/\pi)\notin\Qbar$ (M1), and $\wp(c\pi\vp)\notin\Qbar$ if $e^{\pi^2}\in\Qbar$ (M3).
+\lean{Unconditional}: \lean{thmM_varpi}, \lean{m1_varpi}, \lean{m3_varpi}, from \lean{LSG.W88.hypStdCMAt} ($d_0=1$): \textbf{U}.
+Also \textbf{I}: \lean{thmM_varpi_k} ($s\in\QQ(i)$ for $u\in\mathcal L_{E_i}$, $c=1$), \lean{meta_varpi} (\lean{Gen.MasserCM});
+\lean{m3'_varpi} (\lean{Gen.HermiteLindemann}); \lean{thmM_omegaRho} ($(g_3)$). (M2) of \cite{MstarPaper}: \textbf{N}.
+\item \textbf{MG-A at $B/\pi$.} $\mathrm{4E}(cB/\pi)$ and $\mathrm{4E}(c\pi/B)$; for example $2^t,3^t$ are not both algebraic at
+$t=\Gamma(1/5)^2/(\pi\Gamma(2/5))$. Also $P/\pi\notin\Qbar$ for $P=(1-\zeta_5)B$, and the $K$-form at $P$ with $z_\sigma(\Lambda(A))$
+replaced by $\ZZ P$. \lean{Bridge}: \lean{two_three_beta5_uncond}, \lean{fourExpAt_beta5_uncond},
+\lean{fourExpAt_pi_div_beta5_uncond}, \lean{wuestholzA5_uncond}, \lean{mgA5_K_uncond}, from \lean{LSG.W88.thm11KappaA5},
+\lean{LSG.W88.thm11KappaAK5}, within the scope of Theorem~\ref{thm:abvar}: \textbf{U}. One of $e^{a\pi^2},e^{b\pi B},e^{c\pi^2/B}$
+is transcendental ($a,b\in\Qbar^\times$), \lean{Bridge.corA2_beta5_uncond}: \textbf{I} (\lean{AbVar.NotLtildeA}, that is,
+$P\notin\widetilde{\mathcal L}$). The $K$-form with logarithms of $A$ among the data, \lean{AbVar.mgA_K}: \textbf{W}
+(\lean{AbVar.Thm11KappaAK}).
+\item \textbf{MG$^\natural$-A at $B$.} $\mathrm{4E}(cB)$ and $\mathrm{4E}(c/B)$; for example $2^t,3^t$ are not both algebraic at
+$t=B=\Gamma(1/5)^2/\Gamma(2/5)$. Also $\bar P/\pi\notin\Qbar$ for $\bar P=(1-\zeta_5^4)B(4/5,4/5)$, and the $K$-form at $\bar P$ with the
+fibre values replaced by $\ZZ\bar P$. \lean{Bridge}: \lean{two_three_beta5'_uncond}, \lean{fourExpAt_beta5'_uncond},
+\lean{fourExpAt_div_beta5_uncond}, \lean{wuestholzB5_uncond}, \lean{mgAn5_K_uncond}, from \lean{LSG.W88.thm11KappaAn5},
+\lean{LSG.W88.thm11KappaAnK5}, within the scope of Theorem~\ref{thm:abvarv}: \textbf{U}. The $K$-form with logarithms of
+$A^\natural$ among the data, \lean{AbVar.mgAn_K}: \textbf{W} (\lean{AbVar.Thm11KappaAnK}).
+\item \textbf{X7 and genus three.} On the Jacobian of $y^7=x(1-x)$, with $P_j=(1-\zeta_7^j)B(j/7,j/7)$ and $E$ with CM by
+$\QQ(\sqrt{-7})$ and period $\Omega$: $(z_1(v_1)+u+q_1)\beta P_3=(z_3(v_3)+z_2(v_2)+q_2)P_1$ implies $q_1=q_2=0$,
+$z_j(v_j)\in\Qbar P_j$, $u\in\Qbar\Omega$, and all points are torsion. Also $1,B(\frac27,\frac27),B(\frac37,\frac37),
+B(\frac37,\frac37)/B(\frac17,\frac17)$ are $\Qbar$-linearly independent. \lean{AbVar}: \lean{thmX7}, \lean{thmX7_torsion},
+\lean{x7c}, \lean{x7a_AJ}, \lean{x7b_AJ}, with logarithms as a parameter set \lean{LA}: \textbf{W}, with hypotheses
+\lean{Thm11KappaX7}, \lean{ChowlaSelberg7}, \lean{WuestholzBeta7}; except for \lean{x7c} also \lean{WuestholzX7}; for the torsion
+clause and the Abel--Jacobi forms \lean{x7a_AJ}, \lean{x7b_AJ} also \lean{TorsionX7}. Also \textbf{W}:
+$\mathrm{4E}(cB(\frac17,\frac17)/\pi)$ (\lean{fourExpAt_beta7}, hypothesis \lean{Thm11KappaA} at $N=7$). This project does not cover
+genus three: it proves no form of these hypotheses, and \lean{dev/M3.md} is a design note with no Lean behind it.
+\item \textbf{X9.} The level-$9$ analogue of X7, on the CM threefold factor of the Jacobian of $y^9=x(1-x)$ and $E_\rho$
+\cite{MstarPaper}.
+\textbf{N}: the level-$9$ data are not in Lean. The generic \lean{AbVar.XSetup.thmXA} (no torsion clause, the period relation
+as a premise) is \textbf{W} (\lean{AbVar.Thm11KappaXA}, \lean{AbVar.WuestholzXA}, \lean{AbVar.WuestholzSplitXA}); this project
+proves none of these.
+\item \textbf{X$^\kappa$.} The statement with $\kappa=2^{g-2}$ parallel pairs of slots at level $N$ \cite{MstarPaper}.
+\textbf{N}, in both projects.
+\end{itemize}
+Also with W88 discharged: Theorem~S at $\vp$ (\lean{Unconditional.thmS_varpi}: \textbf{I}, \lean{Gen.NotLtilde}), Theorem~SE$_0$ at
+$E_i$ (\lean{Bridge.thmSE0_varpi}: \textbf{U}), and the transcendence of $\pi/\vp^2$
+(\lean{Bridge.transcendental_pi_div_varpi_sq}: \textbf{U}). Other CM periods and Beta values need their own period data in Lean.
+
+\emph{What the labels rest on.} For \textbf{U} and \textbf{I} the group models are internal to the proof: the final statements
+concern explicit numbers and the kernel checks the deduction, so they do not depend on the reviews of the models. One reads only
+the definitions in the statements and, for \textbf{I}, accepts the inputs. For \textbf{W}, the reviews of \lean{lean_mstar} and of Section~\ref{sec:abvarv} apply. No human expert has reviewed any of this.
+
+\emph{Provenance.} No new method is involved. Each entry is an instance of \cite[Thm.~4.1]{W88} or \cite[\S5d]{W88} on a group
+$G''$ as above, and the verified entries go through \cite[\S5d]{W88}. For MG, SMG(a), SE(1), MX, MX$'$, deg2, X7, X9 and X$^\kappa$ the printed weight of Th\'eor\`eme~(iii) of
+\cite{RoyWaldschmidt1993} already suffices on a product of standard groups (with W\"ustholz's theorem for the final statements),
+and for MG$^\natural$ by an internal check in \cite{MstarPaper}. The proof in \cite{RoyWaldschmidt1993} reduces to $K=\QQ$ and
+then refers to a refinement of an argument of Roy that is not written out (we could not consult Roy's paper). At $B/\pi$ and $B$
+the printed weight gives no conclusion, and one needs $\alpha_{K,\Psi}$ of \cite{MstarPaper}. Theorem~M is classical in substance
+\cite{MstarPaper}. For the other entries our claim is narrow: we found none of them stated in print, apart from what follows from
+the conjugation arguments discussed in \cite{MstarPaper}, and we believe that the formal proofs here are the first of these
+statements. The search was not exhaustive, this literature is moving fast and partly AI-generated, and \cite{MstarPaper} is itself
+an unrefereed draft.
+
+% ===========================================================================
+\section{The artifact}\label{sec:stats}
+% ===========================================================================
+
+The formalization uses Lean~4 \cite{Lean4} and Mathlib \cite{Mathlib}, version v4.35.0 (Mathlib commit
+\lean{56a005855ea17e0b0958f73ec801ae140b0a1679}), with StrongSix \cite{StrongSixRepo} as a Lake git dependency pinned to commit \lean{b7f1649}. The default target
+\lean{LSG} has 737 modules and about 168{,}500 lines. Table~\ref{tab:lines} gives the breakdown. The main theorem and the
+vector-extension results of Section~\ref{sec:vecext} with everything they need take about 78{,}200 lines, with about
+3{,}450 theorems and lemmas; the abelian chain alone (the main theorem and the abelian \S5d bridges) is 133 files and
+about 35{,}300 lines. The abelian-surface layer of Section~\ref{sec:abvar} is 323 files and about 67{,}000 lines, of
+which about 27{,}000 lines are generated certificate data. The vector extension of Section~\ref{sec:abvarv} adds 110
+files and about 23{,}000 lines.
+
+\begin{table}[ht]\footnotesize
+\begin{tabular}{@{}lrp{0.47\textwidth}@{}}
+\toprule
+Directory & Lines & Content \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Abelian chain (default target)}}\\
+\lean{Weierstrass/} & 3{,}768 & $\sigma$, $\zeta$, $\eta$, order two, Legendre, addition theorem, dictionary \\
+\lean{SchneiderLang/}, \lean{Schneider*.lean} & 2{,}069 & Schneider--Lang criterion, Schneider's theorems, interfaces \\
+\lean{LemniscateIndep/}, \lean{Bridge/} & 681 & $g_2(\vp\ZZ[i])=4$; statements for \lean{lean_mstar} \\
+\lean{Subgroups/} & 399 & closed subgroups of $\RR^n$, subtori \\
+\lean{Elliptic/AdditionLaws*} & 965 & addition laws on $E\subset\PP^2$ \\
+\lean{ME/} & 16{,}516 & Stage 2: the multiplicity estimate \\
+\lean{AuxFun/} (abelian) & 6{,}470 & Stage 3a: W83 Prop.~2.1, Lemma U \\
+\lean{W88/} (abelian) & 6{,}971 & statement, Prop.~6.1 (750), \S7 (1{,}664), \S5d bridges and copies (4{,}004), sanity \\
+\lean{CM/Coord}, \lean{CM/Transport} & 548 & Thm.~\ref{thm:W88} for abelian subvarieties \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{Vector extensions (Section~\ref{sec:vecext})}}\\
+\lean{MEV/} & 18{,}495 & multiplicity estimate for the class \\
+\lean{AuxFunV/}, \lean{AuxFun/Prop21LatT*} & 5{,}320 & analytic side for $E^\natural$, polynomial fibre direction \\
+\lean{Elliptic/Natural*} & 2{,}887 & the model of $E^\natural$ and its addition laws \\
+\lean{W88/} (vector) & 12{,}465 & statements, Prop.~6.1, \S7, \S5d engine, bridges, copies \\
+\lean{CM/} (rest) & 1{,}150 & CM toolkit for the bridges \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{The Jacobian of $y^5=x(1-x)$ (Section~\ref{sec:abvar})}}\\
+\lean{Jac/} & 36{,}518 & Grant's model, checkers and soundness (9{,}623); generated data and certificates (26{,}895) \\
+\lean{JacAn/}, \lean{JacAn3/}, \lean{JacAn4/} & 9{,}256 & Abel map, Beta periods, exponential, $\theta$, laws on the image, surjectivity \\
+\lean{MEB/} & 10{,}579 & multiplicity estimate for abelian blocks \\
+\lean{JacBlock/} & 3{,}342 & the Jacobian block and its packages \\
+\lean{AuxFunA/} & 1{,}777 & Prop.~2.1 under toric injectivity, Lemma U \\
+\lean{W88/AbVar*} & 5{,}376 & statements, Prop.~6.1, \S7, \S5d engine, bridge, copies \\
+\midrule
+\multicolumn{3}{@{}l}{\emph{The vector extension $A_{\bar\sigma}^\natural$ (Section~\ref{sec:abvarv})}}\\
+\lean{JacAnV/} & 2{,}244 & fibre coordinates, cocycle, fibre laws and periods \\
+\lean{MEBV/} & 10{,}930 & multiplicity estimate for vector blocks \\
+\lean{JacBlockV/} & 2{,}208 & the block $A_{\bar\sigma}^\natural$, packages, \S5d block properties \\
+\lean{AuxFunAV/} & 1{,}976 & Prop.~2.1 under toric injectivity, Lemma U \\
+\lean{W88/AbVarV*}, bridge & 5{,}115 & statements, Prop.~6.1, \S7, \S5d engine (4{,}297); bridge and copies (818) \\
+\lean{Jac/B6V*} & 771 & Hilbert certificate (degree 41), Wronskian cocycle \\
+\bottomrule
+\end{tabular}
+\caption{Lines per layer (\texttt{wc -l}), counted when each block was completed.}\label{tab:lines}
+\end{table}
+
+\emph{Verification.} The commands are
+\begin{Verbatim}
+lake exe cache get
+lake build
+lake env lean Axioms.lean
+\end{Verbatim}
+\lean{Axioms.lean} prints \texttt{\#print\ axioms} for 63 declarations, among them
+\lean{LSG.W88.theorem41Abelian}, \lean{LSG.ME.multEstAb}, \lean{LSG.W88.prop61_b},
+\lean{LSG.schneiderLang}, the Schneider theorems, \lean{LSG.Weierstrass.legendre}, \lean{LSG.CM.thm41Sub},
+\lean{LSG.W88.thm11Kappa}, \lean{LSG.W88.hypStdCM}, the sanity derivations, and the vector-extension
+endpoints of Section~\ref{sec:vecext} (\lean{LSG.MEV.multEstVec}, the five declarations named in Theorem~\ref{thm:vec}
+and the six bridges), and those of Section~\ref{sec:abvar} (\lean{LSG.Jac.a1Facts}, \lean{LSG.MEB.multEstB_holds},
+the two declarations named in Theorem~\ref{thm:abvar} and the two bridges), and those of Section~\ref{sec:abvarv}
+(the three declarations named in Theorem~\ref{thm:abvarv} and the two bridges); every line reports \texttt{[propext,\ Classical.choice,\ Quot.sound]}. The source contains no \lean{sorry}, no
+\lean{axiom} declaration and no \lean{native_decide}. A cold build of the default target, with Mathlib and StrongSix already built and \lean{LEAN_NUM_THREADS=4}, took
+3\,h\,33\,min on a Windows machine with 32 logical processors and 31.7\,GB of RAM, with no errors. Times per file sum
+to 14 hours, of which 9.4 are in \lean{LSG/Jac/}: the kernel certificates of Section~\ref{sec:abvar} dominate. Built two
+at a time they take about five CPU-hours (about 2.7 hours wall-clock), with single files peaking at 4--5\,GB of memory;
+at four at a time we sampled up to 7.6\,GB. An earlier attempt with Lake's default concurrency failed with
+\lean{.olean} read errors, which we suspect but did not show to be memory exhaustion. Outside the
+certificates, single modules took up to about nine minutes each.
+
+Some vector-extension files contain polynomial identities whose cofactors were produced by Python
+scripts (\lean{scripts/}); each identity is re-proved in Lean, so the scripts are untrusted inputs. These
+files are in the default target; the abelian chain imports none of them and uses no generated data. The
+certificates of Section~\ref{sec:abvar} are likewise generated by untrusted scripts and rechecked by the kernel.
+
+% ===========================================================================
+\section{Trust and limitations}\label{sec:trust}
+% ===========================================================================
+
+\emph{What the kernel guarantees.} That \lean{LSG.W88.theorem41Abelian} proves the proposition
+\lean{Theorem41Abelian} from Lean's standard axioms. Whether that proposition is Waldschmidt's theorem
+is a question about \lean{LSG/W88/Statement.lean}, reproduced in Section~\ref{sec:statement}, and has been
+checked only by the AI review described there; likewise for the vector-extension statements and the review
+of Section~\ref{sec:vecext}.
+
+\emph{Scope.} The main theorem has \NR, and its $G_2$ is a product of elliptic curves (or, by
+\lean{thm41Sub}, an abelian subvariety of one). The \S5d statement for distinct curves assumes
+\lean{hrat}. For vector extensions only the cases of Theorem~\ref{thm:vec} are proved, and its premises
+\lean{LiftAlg} and \lean{PerTanRat} are proved in Lean only for the CM curves used; the general
+\lean{Theorem41Vec} is not proved. For the Jacobian of $y^5=x(1-x)$ only toric-injective hyperplanes and
+period $A$-components are covered, and the identification of the formal torus with the Jacobian is
+classical, not formalized (Section~\ref{sec:abvar}). For its vector extension the same two restrictions apply,
+with $r=1$ and an adapted $b$; the identification of the model in $\PP^{11}$ with the extension is classical, not
+formalized (Section~\ref{sec:abvarv}). The copies of \lean{lean_mstar}'s statements are checked by
+typechecking inside \lean{lean_mstar}, which depends on this project; whether its group models describe
+the intended groups is checked by its own reviews, not here.
+
+\emph{Licence history.} Early in the project, about $1{,}500$ lines of the ancillary Lean files of
+\cite{ChCh26} (the lemniscatic period identification) were ported for local use. Their licence did not
+cover those files, so the port was never published; it was deleted and replaced by the independent proof
+of Section~\ref{sec:stage1}, written by an agent that had not seen the ported files. The local history
+still contains the port, and the repository will be published from a history that excludes it. Two
+files of \lean{LSG/SchneiderLang/} adapt lemmas from StrongSix (same author, Apache~2.0); no other external
+Lean code is included.
+
+\emph{Reviews.} Apart from the Lean kernel, all checking so far was done by AI systems. No human
+expert has read the statement against \cite{W88} or the proofs.
+
+% ===========================================================================
+\section{AI-assisted formalization}\label{sec:workflow}
+% ===========================================================================
+
+The Lean code, the planning documents and the text of this paper were produced by AI models (Claude,
+Anthropic) working in Claude Code under the direction of the author, with several agent sessions in
+parallel coordinated through written plans and interface files. The development git history, which is not published,
+shows the main theorem and the vector-extension results taking about seventeen and a half hours of wall-clock time
+(30--31 October 2026). Three practices from \cite{StrongSixPaper} were kept: every stage was fixed as a \lean{Prop}
+interface first; each deduction between interfaces was proved before its inputs; and design problems
+were recorded in the planning notes when found, together with the fix. The four problems of
+Section~\ref{sec:stage2}, the irrelevant components in particular, were found by agents whose proofs failed
+and were then traced to the mathematics, not to Lean. The author is responsible for the intended statements
+and for the claims made here, and we would be grateful for corrections.
+
+% ===========================================================================
+\section*{Acknowledgements}
+% ===========================================================================
+
+We thank Michel Waldschmidt for making \cite{DALAG} and \cite{WaldschmidtLIL} freely available, the
+Mathlib community for the library and in particular for its Weierstrass $\wp$ function and algebraic group
+law on Weierstrass curves, and Nailin Guan and Yongle Hu, whose Cohen--Macaulay library enters through
+StrongSix.
+
+\begin{thebibliography}{99}
+
+% Checked 2026-11-05: Crossref doi:10.1006/jnth.1995.1088 gives vol. 53, no. 2, pp. 229--240.
+\bibitem{BosmaLenstra1995} W.~Bosma and H.~W.~Lenstra, \emph{Complete systems of two addition laws for
+elliptic curves}, J. Number Theory \textbf{53} (1995), 229--240.
+
+\bibitem{ChCh26} G.~V.~Chudnovsky and D.~V.~Chudnovsky, \emph{Irrationality exponents of real CM elliptic
+periods and powers of the lemniscate period}, arXiv:2610.31112 (2026), with Lean files.
+
+\bibitem{DiazModulus} C.~Perassi, \emph{diaz-modulus-lean: Transcendence theory in Lean~4},
+\url{https://github.com/carlok/diaz-modulus-lean} (2026), accessed October 2026.
+
+% Checked 2026-11-05 on the publisher's page (DROPS, doi:10.4230/LIPIcs.ITP.2026.23): peer-reviewed conference paper,
+% Isabelle/HOL. The title previously recorded here ("Elliptic functions and modular forms in Isabelle/HOL") was wrong.
+\bibitem{EberlLiPaulson2026} M.~Eberl, W.~Li and L.~C.~Paulson, \emph{From Weierstra\ss{} to Dedekind via Jacobi: formalising
+foundations of modular forms}, in: E.~Komendantskaya and T.~Nipkow (eds.), 17th International Conference on Interactive Theorem
+Proving (ITP 2026), LIPIcs \textbf{382}, Schloss Dagstuhl, 2026, 23:1--23:19.
+
+\bibitem{KaratarakisWiedijk2026} M.~Karatarakis and F.~Wiedijk, \emph{A formalization of the
+Gelfond--Schneider theorem}, arXiv:2603.24823 (2026).
+
+\bibitem{Lang1966} S.~Lang, \emph{Introduction to Transcendental Numbers}, Addison-Wesley, Reading, MA,
+1966.
+
+% Metadata from paper_cm/REFS_CHECK.md (zbMATH 0419.10035); the text of the note was not seen there.
+\bibitem{Laurent1980} M.~Laurent, \emph{Ind\'ependance lin\'eaire de valeurs de fonctions doublement quasi-p\'eriodiques}, C. R.
+Acad. Sci. Paris S\'er.~A \textbf{290} (1980), 397--399.
+
+\bibitem{Lean4} L.~de~Moura and S.~Ullrich, \emph{The Lean~4 theorem prover and programming language}, in:
+Automated Deduction -- CADE 28, Lecture Notes in Comput. Sci. \textbf{12699}, Springer, 2021, 625--635.
+
+% The repository has no remote at this date; update when published. Library CM4E, Lean and Mathlib v4.35.0.
+\bibitem{LeanMstar} S.~Krisman, \lean{lean_mstar}: four exponentials at CM periods, in Lean~4, unpublished repository, commit
+\lean{7ddd73d} (2026); it uses this project as a Lake path dependency and contains a snapshot of \cite{MstarPaper}.
+
+\bibitem{Masser1975} D.~W.~Masser, \emph{Elliptic Functions and Transcendence}, Lecture Notes in Math. \textbf{437}, Springer,
+1975.
+
+\bibitem{Mathlib} The mathlib Community, \emph{The Lean mathematical library}, in: Proceedings of CPP 2020,
+ACM, New York, 2020, 367--381.
+
+% CHECK: the source (schanuel/five_exp/paper_cm/paper.tex, dated 31 October 2026) has \author{Draft --- not for circulation} and
+% has not been posted; the author name is carried over from the previous version of this entry. Update when it has a preprint id.
+\bibitem{MstarPaper} S.~Krisman, \emph{A proof of the Roy--Waldschmidt theorem with period term, with explicit consequences at CM
+and Beta periods}, unpublished draft (2026).
+
+\bibitem{Philippon1986} P.~Philippon, \emph{Lemmes de z\'eros dans les groupes alg\'ebriques commutatifs},
+Bull. Soc. Math. France \textbf{114} (1986), 355--383; Errata et addenda, ibid. \textbf{115} (1987),
+397--398.
+
+\bibitem{Roy1992} D.~Roy, \emph{Matrices whose coefficients are linear forms in logarithms}, J. Number
+Theory \textbf{41} (1992), 22--47.
+
+\bibitem{RoyWaldschmidt1993} D.~Roy and M.~Waldschmidt, \emph{Autour du th\'eor\`eme du sous-groupe alg\'ebrique}, Canad. Math.
+Bull. \textbf{36} (1993), 358--367.
+
+% Checked 2026-11-05: Crossref doi:10.1007/BF01571618 gives vol. 113, no. 1, pp. 1--13. (EuDML lists the pages as I--XIII.)
+\bibitem{Schneider1937} Th.~Schneider, \emph{Arithmetische Untersuchungen elliptischer Integrale}, Math.
+Ann. \textbf{113} (1937), 1--13.
+
+\bibitem{StrongSixPaper} S.~Krisman, \emph{A Lean formalization of Roy's strong six exponentials
+theorem}, preprint (2026).
+
+\bibitem{StrongSixRepo} S.~Krisman, \emph{strong-six-exponentials},
+\url{https://github.com/telaviv/strong-six-exponentials} (2026).
+
+\bibitem{DALAG} M.~Waldschmidt, \emph{Diophantine Approximation on Linear Algebraic Groups}, Grundlehren
+Math. Wiss. \textbf{326}, Springer, Berlin, 2000 (Chapters~5 and~8 by D.~Roy).
+
+\bibitem{W83} M.~Waldschmidt, \emph{Sous-groupes analytiques de groupes alg\'ebriques}, Ann. of Math. (2)
+\textbf{117} (1983), 627--657.
+
+\bibitem{W88} M.~Waldschmidt, \emph{On the transcendence methods of Gel'fond and Schneider in several
+variables}, in: A.~Baker (ed.), New Advances in Transcendence Theory (Durham, 1986), Cambridge Univ.
+Press, 1988, 375--398.
+
+\bibitem{WaldschmidtLIL} M.~Waldschmidt, \emph{Linear independence of logarithms of algebraic numbers},
+IMSc Report 116, Madras, 1992 (revised 2016).
+
+\bibitem{Wustholz1989} G.~W\"ustholz, \emph{Algebraische Punkte auf analytischen Untergruppen algebraischer Gruppen}, Ann. of
+Math. (2) \textbf{129} (1989), 501--517.
+
+\end{thebibliography}
+
+\end{document}

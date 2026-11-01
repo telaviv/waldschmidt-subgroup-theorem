@@ -1,0 +1,42 @@
+== kappa = X0 P48 - X4 P08 + X8 P04 ==
+kappa = -2*X0*X1*X2 - X2*X4*X5 + X1*X4*X6 + 1/4*X0*X5*X7 + 2*X1^2*X8 - 3/2*X0*X3*X8
+kappa in I_A (exact): True  cofactors: ['0', '-1/2*X5', '0', '0', '0', '-X1', '0', '0', '0', '-3/4', '0', '0']
+  in (Q)_3 only (no extra cubics): False
+
+== V-systems: X_c S_i P_third in (F_i, P, P) (exact, degree 6) ==
+  system i=0, chart 0: ok, cofactor terms 119
+  system i=0, chart 4: ok, cofactor terms 131
+  system i=0, chart 8: ok, cofactor terms 62
+  system i=1, chart 0: ok, cofactor terms 173
+  system i=1, chart 4: ok, cofactor terms 156
+  system i=1, chart 8: ok, cofactor terms 105
+  system i=2, chart 0: ok, cofactor terms 203
+  system i=2, chart 4: ok, cofactor terms 180
+  system i=2, chart 8: ok, cofactor terms 137
+  system i=3, chart 0: ok, cofactor terms 160
+  system i=3, chart 4: ok, cofactor terms 134
+  system i=3, chart 8: ok, cofactor terms 124
+
+== Jacobian rank of the 8 local generators at random points of V (mod P) ==
+  pt 0 system (0,0): S_i X_c != 0: True, rank = 8;  pt 0 system (0,4): S_i X_c != 0: True, rank = 8;  pt 0 system (0,8): S_i X_c != 0: True, rank = 8;  pt 0 system (1,0): S_i X_c != 0: True, rank = 8;  pt 0 system (1,4): S_i X_c != 0: True, rank = 8;  pt 0 system (1,8): S_i X_c != 0: True, rank = 8;  pt 0 system (2,0): S_i X_c != 0: True, rank = 8;  pt 0 system (2,4): S_i X_c != 0: True, rank = 8;  pt 0 system (2,8): S_i X_c != 0: True, rank = 8;  pt 0 system (3,0): S_i X_c != 0: True, rank = 8;  pt 0 system (3,4): S_i X_c != 0: True, rank = 8;  pt 0 system (3,8): S_i X_c != 0: True, rank = 8;
+  pt 1 system (0,0): S_i X_c != 0: True, rank = 8;  pt 1 system (0,4): S_i X_c != 0: True, rank = 8;  pt 1 system (0,8): S_i X_c != 0: True, rank = 8;  pt 1 system (1,0): S_i X_c != 0: True, rank = 8;  pt 1 system (1,4): S_i X_c != 0: True, rank = 8;  pt 1 system (1,8): S_i X_c != 0: True, rank = 8;  pt 1 system (2,0): S_i X_c != 0: True, rank = 8;  pt 1 system (2,4): S_i X_c != 0: True, rank = 8;  pt 1 system (2,8): S_i X_c != 0: True, rank = 8;  pt 1 system (3,0): S_i X_c != 0: True, rank = 8;  pt 1 system (3,4): S_i X_c != 0: True, rank = 8;  pt 1 system (3,8): S_i X_c != 0: True, rank = 8;
+  all 15 generators at a random point of V: rank 8
+
+== At X = 0 ==
+  Jacobian rank of the 15 generators at (0; T) = 2  (dim V = 3, codim 8)
+  Jacobian rank of the 15 generators at (0; T) = 2  (dim V = 3, codim 8)
+
+== Flows ==
+  chart 0, j=1, l=4: NOT X_c * quadric mod J_V
+  chart 0, j=1, l=8: NOT X_c * quadric mod J_V
+  chart 0, j=2, l=4: NOT X_c * quadric mod J_V
+  chart 0, j=2, l=8: NOT X_c * quadric mod J_V
+  chart 4, j=1, l=0: NOT X_c * quadric mod J_V
+  chart 4, j=1, l=8: NOT X_c * quadric mod J_V
+  chart 4, j=2, l=0: NOT X_c * quadric mod J_V
+  chart 4, j=2, l=8: NOT X_c * quadric mod J_V
+  chart 8, j=1, l=0: NOT X_c * quadric mod J_V
+  chart 8, j=1, l=4: NOT X_c * quadric mod J_V
+  chart 8, j=2, l=0: NOT X_c * quadric mod J_V
+  chart 8, j=2, l=4: NOT X_c * quadric mod J_V
+[7s]

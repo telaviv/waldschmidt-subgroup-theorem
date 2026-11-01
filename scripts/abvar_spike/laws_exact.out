@@ -1,0 +1,6 @@
+laws reconstructed [0.1s]: total terms 8235; per law m: [854, 854, 872, 906, 951, 964, 973, 941, 920]
+common denominator 32; max |integer coefficient| after scaling: 1536 (11 bits)
+normal form map S_4 -> S_4/(Q)_4: 144 standard monomials [0.2s]
+(V1) all 81 identities Q_j(A^(m)) in (Q(X))+(Q(Y)): OK; terms of Q_j(A^(m)) before reduction: min 9679 max 15183 total 1067286 [7.5s]
+nonzero laws at Y = e_s: {0: [0, 1, 2, 3, 4, 5, 6, 7, 8], 1: [0, 1, 2, 3, 4, 5, 6, 7, 8], 3: [0, 1, 2, 3, 4, 5, 6, 7, 8], 4: [0, 1, 2, 3, 4, 5, 6, 7, 8], 7: [0, 1, 2, 3, 4, 5, 6, 7, 8]}
+wrote laws_Q.json [7.9s]

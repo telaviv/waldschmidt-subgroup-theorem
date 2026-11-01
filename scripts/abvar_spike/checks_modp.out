@@ -1,0 +1,6 @@
+law agreement with Cantor (30 pairs x 9 laws): failures = 0
+origin from law 0 : [0, 0, 0, 0, 1, 0, 0, 0, 0]
+nonzero coordinates of O: [4]
+duplication Dup = A^(4)(X, X) vs Cantor doubling (20 points): failures = 0
+A^(m)(X, O) ~ X (10 points x 9 laws): failures = 0
+law 0 vanishes identically at (P, P - T), T in Theta:  10 / 10

@@ -1,0 +1,20 @@
+error: LSG/Jac/Cert/P2_0.lean:14:68: (kernel) deep recursion detected, use `set_option maxRecDepth <num>` to increase the limit
+error: LSG/Jac/Cert/P2_1.lean:14:68: (kernel) deep recursion detected, use `set_option maxRecDepth <num>` to increase the limit
+error: build failed
+[P2_0 P2_1] wall 9 s
+error: LSG/Jac/Cert/P2_2.lean:14:68: (kernel) deep recursion detected, use `set_option maxRecDepth <num>` to increase the limit
+error: LSG/Jac/Cert/P2_3.lean:14:68: (kernel) deep recursion detected, use `set_option maxRecDepth <num>` to increase the limit
+error: build failed
+[P2_2 P2_3] wall 9 s
+error: LSG/Jac/Cert/P2_4.lean:14:68: (kernel) deep recursion detected, use `set_option maxRecDepth <num>` to increase the limit
+error: LSG/Jac/Cert/P2_5.lean:14:68: (kernel) deep recursion detected, use `set_option maxRecDepth <num>` to increase the limit
+error: build failed
+[P2_4 P2_5] wall 10 s
+error: LSG/Jac/Cert/P2_7.lean:14:68: (kernel) deep recursion detected, use `set_option maxRecDepth <num>` to increase the limit
+error: LSG/Jac/Cert/P2_6.lean:14:68: (kernel) deep recursion detected, use `set_option maxRecDepth <num>` to increase the limit
+error: build failed
+[P2_6 P2_7] wall 9 s
+error: LSG/Jac/Cert/P2_8.lean:14:68: (kernel) deep recursion detected, use `set_option maxRecDepth <num>` to increase the limit
+error: build failed
+[P2_8 ] wall 9 s
+DONE

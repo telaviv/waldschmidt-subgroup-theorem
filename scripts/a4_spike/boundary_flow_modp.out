@@ -1,0 +1,17 @@
+chart X1: N = 4: rank J_N on A = 81 / 144; X_1^N in I + J: True
+chart X1: least N = 4  (generator degrees: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
+chart X2: N = 4: rank J_N on A = 81 / 144; X_2^N in I + J: True
+chart X2: least N = 4  (generator degrees: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
+chart X3: N = 4: rank J_N on A = 81 / 144; X_3^N in I + J: True
+chart X3: least N = 4  (generator degrees: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
+chart X4: N = 4: rank J_N on A = 107 / 144; X_4^N in I + J: True
+chart X4: least N = 4  (generator degrees: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
+chart X5: N = 4: rank J_N on A = 107 / 144; X_5^N in I + J: True
+chart X5: least N = 4  (generator degrees: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
+chart X6: N = 4: rank J_N on A = 107 / 144; X_6^N in I + J: True
+chart X6: least N = 4  (generator degrees: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
+chart X7: N = 4: rank J_N on A = 107 / 144; X_7^N in I + J: True
+chart X7: least N = 4  (generator degrees: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
+chart X8: N = 4: rank J_N on A = 107 / 144; X_8^N in I + J: False
+chart X8: N = 5: rank J_N on A = 189 / 225; X_8^N in I + J: True
+chart X8: least N = 5  (generator degrees: [1, 2, 2, 3, 3, 3, 4, 4, 4, 4])

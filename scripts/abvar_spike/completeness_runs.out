@@ -1,0 +1,3 @@
+(e1,e2)=(3,3) laws=all: rank 6400 / target 6561  not onto  [1.8s]
+(e1,e2)=(4,3) laws=all: rank 11664 / target 11664  ONTO  [14.5s]
+(e1,e2)=(4,4) laws=all: rank 20736 / target 20736  ONTO  [147.8s]

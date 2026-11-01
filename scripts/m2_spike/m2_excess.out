@@ -1,0 +1,19 @@
+weight 0: dim I(V)_3 block = 14, dim (J_V)_3 block = 14, excess = 0
+weight 1: dim I(V)_3 block = 15, dim (J_V)_3 block = 14, excess = 1
+  extra element (exact vanishing on the image: True ), terms 11
+   F = X0*X2*X5 + X0*X1*X6 - 2*X1*X3*X7 - X0*X7*X8 - 2*X1*X3*T0 + 1/2*X6*X7*T0 - X0*X4*T4 + X2*X6*T4 - X1*X7*T4 + X0^2*T8 - 4*X1*X2*T8
+   F in J_V (exact): False
+   X0*F in J_V (exact): True
+   X4*F in J_V (exact): True
+   X8*F in J_V (exact): True
+   T0*F in J_V (exact): False
+   T4*F in J_V (exact): False
+   T8*F in J_V (exact): False
+weight 2: dim I(V)_3 block = 16, dim (J_V)_3 block = 16, excess = 0
+weight 3: dim I(V)_3 block = 16, dim (J_V)_3 block = 16, excess = 0
+weight 4: dim I(V)_3 block = 16, dim (J_V)_3 block = 16, excess = 0
+weight 5: dim I(V)_3 block = 15, dim (J_V)_3 block = 15, excess = 0
+weight 6: dim I(V)_3 block = 14, dim (J_V)_3 block = 14, excess = 0
+weight 7: dim I(V)_3 block = 13, dim (J_V)_3 block = 13, excess = 0
+weight 8: dim I(V)_3 block = 14, dim (J_V)_3 block = 14, excess = 0
+weight 9: dim I(V)_3 block = 14, dim (J_V)_3 block = 14, excess = 0

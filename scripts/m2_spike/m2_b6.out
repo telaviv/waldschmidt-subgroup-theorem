@@ -1,0 +1,24 @@
+Pluecker quadrics mod T (1/3 W): ['2*X1^2 - X0*X3', 'X2*X5 - X1*X6', '-2*X1*X2 + 1/4*X5*X7 - 1/2*X3*X8']
+
+== HF of I_A + (W-quadrics): the scheme V cap {T = 0} ==
+d=1: 9
+d=2: 33
+d=3: 55
+d=4: 54
+d=5: 54
+d=6: 54
+  with F added: [9, 33, 54, 54, 54, 54, 54]
+
+== n0(a) = first degree with S_n in I_A + WQ + (X_a)  [HF mod P = 0; exact direction: HF_Q <= HF_P] ==
+a=0: HF = [8, 24, 28, 26, 26]  n0 = None
+a=1: HF = [8, 24, 27, 26, 26]  n0 = None
+a=2: HF = [8, 24, 22, 18, 18]  n0 = None
+a=3: HF = [8, 24, 25, 24, 24]  n0 = None
+a=4: HF = [8, 24, 22, 8, 8]  n0 = None
+a=5: HF = [8, 24, 22, 14, 14]  n0 = None
+a=6: HF = [8, 24, 22, 10, 10]  n0 = None
+a=7: HF = [8, 24, 22, 15, 15]  n0 = None
+a=8: HF = [8, 24, 22, 6, 6]  n0 = None
+
+== exact e_v (X_v^e in I_A + WQ + (X_a)) and cofactor sizes ==
+best: None [2s]

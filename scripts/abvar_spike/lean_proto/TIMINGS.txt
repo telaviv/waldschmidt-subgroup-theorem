@@ -1,0 +1,21 @@
+ABVAR A0b Lean prototype timings (2026-10-31), Lean 4 / v4.35.0, Windows 11, 32 threads, 31.7 GB RAM.
+Scratch Lake project outside lean_lsg (Mathlib junction to StrongSix's .lake/packages; the files import nothing).
+Each run: `lake env lean <file>` under runwatch.ps1 (kills lean.exe above the memory cap). Times are wall clock,
+single file, while another agent's lake build was running in lean_lsg (so +-20% noise).
+
+Identity checked: law m = 0, quadric j = 0 ("V1"): S*Q_0(A^(0)(X,Y)) in (Q(X)) + (Q(Y)), bidegree (4,4);
+and the rank-one identity ("V2'") A_4^(7) A_0^(0) - A_4^(0) A_0^(7) in the ideal.
+
+1. Naive sparse-list checker with explicit cofactors (gen_lean_proto.py -> Cert_m0_j0.lean, 527 KB):
+   data elaboration alone 97 s; `decide +kernel` not finished after ~7 min CPU, 13.6 GB resident -> killed
+   (free RAM had dropped to 0.8 GB).  NO-GO.
+2. Normal-form + two-level Kronecker checker, Int arithmetic, decision-tree lookups (gen_lean_kron.py):
+   V1: 85-122 s total, peak 5.2 GB; V2': 65-90 s, peak 4.4 GB.  False claim (O = 1) correctly rejected (108 s).
+   Probe without the KY big-number values: 31 s -> the Int big-number layer dominated.
+   Binary-tree lookup instead of decision tree: no change.
+3. Same checker, Nat-only (sign-split pairs P - N), (gen_lean_kron_nat.py -> *_nat.lean, 190 KB):
+   V1  Kron_m0_j0_nat.lean : 38.3 s total, peak 4.0 GB
+   V2' V2_k4_m7_nat.lean   : 32.1 s total, peak 3.3 GB
+   data-only variant        :  9.9 s, 0.6 GB      => kernel check ~22-28 s per identity
+   false claim (O.1 = O.2 + 1) rejected ("is false"), 49 s.
+4. Micro benchmarks (Micro2.lean): 20000 multiply-adds of a 7-kbit Nat in the kernel: < 3 s total.

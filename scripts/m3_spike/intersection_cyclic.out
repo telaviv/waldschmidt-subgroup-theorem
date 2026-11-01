@@ -1,0 +1,20 @@
+N = 5, genus 2
+  max |Im J| = 2.8926e-61
+  max distance of Re J to integers = 5.196e-61
+    [0, -1, 0, 0]
+    [1, 0, -1, 0]
+    [0, 1, 0, -1]
+    [0, 0, 1, 0]
+  antisymmetric: True  det J = 1  => index [H1 : Z[zeta]gamma] = 1
+  Pf(3J) = 3^g * index = 9
+N = 7, genus 3
+  max |Im J| = 3.3624e-61
+  max distance of Re J to integers = 5.7475e-61
+    [0, -1, 0, 0, 0, 0]
+    [1, 0, -1, 0, 0, 0]
+    [0, 1, 0, -1, 0, 0]
+    [0, 0, 1, 0, -1, 0]
+    [0, 0, 0, 1, 0, -1]
+    [0, 0, 0, 0, 1, 0]
+  antisymmetric: True  det J = 1  => index [H1 : Z[zeta]gamma] = 1
+  Pf(3J) = 3^g * index = 27
