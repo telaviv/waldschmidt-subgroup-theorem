@@ -1,124 +1,154 @@
-\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
-\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
-% \MRhref is called by the amsart/book/proc definition of \MR.
-\providecommand{\MRhref}[2]{%
-  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
-}
-\providecommand{\href}[2]{#2}
 \begin{thebibliography}{10}
 
 \bibitem{BosmaLenstra1995}
-W.~Bosma and H.~W. Lenstra, \emph{{Complete systems of two addition laws for
-  elliptic curves}}, J. Number Theory \textbf{53} (1995), 229--240.
+W.~Bosma and H.~W. Lenstra.
+\newblock {Complete systems of two addition laws for elliptic curves}.
+\newblock {\em J. Number Theory}, 53:229--240, 1995.
 
 \bibitem{ChCh26}
-G.~V. Chudnovsky and D.~V. Chudnovsky, \emph{{Irrationality exponents of real
-  CM elliptic periods and powers of the lemniscate period}}, arXiv:2610.31112,
-  2026, with Lean files.
+G.~V. Chudnovsky and D.~V. Chudnovsky.
+\newblock {Irrationality exponents of real CM elliptic periods and powers of
+  the lemniscate period}.
+\newblock arXiv:2610.31112, 2026.
+\newblock with Lean files.
 
 \bibitem{Lean4}
-L.~de~Moura and S.~Ullrich, \emph{{The Lean~4 theorem prover and programming
-  language}}, Automated Deduction -- CADE 28, Lecture Notes in Comput. Sci.,
-  vol. 12699, Springer, 2021, pp.~625--635.
+L.~de~Moura and S.~Ullrich.
+\newblock {The Lean~4 theorem prover and programming language}.
+\newblock In {\em Automated Deduction -- CADE 28}, volume 12699 of {\em Lecture
+  Notes in Comput. Sci.}, pages 625--635. Springer, 2021.
 
 \bibitem{EberlLiPaulson2026}
-M.~Eberl, W.~Li, and L.~C. Paulson, \emph{{From Weierstra\ss{} to Dedekind via
-  Jacobi: formalising foundations of modular forms}}, 17th International
-  Conference on Interactive Theorem Proving (ITP 2026) (E.~Komendantskaya and
-  T.~Nipkow, eds.), LIPIcs, vol. 382, Schloss Dagstuhl, 2026, pp.~23:1--23:19.
+M.~Eberl, W.~Li, and L.~C. Paulson.
+\newblock {From Weierstra\ss{} to Dedekind via Jacobi: formalising foundations
+  of modular forms}.
+\newblock In E.~Komendantskaya and T.~Nipkow, editors, {\em 17th International
+  Conference on Interactive Theorem Proving (ITP 2026)}, volume 382 of {\em
+  LIPIcs}, pages 23:1--23:19. Schloss Dagstuhl, 2026.
 
 \bibitem{KaratarakisWiedijk2026}
-M.~Karatarakis and F.~Wiedijk, \emph{{A formalization of the Gelfond--Schneider
-  theorem}}, arXiv:2603.24823, 2026.
+M.~Karatarakis and F.~Wiedijk.
+\newblock {A formalization of the Gelfond--Schneider theorem}.
+\newblock arXiv:2603.24823, 2026.
 
 \bibitem{StrongSixPaper}
-Shawn Krisman, \emph{{A Lean formalization of Roy's strong six exponentials
-  theorem}}, preprint, 2026.
+Shawn Krisman.
+\newblock {A Lean formalization of Roy's strong six exponentials theorem}.
+\newblock preprint, 2026.
 
 \bibitem{MstarPaper}
-\bysame, \emph{{A proof of the Roy--Waldschmidt theorem with period term, with
-  explicit consequences at CM and Beta periods}}, unrefereed extended draft, in
-  the \lean{paper/} folder of \cite{LeanMstar}, 2026.
+Shawn Krisman.
+\newblock {A proof of the Roy--Waldschmidt theorem with period term, with
+  explicit consequences at CM and Beta periods}.
+\newblock unrefereed extended draft, in the \lean{paper/} folder of
+  \cite{LeanMstar}, 2026.
 
 \bibitem{Note}
-\bysame, \emph{{Four exponentials at CM and Beta periods}}, preprint, 2026.
+Shawn Krisman.
+\newblock {Four exponentials at CM and Beta periods}.
+\newblock preprint, 2026.
 
 \bibitem{LeanMstar}
-\bysame, \emph{{four-exponentials-cm-periods}},
-  \url{https://github.com/telaviv/four-exponentials-cm-periods}, 2026, library
-  \lean{CM4E}, with this project as a Lake dependency.
+Shawn Krisman.
+\newblock {four-exponentials-cm-periods}.
+\newblock \url{https://github.com/telaviv/four-exponentials-cm-periods}, 2026.
+\newblock library \lean{CM4E}, with this project as a Lake dependency.
 
 \bibitem{StrongSixRepo}
-\bysame, \emph{{strong-six-exponentials}},
-  \url{https://github.com/telaviv/strong-six-exponentials}, 2026.
+Shawn Krisman.
+\newblock {strong-six-exponentials}.
+\newblock \url{https://github.com/telaviv/strong-six-exponentials}, 2026.
 
 \bibitem{RPaper}
-\bysame, \emph{{The Roy--Waldschmidt theorem with period term and inner weight:
-  a written proof from Waldschmidt's subgroup theorem}}, preprint, 2026.
+Shawn Krisman.
+\newblock {The Roy--Waldschmidt theorem with period term and inner weight: a
+  written proof from Waldschmidt's subgroup theorem}.
+\newblock preprint, 2026.
 
 \bibitem{LSGRepo}
-\bysame, \emph{{waldschmidt-subgroup-theorem}},
-  \url{https://github.com/telaviv/waldschmidt-subgroup-theorem}, 2026.
+Shawn Krisman.
+\newblock {waldschmidt-subgroup-theorem}.
+\newblock \url{https://github.com/telaviv/waldschmidt-subgroup-theorem}, 2026.
 
 \bibitem{Lang1966}
-S.~Lang, \emph{{Introduction to Transcendental Numbers}}, Addison-Wesley,
-  Reading, MA, 1966.
+S.~Lang.
+\newblock {\em {Introduction to Transcendental Numbers}}.
+\newblock Addison-Wesley, Reading, MA, 1966.
 
 \bibitem{Laurent1980}
-M.~Laurent, \emph{{Ind\'ependance lin\'eaire de valeurs de fonctions doublement
-  quasi-p\'eriodiques}}, C. R. Acad. Sci. Paris S\'er.~A \textbf{290} (1980),
-  397--399.
+M.~Laurent.
+\newblock {Ind\'ependance lin\'eaire de valeurs de fonctions doublement
+  quasi-p\'eriodiques}.
+\newblock {\em C. R. Acad. Sci. Paris S\'er.~A}, 290:397--399, 1980.
 
 \bibitem{Masser1975}
-D.~W. Masser, \emph{{Elliptic Functions and Transcendence}}, Lecture Notes in
-  Math., vol. 437, Springer, 1975.
+D.~W. Masser.
+\newblock {\em {Elliptic Functions and Transcendence}}, volume 437 of {\em
+  Lecture Notes in Math.}
+\newblock Springer, 1975.
 
 \bibitem{DiazModulus}
-C.~Perassi, \emph{{diaz-modulus-lean: Transcendence theory in Lean~4}},
-  \url{https://github.com/carlok/diaz-modulus-lean}, 2026, accessed October
-  2026.
+C.~Perassi.
+\newblock {diaz-modulus-lean: Transcendence theory in Lean~4}.
+\newblock \url{https://github.com/carlok/diaz-modulus-lean}, 2026.
+\newblock accessed October 2026.
 
 \bibitem{Philippon1986}
-P.~Philippon, \emph{{Lemmes de z\'eros dans les groupes alg\'ebriques
-  commutatifs}}, Bull. Soc. Math. France \textbf{114} (1986), 355--383, Errata
-  et addenda, ibid. \textbf{115} (1987), 397--398.
+P.~Philippon.
+\newblock {Lemmes de z\'eros dans les groupes alg\'ebriques commutatifs}.
+\newblock {\em Bull. Soc. Math. France}, 114:355--383, 1986.
+\newblock Errata et addenda, ibid. \textbf{115} (1987), 397--398.
 
 \bibitem{Roy1992}
-D.~Roy, \emph{{Matrices whose coefficients are linear forms in logarithms}}, J.
-  Number Theory \textbf{41} (1992), 22--47.
+D.~Roy.
+\newblock {Matrices whose coefficients are linear forms in logarithms}.
+\newblock {\em J. Number Theory}, 41:22--47, 1992.
 
 \bibitem{RoyWaldschmidt1993}
-D.~Roy and M.~Waldschmidt, \emph{{Autour du th\'eor\`eme du sous-groupe
-  alg\'ebrique}}, Canad. Math. Bull. \textbf{36} (1993), 358--367.
+D.~Roy and M.~Waldschmidt.
+\newblock {Autour du th\'eor\`eme du sous-groupe alg\'ebrique}.
+\newblock {\em Canad. Math. Bull.}, 36:358--367, 1993.
 
 \bibitem{Schneider1937}
-Th. Schneider, \emph{{Arithmetische Untersuchungen elliptischer Integrale}},
-  Math. Ann. \textbf{113} (1937), 1--13.
+Th. Schneider.
+\newblock {Arithmetische Untersuchungen elliptischer Integrale}.
+\newblock {\em Math. Ann.}, 113:1--13, 1937.
 
 \bibitem{Mathlib}
-{The mathlib Community}, \emph{{The Lean mathematical library}}, Proceedings of
-  CPP 2020, ACM, New York, 2020, pp.~367--381.
+{The mathlib Community}.
+\newblock {The Lean mathematical library}.
+\newblock In {\em Proceedings of CPP 2020}, pages 367--381. ACM, New York,
+  2020.
 
 \bibitem{W83}
-M.~Waldschmidt, \emph{{Sous-groupes analytiques de groupes alg\'ebriques}},
-  Ann. of Math. (2) \textbf{117} (1983), 627--657.
+M.~Waldschmidt.
+\newblock {Sous-groupes analytiques de groupes alg\'ebriques}.
+\newblock {\em Ann. of Math. (2)}, 117:627--657, 1983.
 
 \bibitem{W88}
-\bysame, \emph{{On the transcendence methods of Gel'fond and Schneider in
-  several variables}}, New Advances in Transcendence Theory (Durham, 1986)
-  (A.~Baker, ed.), Cambridge Univ. Press, 1988, pp.~375--398.
+M.~Waldschmidt.
+\newblock {On the transcendence methods of Gel'fond and Schneider in several
+  variables}.
+\newblock In A.~Baker, editor, {\em New Advances in Transcendence Theory
+  (Durham, 1986)}, pages 375--398. Cambridge Univ. Press, 1988.
 
 \bibitem{WaldschmidtLIL}
-\bysame, \emph{{Linear independence of logarithms of algebraic numbers}}, IMSc
-  Report 116, Madras, 1992, revised 2016.
+M.~Waldschmidt.
+\newblock {Linear independence of logarithms of algebraic numbers}.
+\newblock IMSc Report 116, Madras, 1992.
+\newblock revised 2016.
 
 \bibitem{DALAG}
-\bysame, \emph{{Diophantine Approximation on Linear Algebraic Groups}},
-  Grundlehren Math. Wiss., vol. 326, Springer, Berlin, 2000, Chapters~5 and~8
-  by D.~Roy.
+M.~Waldschmidt.
+\newblock {\em {Diophantine Approximation on Linear Algebraic Groups}}, volume
+  326 of {\em Grundlehren Math. Wiss.}
+\newblock Springer, Berlin, 2000.
+\newblock Chapters~5 and~8 by D.~Roy.
 
 \bibitem{Wustholz1989}
-G.~W\"ustholz, \emph{{Algebraische Punkte auf analytischen Untergruppen
-  algebraischer Gruppen}}, Ann. of Math. (2) \textbf{129} (1989), 501--517.
+G.~W\"ustholz.
+\newblock {Algebraische Punkte auf analytischen Untergruppen algebraischer
+  Gruppen}.
+\newblock {\em Ann. of Math. (2)}, 129:501--517, 1989.
 
 \end{thebibliography}
