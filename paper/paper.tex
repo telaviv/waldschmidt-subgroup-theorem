@@ -102,34 +102,15 @@ Schneider's theorem, Schneider--Lang criterion, formal verification, Lean}
 
 \begin{abstract}
 We formalize in Lean~4 with Mathlib Waldschmidt's algebraic subgroup theorem with period term
-(Theorem~4.1 of his 1988 Durham paper) for the groups
-$G=\Ga^{d_0}\times\Gm^{d_1}\times E_1\times\dots\times E_m$, where the $E_j$ are elliptic curves
-with algebraic invariants, under the additional hypothesis $2N\ge d_1+2d_0+\kappa$ ($N=\dim V$,
-$\kappa$ the rank of the periods in the data). The proof follows Waldschmidt: an auxiliary
-function built with periods, which saves the factor $r^{-\kappa}$, combined with Philippon's
-multiplicity estimate. Both are proved in Lean for elliptic factors; the multiplicity estimate
-required several changes to the textbook route, which we describe. Along the way the development
-gives what we believe are the first formal proofs of Schneider's theorems on elliptic functions
-(periods, periods divided by $\pi$, and values of $\wp$ at algebraic points are transcendental) and of
-the Schneider--Lang criterion for meromorphic functions, and the first Lean library for the
-Weierstrass $\sigma$ and $\zeta$ functions, including Legendre's relation and the addition theorem.
-The proof closure uses only Lean's three standard axioms. The theorem discharges, in a companion
-certificate, the hypothesis behind the four exponentials statement at $t=c\vp/\pi$ for every
-algebraic $c\ne0$. We also prove the theorem in restricted cases for groups
-$\Ga^{d_0}\times\Gm^{d_1}\times G_2$ with $G_2$ the push-out of a product of universal vector
-extensions $E_j^\natural$ along an algebraic $r\times m$ matrix: for $r\le1$ when $V$ meets the vector
-fibre trivially, and for $d_0=0$, $r\le2$ when $V$ meets it in dimension at most one, for curves
-satisfying two lifting properties that hold over $\Qbar$ and are proved in Lean for the CM curves
-used. With these, all elliptic and vector-extension hypotheses of the companion certificate are
-discharged, among them the one behind the four exponentials statement at $t=c\vp$. Finally, we
-prove the theorem and its hyperplane consequence for $\Ga^{d_0}\times\Gm^{d_1}\times A^r$, where $A$ is the
-Jacobian of $y^5=x(1-x)$, for toric-injective hyperplanes and data whose $A$-components are periods; this
-needs a multiplicity estimate for abelian blocks given by an explicit projective model, whose polynomial
-identities are checked by kernel-evaluated certificates. It discharges the hypothesis behind the
-companion certificate's statements at the Beta value $B(1/5,1/5)$, for example that
-$2^{B(1/5,1/5)/\pi}$ and $3^{B(1/5,1/5)/\pi}$ are not both algebraic. With the same two restrictions we also
-prove the hyperplane consequence for a push-out of powers of a $\Ga$-extension of this Jacobian; in the companion
-certificate this gives that $2^{B(1/5,1/5)}$ and $3^{B(1/5,1/5)}$ are not both algebraic.
+(Theorem~4.1 of his 1988 Durham paper) for $G=\Ga^{d_0}\times\Gm^{d_1}\times E_1\times\dots\times E_m$,
+with $E_j$ elliptic curves with algebraic invariants, under the additional hypothesis
+$2N\ge d_1+2d_0+\kappa$. The proof uses only Lean's three standard axioms. Along the way we give what we
+believe are the first formal proofs of Schneider's theorems on elliptic functions and of the
+Schneider--Lang criterion, and the first Lean library for the Weierstrass $\sigma$ and $\zeta$ functions.
+Restricted forms of the theorem cover some vector extensions and the Jacobian of $y^5=x(1-x)$. A companion
+certificate uses these to prove explicit cases of the four exponentials conjecture: for example,
+$2^{\vp}$ and $3^{\vp}$ are not both algebraic, where $\vp$ is the real period of $y^2=4x^3-4x$, and
+likewise $2^{B(1/5,1/5)}$ and $3^{B(1/5,1/5)}$.
 \end{abstract}
 
 \maketitle
