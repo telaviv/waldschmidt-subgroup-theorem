@@ -87,6 +87,9 @@
 \DeclareUnicodeCharacter{22A4}{\ensuremath{\top}}
 \DeclareUnicodeCharacter{22A5}{\ensuremath{\bot}}
 
+\usepackage{etoolbox}
+\AtBeginEnvironment{abstract}{\let\Small\normalsize}
+\renewcommand{\bibliofont}{\normalsize}
 \begin{document}
 
 \title[Waldschmidt's subgroup theorem with period term in Lean]{A Lean formalization of Waldschmidt's

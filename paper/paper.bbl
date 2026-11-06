@@ -32,42 +32,42 @@ M.~Karatarakis and F.~Wiedijk.
 \newblock arXiv:2603.24823, 2026.
 
 \bibitem{StrongSixPaper}
-Shawn Krisman.
+S.~Krisman.
 \newblock {A Lean formalization of Roy's strong six exponentials theorem}.
 \newblock Hexagon preprint 2610.00338v1,
   \url{https://hexagonmath.org/2610.00338v1}, 2026.
 
 \bibitem{MstarPaper}
-Shawn Krisman.
+S.~Krisman.
 \newblock {A proof of the Roy--Waldschmidt theorem with period term, with
   explicit consequences at CM and Beta periods}.
 \newblock unrefereed extended draft, in the \lean{paper/} folder of
   \cite{LeanMstar}, 2026.
 
 \bibitem{Note}
-Shawn Krisman.
+S.~Krisman.
 \newblock {Four exponentials at CM and Beta periods}.
 \newblock preprint, 2026.
 
 \bibitem{LeanMstar}
-Shawn Krisman.
+S.~Krisman.
 \newblock {four-exponentials-cm-periods}.
 \newblock \url{https://github.com/telaviv/four-exponentials-cm-periods}, 2026.
 \newblock library \lean{CM4E}, with this project as a Lake dependency.
 
 \bibitem{StrongSixRepo}
-Shawn Krisman.
+S.~Krisman.
 \newblock {strong-six-exponentials}.
 \newblock \url{https://github.com/telaviv/strong-six-exponentials}, 2026.
 
 \bibitem{RPaper}
-Shawn Krisman.
+S.~Krisman.
 \newblock {The Roy--Waldschmidt theorem with period term and inner weight: a
   written proof from Waldschmidt's subgroup theorem}.
 \newblock preprint, 2026.
 
 \bibitem{LSGRepo}
-Shawn Krisman.
+S.~Krisman.
 \newblock {waldschmidt-subgroup-theorem}.
 \newblock \url{https://github.com/telaviv/waldschmidt-subgroup-theorem}, 2026.
 
