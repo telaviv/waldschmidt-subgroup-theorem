@@ -42,9 +42,8 @@ Shawn Krisman, \emph{{A Lean formalization of Roy's strong six exponentials
 
 \bibitem{LeanMstar}
 \bysame, \emph{{four-exponentials-cm-periods}},
-  \url{https://github.com/telaviv/four-exponentials-cm-periods}, 2026, called
-  \lean{lean_mstar} in this paper; library \lean{CM4E}, with this project as a
-  Lake dependency.
+  \url{https://github.com/telaviv/four-exponentials-cm-periods}, 2026, library
+  \lean{CM4E}, with this project as a Lake dependency.
 
 \bibitem{StrongSixRepo}
 \bysame, \emph{{strong-six-exponentials}},

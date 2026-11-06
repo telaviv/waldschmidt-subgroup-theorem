@@ -192,16 +192,16 @@ Theorem~\ref{thm:W88} to explicit groups whose subgroups it lists: for a CM curv
 $\Omega$ and $c\in\Qbar^\times$, if $\log\alpha,\log\beta$ are $\QQ$-linearly independent then
 $\alpha^{c\Omega},\beta^{c\Omega}$ are not both algebraic, and neither are $\alpha^{c\Omega/\pi},
 \beta^{c\Omega/\pi}$; for example $2^{\vp/\pi}$ and $3^{\vp/\pi}$ are not both algebraic, with
-$\vp=\Gamma(1/4)^2/(2\sqrt{2\pi})$. A separate Lean certificate, \lean{lean_mstar}
+$\vp=\Gamma(1/4)^2/(2\sqrt{2\pi})$. A separate Lean certificate, \lean{four-exponentials-cm-periods}
 \cite{LeanMstar}, checks these deductions with Waldschmidt's theorem for the relevant groups as
 explicit hypotheses. The present work discharges those hypotheses whose groups are built from
-tori, additive groups and powers of one elliptic curve: \lean{lean_mstar}'s \lean{Thm11Kappa} is our
+tori, additive groups and powers of one elliptic curve: the certificate's \lean{Thm11Kappa} is our
 \lean{LSG.W88.thm11Kappa} verbatim, and its \lean{HypStdCMAt} is \lean{LSG.W88.hypStdCMAt}. In
-\lean{lean_mstar} this makes the four exponentials statement at $t=c\vp/\pi$, for every algebraic
+the certificate this makes the four exponentials statement at $t=c\vp/\pi$, for every algebraic
 $c\ne0$, and the paper's ``Theorem~M'' for $\Omega=c\vp$ unconditional (standard axioms only). The
 statements at $t=c\vp$ and the two-curve results use groups with universal vector extensions
 $E^\natural$. Their hypotheses fall within the restricted cases of Section~\ref{sec:vecext}, and are
-discharged there as well; in \lean{lean_mstar} these results, too, no longer assume Waldschmidt's
+discharged there as well; in the certificate these results, too, no longer assume Waldschmidt's
 theorem (some of them still use other named classical inputs). The statements at the Beta value
 $B(1/5,1/5)$ (Theorem~A of \cite{MstarPaper} for the Jacobian of $y^5=x(1-x)$) use the groups of
 Section~\ref{sec:abvar} and are discharged there. The headline statement at $t=B(1/5,1/5)$ itself uses the groups of
@@ -366,7 +366,7 @@ W88 Prop.~6.1 (\S\ref{sec:aux}) & & estimate (\S\ref{sec:stage2}; StrongSix)\\[2
 $\searrow$ & & $\swarrow$\\[2pt]
 \multicolumn{3}{c}{Stage 3b: W88 \S7 $\Rightarrow$ Theorem~\ref{thm:W88} under \NR{} (\S\ref{sec:sec7})}\\[2pt]
 \multicolumn{3}{c}{$\downarrow$}\\[2pt]
-\multicolumn{3}{c}{bridges: \S5d, abelian subvarieties, \lean{lean_mstar} (\S\ref{sec:5d})}
+\multicolumn{3}{c}{bridges: \S5d, abelian subvarieties, the certificate (\S\ref{sec:5d})}
 \end{tabular}
 \end{center}
 Stage~1 also feeds the multiplicity estimate (the group law of $E$ and its exponential) and Stage~3a
@@ -436,7 +436,7 @@ $\wp,\wp',e^{2\pi iz/\omega}$ do the same if $\omega/\pi$ were algebraic
 \lean{wp_transcendental}.
 
 \subsection{The lemniscatic invariant}
-For \lean{lean_mstar} we need $g_2(\vp\ZZ[i])=4$ with $\vp=\Gamma(1/4)^2/(2\sqrt{2\pi})$
+For the certificate we need $g_2(\vp\ZZ[i])=4$ with $\vp=\Gamma(1/4)^2/(2\sqrt{2\pi})$
 (\texttt{LSG.LemniscateIndep.g}$_2$\texttt{\_eq\_four\_of}, about 600 lines). The proof uses the symmetry $z\mapsto iz$
 ($g_3=0$), the real branch of $\wp$ on $(0,\vp/2]$ with the substitution $t=\sqrt{e/\wp}$, and the
 Beta integral for $2\int_0^1dt/\sqrt{1-t^4}$. With Schneider's theorem this gives
@@ -683,8 +683,8 @@ for curves over $\Qbar$, but not proved here.
 
 The resulting endpoints are \lean{LSG.W88.thm11Kappa} ($\Gm^{d_1}\times E$),
 \lean{LSG.W88.hypStdCM} and \lean{hypStdCMAt} ($\Ga^{d_0}\times\Gm^{d_1}\times E^r$). Their statements are
-byte-for-byte copies of \lean{lean_mstar}'s hypotheses (\lean{LSG/W88/MStarCopy*.lean}), and we checked
-that, e.g., \texttt{exact\ LSG.W88.thm11Kappa\_of\_theorem41\ h\ L\ d}$_1$ typechecks against \lean{lean_mstar}'s
+byte-for-byte copies of the certificate's hypotheses (\lean{LSG/W88/MStarCopy*.lean}), and we checked
+that, e.g., \texttt{exact\ LSG.W88.thm11Kappa\_of\_theorem41\ h\ L\ d}$_1$ typechecks against the certificate's
 unmodified definitions.
 
 % ===========================================================================
@@ -785,19 +785,19 @@ into the $\Ga^{d_0}$ factor gives a presentation with $r=0$, so case~(c) for $r\
 case of~(a). For $d_0=0$, $r\le2$ the engine runs directly on~(b).
 \end{itemize}
 
-\subsection{The bridges to \texorpdfstring{\texttt{lean\_mstar}}{lean\_mstar}}
-From Theorem~\ref{thm:vec} we prove, unconditionally, \lean{lean_mstar}'s six vector-extension hypotheses
+\subsection{The bridges to the certificate}
+From Theorem~\ref{thm:vec} we prove, unconditionally, the certificate's six vector-extension hypotheses
 (\lean{LSG/W88/V5dOntoBridges.lean}, \lean{V5dSMGn.lean}, \lean{V5dMXPMain.lean}): \lean{Thm11KappaMXG}
 (Theorem~MX), \lean{Thm11KappaMGn} and \lean{Thm11KappaMGnK} for every CM lattice, \lean{Thm11KappaNat}
 (the four exponentials statement at $t=c\vp$), \lean{Thm11KappaSMGn} (Theorem~S), and \lean{Thm11KappaMXP}
-(Theorem~MX$'$, which has $r=2$ and uses case~(b)). As in \lean{lean_mstar}, the statements for a general CM
+(Theorem~MX$'$, which has $r=2$ and uses case~(b)). As in the certificate, the statements for a general CM
 lattice carry the premise $\kappa_1=0$ (\lean{KappaOneZero}), proved there for both lattices used. The CM
 inputs are proved in Lean: rotation formulas, quasi-periods via Legendre, \lean{LiftAlg} and
 \lean{PerTanRat} for CM blocks, and the splitting of abelian subvarieties of $E_i^n\times E_\rho^n$ via the
-irrationality of $\sqrt3$. The statements are verbatim copies of \lean{lean_mstar}'s
-(\lean{LSG/W88/MStarCopy*.lean}); \lean{lean_mstar}, which has this project as a Lake dependency, derives its
+irrationality of $\sqrt3$. The statements are verbatim copies of the certificate's
+(\lean{LSG/W88/MStarCopy*.lean}); the certificate, which has this project as a Lake dependency, derives its
 own unmodified hypotheses from them, so a drift of a copy breaks its build. Two of the CM abelian-variety
-hypotheses of \lean{lean_mstar} are treated in Section~\ref{sec:abvar}.
+hypotheses of the certificate are treated in Section~\ref{sec:abvar}.
 
 \subsection{Fidelity review}
 A second AI session that had not written the proofs reviewed the vector-extension statements against
@@ -853,7 +853,7 @@ the $y_i$ may be taken in $V\cap\QQ\Lambda_A$.
 \emph{Scope.} Theorem~\ref{thm:abvar} is W88 \S5d (and Thm.~4.1 under \NR) for $\Ga^{d_0}\times\Gm^{d_1}\times A^r$,
 $A=\operatorname{Jac}(y^5=x(1-x))$, for toric-injective hyperplanes $V$ and subgroups $Y$ whose $A$-components
 are (rational) periods; so $\exp_G(Y)\subset\Ga^{d_0}(\Qbar)\times\Gm^{d_1}(\Qbar)\times A^r_{\mathrm{tors}}$. Both
-restrictions only weaken Waldschmidt's theorem, and they are all that \lean{lean_mstar}'s models use. For
+restrictions only weaken Waldschmidt's theorem, and they are all that the certificate's models use. For
 $G=A^r$ alone ($d_0=d_1=0$) the restricted statement is empty, since toric injectivity forces
 $V\cap\Lambda_A=0$; it must not be cited as Waldschmidt's theorem for $A^r$.
 
@@ -898,12 +898,12 @@ for abelian blocks (\lean{theorem41B_of}); the \S5d maximizer must be defined ov
 abelian tangent spaces of $A^r$ are $\Qbar$-rational using the CM structure (\lean{ratTangentsA}).
 \end{itemize}
 
-\subsection{The bridge to \texorpdfstring{\texttt{lean\_mstar}}{lean\_mstar}}
-From Theorem~\ref{thm:abvar}(b) we prove \lean{lean_mstar}'s hypotheses \lean{AbVar.Thm11KappaA} and
+\subsection{The bridge to the certificate}
+From Theorem~\ref{thm:abvar}(b) we prove the certificate's hypotheses \lean{AbVar.Thm11KappaA} and
 \lean{AbVar.Thm11KappaAK} at $y^5=x(1-x)$ (\lean{LSG.W88.thm11KappaA5}, \lean{thm11KappaAK5}), stated against
-verbatim copies. The transport rescales \lean{lean_mstar}'s coordinates, which are dual to $dx/y^{4-s}$, by
-the algebraic factors $5(-1)^s$, and checks that \lean{lean_mstar}'s toric injectivity implies ours and that
-every nonzero abelian tangent lands in \lean{lean_mstar}'s subgroup family. In \lean{lean_mstar} (which has this
+verbatim copies. The transport rescales the certificate's coordinates, which are dual to $dx/y^{4-s}$, by
+the algebraic factors $5(-1)^s$, and checks that the certificate's toric injectivity implies ours and that
+every nonzero abelian tangent lands in the certificate's subgroup family. In the certificate (which has this
 project as a Lake dependency) these yield, with no hypothesis and standard axioms only:
 \lean{two_three_beta5_uncond}, that $2^{t}$ and $3^{t}$ are not both algebraic for $t=B(1/5,1/5)/\pi$; the
 four exponentials statements at $cB(1/5,1/5)/\pi$ and $c\pi/B(1/5,1/5)$ for algebraic $c\ne0$; and the input
@@ -911,9 +911,9 @@ $(1-\zeta_5)B(1/5,1/5)/\pi\notin\Qbar$ (Wüstholz), here derived from Waldschmid
 
 \subsection{Fidelity review}
 A further AI session that had not written the proofs reviewed the statements and the bridge against
-\cite[pp.~375, 385--386, 394--395]{W88} and \lean{lean_mstar}. It found no fatal or major issue. Its main remark is
+\cite[pp.~375, 385--386, 394--395]{W88} and the certificate. It found no fatal or major issue. Its main remark is
 the scope above (the second restriction, on the $A$-components, had been omitted from a sentence in
-\lean{lean_mstar}'s paper); it also verified in Lean that the subgroup condition is not vacuous (a nonzero
+\cite{MstarPaper}); it also verified in Lean that the subgroup condition is not vacuous (a nonzero
 subspace of $\CC^2$ that is not an abelian tangent) and that the restricted statement is empty for $A^r$
 alone, and asked for the wording of ``$A$ is the Jacobian'' used above.
 
@@ -1001,21 +1001,21 @@ structure: the fibre property above, an algebraic relation between the fibre per
 and on its pivot coordinates, and $\Qbar$-rationality of abelian tangents.
 \end{itemize}
 
-\subsection{The bridge to \texorpdfstring{\texttt{lean\_mstar}}{lean\_mstar}}
-From Theorem~\ref{thm:abvarv}(a) we prove \lean{lean_mstar}'s hypotheses \lean{AbVar.Thm11KappaAn} and
+\subsection{The bridge to the certificate}
+From Theorem~\ref{thm:abvarv}(a) we prove the certificate's hypotheses \lean{AbVar.Thm11KappaAn} and
 \lean{AbVar.Thm11KappaAnK} (the latter for $L_{A^\natural}=\emptyset$) at $y^5=x(1-x)$
 (\lean{LSG.W88.thm11KappaAn5}, \lean{thm11KappaAnK5}). Like \lean{Thm11KappaA}, these hypotheses are restricted to
-toric-injective hyperplanes, a restriction \lean{lean_mstar} adopted for this purpose (its frame hyperplanes are
+toric-injective hyperplanes, a restriction the certificate adopted for this purpose (its frame hyperplanes are
 toric-injective, \lean{perAn_inj}). The transport rescales by algebraic factors and maps our fibre periods onto
-\lean{lean_mstar}'s generators, since $\frac53\cdot b_j\frac35\zeta^{4e}\bar P=b_j\zeta^{(5-1)e}\bar P$. In
-\lean{lean_mstar}, \lean{Bridge.two_three_beta5'_uncond} (that $2^t$ and $3^t$ are not both algebraic for $t=B(1/5,1/5)$) and
+the certificate's generators, since $\frac53\cdot b_j\frac35\zeta^{4e}\bar P=b_j\zeta^{(5-1)e}\bar P$. In
+the certificate, \lean{Bridge.two_three_beta5'_uncond} (that $2^t$ and $3^t$ are not both algebraic for $t=B(1/5,1/5)$) and
 \lean{Bridge.wuestholzB5_uncond} ($(1-\zeta^4)B(4/5,4/5)/\pi\notin\Qbar$) follow with standard axioms only.
 
 \subsection{Fidelity review}
 A further AI session that had not written the proofs reviewed the statements, the block data and the bridge against
-\cite[pp.~385--386, 394--395]{W88} and \lean{lean_mstar}. It found no fatal or major issue. Its main remarks are the
-scope above and that \lean{lean_mstar} had yet to adopt the restriction, which it has since done. It proved in Lean, in a scratch file, that
-\lean{lean_mstar}'s frame hyperplanes are toric-injective, and it re-ran the three \lean{lean_mstar} consumers under the
+\cite[pp.~385--386, 394--395]{W88} and the certificate. It found no fatal or major issue. Its main remarks are the
+scope above and that the certificate had yet to adopt the restriction, which it has since done. It proved in Lean, in a scratch file, that
+the certificate's frame hyperplanes are toric-injective, and it re-ran the three consumers in the certificate under the
 narrowed hypothesis. It also checked non-vacuity: the fibre period $\bar\eta$ is nonzero, the data contain non-torsion
 fibre points, and the subgroup family of the model is exactly the family of connected algebraic subgroups.
 
@@ -1023,7 +1023,7 @@ fibre points, and the subgroup family of the model is exactly the family of conn
 \section{Explicit consequences, formally verified}\label{sec:conseq}
 % ===========================================================================
 
-The certificate \lean{lean_mstar} \cite{LeanMstar}, which has this project as a Lake dependency, derives explicit
+The certificate \cite{LeanMstar}, which has this project as a Lake dependency, derives explicit
 transcendence statements from the hyperplane theorems of Sections~\ref{sec:5d}, \ref{sec:vecext}, \ref{sec:abvar} and
 \ref{sec:abvarv}. We list them with their status at its commit \lean{7ddd73d}. Lean names are in the namespace \lean{CM4E}
 unless they start with \lean{LSG}; each entry names the sub-namespace once.
@@ -1102,7 +1102,7 @@ $(g_3)$, $(\Gamma)$: \lean{mx_K}; \lean{mx} (also \lean{Gen.WuestholzMX}, \lean{
 corollary on $\zeta$ (also \lean{Gen.LaurentZeta} \cite{Laurent1980}); \lean{mxP_K}; \lean{deg2_i}, \lean{deg2_ii} (also
 \lean{Gen.WuestholzSix}, which implies $(\Gamma)$). From \lean{LSG.W88.V5d.thm11KappaMXG_uncond} ($r=1$) and
 \lean{thm11KappaMXP_uncond} ($r=2$). These statements use hand-written quasi-periods and the coordinates \lean{MX.LogNat},
-checked numerically in \lean{lean_mstar}'s reviews.
+checked numerically in the certificate's reviews.
 \item \textbf{Theorem M.} If $u\in\Qbar\mathcal L_{E_i}$, $\ell\in\widetilde{\mathcal L}$ and $i\pi u=c\vp\ell$, then $u=sc\vp$,
 $\ell=si\pi$ with $s\in\Qbar$; hence $\wp(c\vp/\pi)\notin\Qbar$ (M1), and $\wp(c\pi\vp)\notin\Qbar$ if $e^{\pi^2}\in\Qbar$ (M3).
 \lean{Unconditional}: \lean{thmM_varpi}, \lean{m1_varpi}, \lean{m3_varpi}, from \lean{LSG.W88.hypStdCMAt} ($d_0=1$): \textbf{U}.
@@ -1145,7 +1145,7 @@ $E_i$ (\lean{Bridge.thmSE0_varpi}: \textbf{U}), and the transcendence of $\pi/\v
 
 \emph{What the labels rest on.} For \textbf{U} and \textbf{I} the group models are internal to the proof: the final statements
 concern explicit numbers and the kernel checks the deduction, so they do not depend on the reviews of the models. One reads only
-the definitions in the statements and, for \textbf{I}, accepts the inputs. For \textbf{W}, the reviews of \lean{lean_mstar} and of Section~\ref{sec:abvarv} apply. No human expert has reviewed any of this.
+the definitions in the statements and, for \textbf{I}, accepts the inputs. For \textbf{W}, the reviews of the certificate and of Section~\ref{sec:abvarv} apply. No human expert has reviewed any of this.
 
 \emph{Provenance.} No new method is involved. Each entry is an instance of \cite[Thm.~4.1]{W88} or \cite[\S5d]{W88} on a group
 $G''$ as above, and the verified entries go through \cite[\S5d]{W88}. For MG, SMG(a), SE(1), MX, MX$'$, deg2, X7, X9 and X$^\kappa$ the printed weight of Th\'eor\`eme~(iii) of
@@ -1179,7 +1179,7 @@ Directory & Lines & Content \\
 \multicolumn{3}{@{}l}{\emph{Abelian chain (default target)}}\\
 \lean{Weierstrass/} & 3{,}768 & $\sigma$, $\zeta$, $\eta$, order two, Legendre, addition theorem, dictionary \\
 \lean{SchneiderLang/}, \lean{Schneider*.lean} & 2{,}069 & Schneider--Lang criterion, Schneider's theorems, interfaces \\
-\lean{LemniscateIndep/}, \lean{Bridge/} & 681 & $g_2(\vp\ZZ[i])=4$; statements for \lean{lean_mstar} \\
+\lean{LemniscateIndep/}, \lean{Bridge/} & 681 & $g_2(\vp\ZZ[i])=4$; statements for the certificate \\
 \lean{Subgroups/} & 399 & closed subgroups of $\RR^n$, subtori \\
 \lean{Elliptic/AdditionLaws*} & 965 & addition laws on $E\subset\PP^2$ \\
 \lean{ME/} & 16{,}516 & Stage 2: the multiplicity estimate \\
@@ -1259,8 +1259,8 @@ of Section~\ref{sec:vecext}.
 period $A$-components are covered, and the identification of the formal torus with the Jacobian is
 classical, not formalized (Section~\ref{sec:abvar}). For its vector extension the same two restrictions apply,
 with $r=1$ and an adapted $b$; the identification of the model in $\PP^{11}$ with the extension is classical, not
-formalized (Section~\ref{sec:abvarv}). The copies of \lean{lean_mstar}'s statements are checked by
-typechecking inside \lean{lean_mstar}, which depends on this project; whether its group models describe
+formalized (Section~\ref{sec:abvarv}). The copies of the certificate's statements are checked by
+typechecking inside the certificate, which depends on this project; whether its group models describe
 the intended groups is checked by its own reviews, not here.
 
 \emph{Licence history.} Early in the project, about $1{,}500$ lines of the ancillary Lean files of
