@@ -165,7 +165,7 @@ for arbitrary lattices $\Lambda_j$ with $g_2,g_3\in\Qbar$, under the extra hypot
 \end{equation}
 Section~\ref{sec:statement} reproduces the statement. Hypothesis \NR{} is the range in which we prove
 Waldschmidt's Proposition~6.1 (the auxiliary function) with multiplicities along $W$; it is the
-condition of Lemma~U of \cite{MstarPaper}, which supplies the step of \cite[Prop.~6.1]{W88} that is
+condition of Lemma~U of \cite{RPaper}, which supplies the step of \cite[Prop.~6.1]{W88} that is
 only indicated in print. \NR{} is a genuine restriction (Remark~\ref{rem:NR}). Correspondingly,
 results of this paper must be cited as ``W88 Thm.~4.1 under \NR{} for
 $\Ga^{d_0}\times\Gm^{d_1}\times E_1\times\dots\times E_m$''.
@@ -186,8 +186,8 @@ $Y$ whose $A$-components are (rational) periods (Theorem~\ref{thm:abvar}, Sectio
 restrictions we prove the \S5d consequence for $\Ga^{d_0}\times\Gm^{d_1}\times Q$, $Q$ a push-out of powers of the
 $\Ga$-extension $A_{\bar\sigma}^\natural$ of $A$ (Theorem~\ref{thm:abvarv}, Section~\ref{sec:abvarv}).
 
-\subsection{Why it matters here: the M* applications}
-The paper \cite{MstarPaper} proves four exponentials statements at CM periods by applying
+\subsection{Why it matters here: the applications}
+The paper \cite{Note} proves four exponentials statements at CM periods by applying
 Theorem~\ref{thm:W88} to explicit groups whose subgroups it lists: for a CM curve with period
 $\Omega$ and $c\in\Qbar^\times$, if $\log\alpha,\log\beta$ are $\QQ$-linearly independent then
 $\alpha^{c\Omega},\beta^{c\Omega}$ are not both algebraic, and neither are $\alpha^{c\Omega/\pi},
@@ -203,7 +203,7 @@ statements at $t=c\vp$ and the two-curve results use groups with universal vecto
 $E^\natural$. Their hypotheses fall within the restricted cases of Section~\ref{sec:vecext}, and are
 discharged there as well; in the certificate these results, too, no longer assume Waldschmidt's
 theorem (some of them still use other named classical inputs). The statements at the Beta value
-$B(1/5,1/5)$ (Theorem~A of \cite{MstarPaper} for the Jacobian of $y^5=x(1-x)$) use the groups of
+$B(1/5,1/5)$ (Theorem~A of \cite{Note} for the Jacobian of $y^5=x(1-x)$) use the groups of
 Section~\ref{sec:abvar} and are discharged there. The headline statement at $t=B(1/5,1/5)$ itself uses the groups of
 Section~\ref{sec:abvarv} and is discharged there, again on toric-injective hyperplanes.
 
@@ -324,7 +324,7 @@ multiplicity estimate is shown to have this form in Lean (Section~\ref{sec:subgr
 \NR{} is not in \cite{W88}. It excludes, for instance, the standard encoding of the
 Hermite--Lindemann theorem ($G=\Ga\times\Gm$, $V=W=\CC(1,1)$, $N=1$, where $1+2>2$); adding $\Gm$
 factors restores \NR{} but makes the conclusion trivially satisfiable by a subtorus. All applications
-in \cite{MstarPaper} satisfy \NR{} with room to spare.
+in \cite{Note} satisfy \NR{} with room to spare.
 \end{remark}
 
 \subsection{Fidelity review}
@@ -595,7 +595,7 @@ radii. In the application ($r=\nu^2S$, $R=\nu^3S$, $U=\nu^6\Delta$) the constant
 
 \subsection{Lemma U and Proposition 6.1}
 Proposition~6.1 of \cite{W88} asks for vanishing \emph{along $W$} at the points of $\exp_G(Y(S))$, $Y(S)=\{\sum
-h_jy_j:0\le h_j\le S\}$. Following Lemma~U of \cite{MstarPaper}, the small values of $Q_S$ on a ball give,
+h_jy_j:0\le h_j\le S\}$. Following Lemma~U of \cite{RPaper}, the small values of $Q_S$ on a ball give,
 through Cauchy's estimates, small Taylor coefficients along $W$ at each point, and Liouville's
 inequality makes them vanish. Our formal proof (\lean{lemmaU_core}) differs from that sketch in ways
 that simplify it.
@@ -693,7 +693,7 @@ unmodified definitions.
 
 \subsection{The class and the statements}
 The applications MG$^\natural$, MX, MX$'$ and the four exponentials statement at $t=c\vp$ of
-\cite{MstarPaper} use groups built from universal vector extensions $E^\natural$ (extensions of $E$ by
+\cite{Note} use groups built from universal vector extensions $E^\natural$ (extensions of $E$ by
 $\Ga$, with periods $(\lambda,\eta(\lambda))$ for $\lambda\in\Lambda$). We work with the class of groups
 \[
 G=\Ga^{d_0}\times\Gm^{d_1}\times G_2,\qquad G_2=\bigl((E_1\times\dots\times E_m)^\natural\times\Ga^r\bigr)\big/\{(-u,Mu)\},
@@ -814,7 +814,7 @@ lattice points (proved in the same file, so a change of definition would break t
 % ===========================================================================
 
 \subsection{The group and the statements}
-Theorem~A of \cite{MstarPaper} at the Beta value $B(1/5,1/5)$ applies Waldschmidt's theorem to
+Theorem~A of \cite{Note} at the Beta value $B(1/5,1/5)$ applies Waldschmidt's theorem to
 $G=\Ga^{d_0}\times\Gm^{d_1}\times A^r$, where $A$ is the Jacobian of the genus-two curve
 $C\colon y^5=x(1-x)$, a simple abelian surface with complex multiplication by $\QQ(\zeta_5)$. Here $A$ is the
 Jacobian of $C$, presented in Lean by its period lattice in the coordinates $\int dX/Y$, $\int X\,dX/Y$ on the
@@ -922,7 +922,7 @@ alone, and asked for the wording of ``$A$ is the Jacobian'' used above.
 % ===========================================================================
 
 \subsection{The group and the statements}
-Theorem~MG$^\natural$-A of \cite{MstarPaper} at $B(1/5,1/5)$ gives the headline statement that $2^t$ and $3^t$ are
+Theorem~MG$^\natural$-A of \cite{Note} at $B(1/5,1/5)$ gives the headline statement that $2^t$ and $3^t$ are
 not both algebraic for $t=B(1/5,1/5)=\Gamma(1/5)^2/\Gamma(2/5)$ (without the division by $\pi$ of
 Section~\ref{sec:abvar}). It applies Waldschmidt's theorem to a group with a vector part. Let
 $A=\operatorname{Jac}(y^5=x(1-x))$ as in Section~\ref{sec:abvar}, and let $A_{\bar\sigma}^\natural$ be the extension of $A$
@@ -1025,7 +1025,7 @@ fibre points, and the subgroup family of the model is exactly the family of conn
 
 The certificate \cite{LeanMstar}, which has this project as a Lake dependency, derives explicit
 transcendence statements from the hyperplane theorems of Sections~\ref{sec:5d}, \ref{sec:vecext}, \ref{sec:abvar} and
-\ref{sec:abvarv}. We list them with their status at its commit \lean{7ddd73d}. Lean names are in the namespace \lean{CM4E}
+\ref{sec:abvarv}. We list them with their status at its commit \lean{a02679d}. Lean names are in the namespace \lean{CM4E}
 unless they start with \lean{LSG}; each entry names the sub-namespace once.
 
 \emph{Notation.} $\mathcal L=\{z\in\CC:e^z\in\Qbar^\times\}$, $\widetilde{\mathcal L}=\Qbar+\Qbar\mathcal L$, and
@@ -1040,7 +1040,7 @@ subgroup with tangent space in the kernel of $\Psi\circ(z_j)_j\mapsto\sum_j\thet
 $\alpha(H)=2\dim H-2d_0(H)-d_1(H)$, $\alpha_{K,\Psi}=\alpha(G'')/n$ and $\kappa=\dim_K(V\cap\Psi(\Omega_K(G)))$, the bound is
 $\dim_K(V\cap\Psi(\Lambda_K(G)))\le\alpha_{K,\Psi}-\kappa$ for the $K$-spans $\Lambda_K$, $\Omega_K$, and a counterexample
 would give more $K$-independent data than that. Table~\ref{tab:conseq} has the numbers for large $n$, as computed in
-\cite{MstarPaper}. The Lean proofs do not use this bound: they apply (5.4) of \cite[\S5d]{W88} to a hyperplane of a model of
+\cite{Note,MstarPaper}. The Lean proofs do not use this bound: they apply (5.4) of \cite[\S5d]{W88} to a hyperplane of a model of
 $G''$.
 
 \begin{table}[ht]\footnotesize
@@ -1096,7 +1096,7 @@ form of W88 but has the premise \lean{Bridge.CMMulLogE}, proved only for $E_i$, 
 $a,a'\in\Qbar$, $\beta\in\Qbar^\times$. (MX) $(z(X)+z(Y)+a)\beta\eta_\rho=(w(X)+w(Y)+a')\vp$ implies
 $z(X)+z(Y)+a\in\Qbar\vp+\Qbar\Omega_\rho$, and then $a=0$, $z(X)\in\QQ(i)\vp$, $z(Y)\in\QQ(\rho)\Omega_\rho$. (MX$'$)
 $(z(X)+w(Y)+a)\beta\Omega_\rho=(w(X)+z(Y)+a')\vp$ implies $z(X)+w(Y)+a\in\Qbar\vp+\Qbar\eta_\rho$ (Proposition~D$'$ of
-\cite{MstarPaper}; the step to its Theorem~MX$'$ is \textbf{N}). (deg2)(i) $\pi,\vp,\Omega_\rho,\vp\Omega_\rho$ are
+\cite{Note}; the step to Theorem~MX$'$ of \cite{MstarPaper} is \textbf{N}). (deg2)(i) $\pi,\vp,\Omega_\rho,\vp\Omega_\rho$ are
 $\Qbar$-linearly independent; (ii) so are $1,\vp,\Omega_\rho,\vp\Omega_\rho/\pi$. \lean{Unconditional}, all \textbf{I}, all with
 $(g_3)$, $(\Gamma)$: \lean{mx_K}; \lean{mx} (also \lean{Gen.WuestholzMX}, \lean{Gen.MasserCM} \cite{Masser1975}); \lean{mx1}, its
 corollary on $\zeta$ (also \lean{Gen.LaurentZeta} \cite{Laurent1980}); \lean{mxP_K}; \lean{deg2_i}, \lean{deg2_ii} (also
@@ -1107,7 +1107,7 @@ checked numerically in the certificate's reviews.
 $\ell=si\pi$ with $s\in\Qbar$; hence $\wp(c\vp/\pi)\notin\Qbar$ (M1), and $\wp(c\pi\vp)\notin\Qbar$ if $e^{\pi^2}\in\Qbar$ (M3).
 \lean{Unconditional}: \lean{thmM_varpi}, \lean{m1_varpi}, \lean{m3_varpi}, from \lean{LSG.W88.hypStdCMAt} ($d_0=1$): \textbf{U}.
 Also \textbf{I}: \lean{thmM_varpi_k} ($s\in\QQ(i)$ for $u\in\mathcal L_{E_i}$, $c=1$), \lean{meta_varpi} (\lean{Gen.MasserCM});
-\lean{m3'_varpi} (\lean{Gen.HermiteLindemann}); \lean{thmM_omegaRho} ($(g_3)$). (M2) of \cite{MstarPaper}: \textbf{N}.
+\lean{m3'_varpi} (\lean{Gen.HermiteLindemann}); \lean{thmM_omegaRho} ($(g_3)$). (M2) of \cite{Note}: \textbf{N}.
 \item \textbf{MG-A at $B/\pi$.} $\mathrm{4E}(cB/\pi)$ and $\mathrm{4E}(c\pi/B)$; for example $2^t,3^t$ are not both algebraic at
 $t=\Gamma(1/5)^2/(\pi\Gamma(2/5))$. Also $P/\pi\notin\Qbar$ for $P=(1-\zeta_5)B$, and the $K$-form at $P$ with $z_\sigma(\Lambda(A))$
 replaced by $\ZZ P$. \lean{Bridge}: \lean{two_three_beta5_uncond}, \lean{fourExpAt_beta5_uncond},
@@ -1150,13 +1150,12 @@ the definitions in the statements and, for \textbf{I}, accepts the inputs. For \
 \emph{Provenance.} No new method is involved. Each entry is an instance of \cite[Thm.~4.1]{W88} or \cite[\S5d]{W88} on a group
 $G''$ as above, and the verified entries go through \cite[\S5d]{W88}. For MG, SMG(a), SE(1), MX, MX$'$, deg2, X7, X9 and X$^\kappa$ the printed weight of Th\'eor\`eme~(iii) of
 \cite{RoyWaldschmidt1993} already suffices on a product of standard groups (with W\"ustholz's theorem for the final statements),
-and for MG$^\natural$ by an internal check in \cite{MstarPaper}. The proof in \cite{RoyWaldschmidt1993} reduces to $K=\QQ$ and
+and for MG$^\natural$ by an internal check in \cite{Note}. The proof in \cite{RoyWaldschmidt1993} reduces to $K=\QQ$ and
 then refers to a refinement of an argument of Roy that is not written out (we could not consult Roy's paper). At $B/\pi$ and $B$
-the printed weight gives no conclusion, and one needs $\alpha_{K,\Psi}$ of \cite{MstarPaper}. Theorem~M is classical in substance
-\cite{MstarPaper}. For the other entries our claim is narrow: we found none of them stated in print, apart from what follows from
-the conjugation arguments discussed in \cite{MstarPaper}, and we believe that the formal proofs here are the first of these
-statements. The search was not exhaustive, this literature is moving fast and partly AI-generated, and \cite{MstarPaper} is itself
-an unrefereed draft.
+the printed weight gives no conclusion, and one needs $\alpha_{K,\Psi}$ of \cite{RPaper}. Theorem~M is classical in substance
+\cite{Note}. For the other entries our claim is narrow: we found none of them stated in print, apart from what follows from
+the conjugation arguments discussed in \cite{Note}, and we believe that the formal proofs here are the first of these
+statements. The search was not exhaustive, this literature is moving fast and partly AI-generated, and \cite{Note,RPaper} have not been refereed.
 
 % ===========================================================================
 \section{The artifact}\label{sec:stats}

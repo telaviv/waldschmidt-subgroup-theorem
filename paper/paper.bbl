@@ -37,8 +37,11 @@ Shawn Krisman, \emph{{A Lean formalization of Roy's strong six exponentials
 
 \bibitem{MstarPaper}
 \bysame, \emph{{A proof of the Roy--Waldschmidt theorem with period term, with
-  explicit consequences at CM and Beta periods}}, unrefereed draft, in the
-  \lean{paper/} folder of \cite{LeanMstar}, 2026.
+  explicit consequences at CM and Beta periods}}, unrefereed extended draft, in
+  the \lean{paper/} folder of \cite{LeanMstar}, 2026.
+
+\bibitem{Note}
+\bysame, \emph{{Four exponentials at CM and Beta periods}}, preprint, 2026.
 
 \bibitem{LeanMstar}
 \bysame, \emph{{four-exponentials-cm-periods}},
@@ -48,6 +51,10 @@ Shawn Krisman, \emph{{A Lean formalization of Roy's strong six exponentials
 \bibitem{StrongSixRepo}
 \bysame, \emph{{strong-six-exponentials}},
   \url{https://github.com/telaviv/strong-six-exponentials}, 2026.
+
+\bibitem{RPaper}
+\bysame, \emph{{The Roy--Waldschmidt theorem with period term and inner weight:
+  a written proof from Waldschmidt's subgroup theorem}}, preprint, 2026.
 
 \bibitem{LSGRepo}
 \bysame, \emph{{waldschmidt-subgroup-theorem}},
