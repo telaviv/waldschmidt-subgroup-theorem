@@ -23,6 +23,9 @@ This is the sequel to the formalisation of Roy's strong six exponentials theorem
 ([telaviv/strong-six-exponentials](https://github.com/telaviv/strong-six-exponentials), "StrongSix"). StrongSix proves
 W88 Thm. 4.1 for linear groups `G_a^{d₀} × G_m^{d₁}`, in Roy's form, and is a Lake dependency of this project.
 
+`lean_mstar`, named throughout this README and `TRUST.md`, is the certificate that applies these theorems at CM and Beta
+periods. It is public as [telaviv/four-exponentials-cm-periods](https://github.com/telaviv/four-exponentials-cm-periods).
+
 ## The main theorem
 
 ```lean
