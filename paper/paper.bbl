@@ -37,6 +37,11 @@ S.~Krisman.
 \newblock Hexagon preprint 2610.00338v1,
   \url{https://hexagonmath.org/2610.00338v1}, 2026.
 
+\bibitem{RPaper}
+S.~Krisman.
+\newblock {A proof of the Roy--Waldschmidt theorem with period term}.
+\newblock preprint, 2026.
+
 \bibitem{MstarPaper}
 S.~Krisman.
 \newblock {A proof of the Roy--Waldschmidt theorem with period term, with
@@ -59,12 +64,6 @@ S.~Krisman.
 S.~Krisman.
 \newblock {strong-six-exponentials}.
 \newblock \url{https://github.com/telaviv/strong-six-exponentials}, 2026.
-
-\bibitem{RPaper}
-S.~Krisman.
-\newblock {The Roy--Waldschmidt theorem with period term and inner weight: a
-  written proof from Waldschmidt's subgroup theorem}.
-\newblock preprint, 2026.
 
 \bibitem{LSGRepo}
 S.~Krisman.
