@@ -1,5 +1,13 @@
 \begin{thebibliography}{10}
 
+\bibitem{Be85}
+D.~Bertrand.
+\newblock {La th\'eorie de Baker revisit\'ee}.
+\newblock Publ.\ Math.\ Univ.\ P. et M. Curie \textbf{73}, Groupe d'\'Etude sur
+  les Probl\`emes Diophantiens 1984--85, no.~2, 25~pp.
+\newblock The reference list of \cite{PW88} gives the title as \emph{La
+  m\'ethode de Baker revisit\'ee}.
+
 \bibitem{BosmaLenstra1995}
 W.~Bosma and H.~W. Lenstra.
 \newblock {Complete systems of two addition laws for elliptic curves}.
@@ -40,7 +48,7 @@ S.~Krisman.
 \bibitem{RPaper}
 S.~Krisman.
 \newblock {A proof of the Roy--Waldschmidt theorem with period term}.
-\newblock preprint, 2026.
+\newblock in preparation, 2026.
 
 \bibitem{MstarPaper}
 S.~Krisman.
@@ -99,6 +107,12 @@ P.~Philippon.
 \newblock {\em Bull. Soc. Math. France}, 114:355--383, 1986.
 \newblock Errata et addenda, ibid. \textbf{115} (1987), 397--398.
 
+\bibitem{PW88}
+P.~Philippon and M.~Waldschmidt.
+\newblock {Formes lin\'eaires de logarithmes sur les groupes alg\'ebriques
+  commutatifs}.
+\newblock {\em Illinois J. Math.}, 32:281--314, 1988.
+
 \bibitem{Roy1992}
 D.~Roy.
 \newblock {Matrices whose coefficients are linear forms in logarithms}.
@@ -127,7 +141,7 @@ M.~Waldschmidt.
 
 \bibitem{W88}
 M.~Waldschmidt.
-\newblock {On the transcendence methods of Gel'fond and Schneider in several
+\newblock {On the transcendence methods of Gelfond and Schneider in several
   variables}.
 \newblock In A.~Baker, editor, {\em New Advances in Transcendence Theory
   (Durham, 1986)}, pages 375--398. Cambridge Univ. Press, 1988.
